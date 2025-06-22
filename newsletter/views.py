@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import NewsletterForm
 from .models import NewsletterSubscriber
+from decouple import config
 
 import sib_api_v3_sdk
 from sib_api_v3_sdk.rest import ApiException
@@ -19,7 +20,7 @@ def subscribe_newsletter(request):
                 print('i am new subscribed')
                 # Brevo API Integration
                 configuration = Configuration()
-                configuration.api_key['api-key'] = '***REMOVED***'
+                configuration.api_key['api-key'] = config('SENDINBLUE_API_KEY')
 
                 api_instance = sib_api_v3_sdk.ContactsApi(sib_api_v3_sdk.ApiClient(configuration))
                 create_contact = sib_api_v3_sdk.CreateContact(
