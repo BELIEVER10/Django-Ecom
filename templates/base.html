@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="max-age=604800" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Planetary Sound Healing Hub</title>
+
+
+<!-- google fonts  -->
+
+<link href="https://fonts.googleapis.com/css2?family=Lora&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+
+<!-- jQuery -->
+<script src="{% static 'js/jquery-2.0.0.min.js' %}" type="text/javascript"></script>
+
+<!-- Bootstrap4 files-->
+<script src="{% static 'js/bootstrap.bundle.min.js' %}" type="text/javascript"></script>
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css"/>
+
+<!-- Font awesome 5 -->
+<link href="{% static 'fonts/fontawesome/css/all.min.css' %}" type="text/css" rel="stylesheet">
+
+<!-- custom style -->
+<link href="{% static 'css/ui.css' %}" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+
+<link href="{% static 'css/responsive.css' %}" rel="stylesheet" media="only screen and (max-width: 1200px)" />
+
+<!-- custom javascript -->
+<script src="{% static 'js/script.js' %}" type="text/javascript"></script>
+
+<script type="text/javascript">
+/// some script
+
+// jquery ready start
+$(document).ready(function() {
+	// jQuery code
+
+}); 
+// jquery end
+</script>
+
+</head>
+<body>
+    {% include 'includes/navbar.html' %}
+
+  {% block content %}
+  <!-- content goes here -->
+  {% endblock %}
+  
+  {% include 'includes/footer.html' %}
+  
+  <!-- Floating Button -->
+<div id="contactBtn" class="floating-btn" onclick="togglePopup()">
+    <i class="fas fa-comments"></i>
+</div>
+
+
+<!-- Popup Dialog -->
+<div id="contactPopup" class="contact-popup">
+    <span class="close-btn" onclick="togglePopup()">✖</span>
+    <div id="autoMessage" class="auto-message" style="margin-bottom: 10px;"></div>
+    <h6>Contact Us</h6>
+    <a href="https://wa.me/9779828978984?text=Hello%2C%20I%20am%20interested%20in%20your%20services" target="_blank">
+        <i class="fab fa-whatsapp"></i> WhatsApp Us
+    </a>
+</div>
+
+
+<!-- Styles -->
+<style>
+.floating-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 10px;
+    width: 60px;
+    height: 60px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 60px;
+    font-size: 24px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    cursor: pointer;
+    z-index: 999;
+}
+
+.contact-popup {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    padding: 10px 15px 10px 15px;
+    display: none;
+    flex-direction: column;
+    z-index: 998;
+    min-width: 200px;
+    position: fixed;
+}
+
+.contact-popup .close-btn {
+    align-self: flex-end;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.contact-popup a {
+    color: #333;
+    text-decoration: none;
+    padding: 8px 0;
+    display: block;
+    font-weight: 500;
+}
+
+.contact-popup a:hover {
+    color: #28a745;
+}
+
+.auto-message {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+    border-left: 4px solid #28a745;
+}
+
+</style>
+
+<!-- JavaScript -->
+<script>
+let hasSentAutoMessage = false;
+
+function togglePopup() {
+    const popup = document.getElementById("contactPopup");
+    const messageBox = document.getElementById("autoMessage");
+    
+
+    if (popup.style.display === "flex") {
+        popup.style.display = "none";
+    } else {
+        popup.style.display = "flex";
+
+        if (!hasSentAutoMessage) {
+            const firstName = "{{ request.user.full_name|default:'there' }}"
+            messageBox.innerHTML = `
+                <p>Hi ${firstName},</p>
+                <p>Thank you for connecting with Planetary Sound Healing Hub. 🙏</p>
+                <p>We’d love to help you find what you’re looking for. Is there anything specific you need? Feel free to ask—we’re here to assist! 😊</p>
+                <p>Looking forward to serving you!</p>
+            `;
+            hasSentAutoMessage = true;
+        }
+    }
+}
+</script>
+
+
+</body>
+</html>

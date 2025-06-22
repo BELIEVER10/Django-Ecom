@@ -1,0 +1,298 @@
+.home{
+    /* background: linear-gradient(90deg, #221e67 0%, #5e1f70 24.95%, #7a2976 48.4%, #a3387d 82.83%, #b63f81 100%); */
+    background: #b63f81;
+    padding: 40px;
+    color: white;
+}
+.circular-logo {
+    width: 70px;        /* Adjust size */
+    height: 70px;
+    border-radius: 50%;  /* Makes it circular */
+    object-fit: cover;   /* Ensures image fills the circle */
+  
+  }
+.home-2{
+    background: linear-gradient(90deg, #221e67 0%, #5e1f70 24.95%, #7a2976 48.4%, #a3387d 82.83%, #b63f81 100%); 
+    color: white;
+    padding: 40px;
+}
+
+.gradient-button {
+    background: linear-gradient(90deg, #221e67 0%, #5e1f70 24.95%, #7a2976 48.4%, #a3387d 82.83%, #b63f81 100%);
+    color: white; /* Adjust text color for better contrast */
+    border: none; /* Optional: Remove border for a cleaner look */
+    padding: 0.5rem 1rem; /* Adjust padding as needed */
+    border-radius: 5px; /* Add rounded corners */
+    text-transform: uppercase; /* Optional: Style text */
+    transition: all 0.3s ease; /* Add a hover effect */
+}
+
+.gradient-button:hover {
+    opacity: 0.9; /* Slight dimming effect on hover */
+}
+
+.nav-top{
+    background: linear-gradient(90deg, #221e67 0%, #5e1f70 24.95%, #7a2976 48.4%, #a3387d 82.83%, #b63f81 100%); 
+}
+
+
+.button-color{
+    color: white;
+    border-color: white;
+    background: linear-gradient(90deg, #221e67 0%, #5e1f70 24.95%, #7a2976 48.4%, #a3387d 82.83%, #b63f81 100%); 
+
+}
+
+.no-size-button:disabled,
+.no-size-button[disabled] {
+    color: white;
+    border-color: white;
+    background: red;
+    
+}
+
+.button-color:hover {
+    background-color: red; /* Use a slightly darker shade */
+    color: white;
+}
+
+.button-color:focus,
+.button-color:active {
+    outline: none;
+    box-shadow: none;
+    border-color: white;
+}
+
+.fav-color{
+    color: purple !important;
+}
+
+
+/* dropdown hover color light purple */
+select.form-control option:hover {
+    background-color: purple; /* Replace 'lightpurple' with the exact color code or name you prefer */
+    color: white; /* Optional: Change text color for better visibility */
+    
+}
+
+.pagination .page-link {
+    background-color: purple;
+    color: white;
+    border: 1px solid white;
+}
+
+.pagination .page-link:hover {
+    background-color: #bc1899; /* Darker shade of purple for hover effect */
+    color: white;
+    border-color: white;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #bc1899; /* Active page background */
+    border-color: white;
+}
+
+.pagination .page-item.disabled .page-link {
+    background-color: #d8bfd8; /* Light purple for disabled state */
+    color: purple; /* Subtle text color for disabled state */
+}
+
+/* a.fav-color:hover {
+    color: #221e67 !important;
+} */
+
+.fvv-color{
+    color: white !important;
+}
+
+/* carosuel */
+
+.a-tag-color{
+    color: maroon !important;
+}
+
+.t-color{
+    color: purple !important; 
+}
+
+.justify-text {
+    text-align: justify;
+    hyphens: auto;
+    line-height: 1.6;
+}
+
+.dropdown-item {
+    color: #333; /* default link color */
+}
+
+.dropdown-item:visited {
+    color: #333; /* visited link color */
+}
+
+.dropdown-item:hover {
+    color: #bc1899 !important; /* hover color if needed */
+    background-color: #f8f9fa;
+}
+
+.dropdown-item:focus {
+    color: #333; /* color when clicked/focused */
+    background-color: #e9ecef;
+}
+
+.custom-purple {
+    background-color: purple;
+    color: white;
+}
+
+body {
+    font-family: 'Lora', serif;
+}
+
+h1, h2, h3, .section-heading, .product-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+}
+
+p {
+    line-height: 1.6;
+}
+
+a.active {
+    font-weight: bold;
+    color: #e74c3c; /* red or your theme color */
+}
+.list-group-item.active {
+    background-color: #bc1899 ;
+    border-color: #bc1899 ;
+    color: white !important;
+}
+
+a.product-title:hover {
+    color: #bc1899 !important;  /* Replace with your desired color */
+    text-decoration: none;      /* Optional: remove underline on hover */
+}
+
+
+
+.btn-hover-custom {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-hover-custom:hover {
+    background-color: #bc1899;
+    color: white;
+}
+
+ul.thumb{
+    margin:0 auto;
+    padding: 0;
+    float: left;
+  }
+  ul.thumb li{
+    list-style: none;
+    margin: 10px;
+  }
+  ul.thumb li img{
+    width: 80px;
+    height: 80px;
+    border: 1px solid grey;
+  }
+
+.home-bg{
+    /* background-color: #e8ecf1; */
+}
+
+.product-card:hover .thumbnail-list,
+.product-card:hover .floating-icons {
+    opacity: 1 !important;
+}
+
+.icon-btn {
+    transition: background-color 0.3s, color 0.3s !important;
+}
+
+.icon-btn:hover {
+    background-color: #ffc107 !important; /* Example hover color */
+    color: #fff !important;
+}
+
+.heart-icon {
+    background-color: white !important;
+    border: 1px solid #ccc !important;
+    transition: background-color 0.3s, color 0.3s !important;
+}
+.heart-icon:hover {
+    background-color: red !important;
+    color: white !important;
+}
+
+.thumb-img {
+    filter: blur(0.5px);
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.thumb-img:hover {
+    filter: blur(0);
+    transform: scale(1.05);
+}
+
+ 
+
+/* Custom responsive adjustments */
+@media (max-width: 767.98px) {
+    .navbar-nav .nav-link {
+        margin-bottom: 10px;
+    }
+
+    .form-inline {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .form-inline .input-group {
+        width: 100%;
+    }
+
+    .navbar-nav {
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar-nav .dropdown-menu {
+        position: static;
+        float: none;
+    }
+
+    .navbar-nav .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .circular-logo {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+
+
+@media (min-width: 992px) {
+    .navbar-nav .dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0; /* Remove default margin so it stays aligned */
+    }
+}
+
+
+@media (min-width: 1370px) {
+    .secondary-navbar {
+        margin-left: -800px;
+    }
+}
+
+@media (max-width: 1380px) {
+    .second-flex {
+        flex-wrap: wrap;
+        flex-shrink: initial;
+    }
+}

@@ -1,0 +1,140 @@
+{% load static %}
+<header class="section-header" style="background-image: -moz-linear-gradient();">
+    <!-- Main Navbar -->
+    <nav class="navbar navbar-expand-lg border-bottom nav-top">
+        <div class="container">
+            <a href="{% url 'home' %}" class="navbar-brand">
+                <img class="circular-logo" src="{% static 'images/logo1.jpeg' %}" alt="Logo" height="40">
+            </a>
+
+            <!-- Toggler for mobile -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar"
+                aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <!-- Category Dropdown -->
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    
+                    <li class="nav-item">
+                        <a href="{% url 'store' %}" class="nav-link btn btn-light mr-3">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link btn btn-light mr-3">Blogs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'contact_us' %}" class="nav-link btn btn-light">Contact</a>
+                    </li>
+                </ul>
+
+                <!-- Search bar -->
+                <form action="{% url 'search' %}" method="get" class="form-inline my-2 my-lg-0 mx-lg-3 w-100">
+                    <div class="input-group w-100">
+                        <input class="form-control" type="search" placeholder="Search" name="keyword" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-white border-white button-color" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Currency Dropdown -->
+                <ul class="navbar-nav ml-lg-3">
+                    <li class="nav-item dropdown">
+                        <button class="btn btn-light dropdown-toggle nav-link" id="currencyDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Currency
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'set_currency' 'USD' %}">USD ($)</a>
+                            <a class="dropdown-item" href="{% url 'set_currency' 'EUR' %}">EUR (€)</a>
+                            <a class="dropdown-item" href="{% url 'set_currency' 'GBP' %}">GBP (£)</a>
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- Auth Links -->
+                <ul class="navbar-nav ml-lg-3">
+                    {% if user.id is None %}
+                        <li class="nav-item">
+                            <a href="{% url 'login' %}" class="nav-link btn btn-light mr-2">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'register' %}" class="nav-link btn btn-light">Register</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{% url 'dashboard' %}" class="nav-link btn btn-light mr-2">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'logout' %}" class="nav-link btn btn-light">Logout</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                
+
+                <!-- Cart -->
+                <ul class="navbar-nav ml-lg-3">
+                    <li class="nav-item">
+                        <a href="{% url 'cart' %}" class="widget-header pl-3 ml-3">
+                            <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
+                            <span class="badge badge-pill custom-purple notify">{{ cart_count }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- <div style="background-color: #e0e0e0;"> -->
+    <!-- Secondary Navbar with Hover Dropdowns -->
+    <nav class="navbar navbar-expand-lg navbar-light secondary-navbar" style="background-color: #e0e0e0;">
+        
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#secondaryNavbar"
+                aria-controls="secondaryNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" ></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="secondaryNavbar">
+                <ul class="navbar-nav mx-auto second-flex">
+
+                    {% for main in main_categories %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="singingDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ main.name }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="singingDropdown">
+                            {% for sub in main.subcategories.all %}
+                            <a class="dropdown-item" href="{{sub.get_url}}">{{ sub.name }}</a>
+                            {% endfor %}
+                        
+                        </div>
+                    </li>
+                    {% endfor %}
+
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link position-relative d-inline-block" href="{% url 'wishlist' %}">
+                            <i class="fa fa-heart"></i> Wishlist
+                            {% if wishlist_count %}
+                                <span class="badge badge-danger position-absolute"
+                                    style="top: -5px; right: -10px; font-size: 0.75rem; border-radius: 50%; min-width: 20px; height: 20px; line-height: 20px; text-align: center; padding: 0;">
+                                    {{ wishlist_count }}
+                                </span>
+
+                            {% endif %}
+                        </a>
+                    </li>
+
+
+                {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- </div> -->
+</header>

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load currency_filters %}
+{% block content %}
+<style>
+    .wishlist-card {
+        height: 180px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        transition: box-shadow 0.3s ease;
+    }
+
+    .wishlist-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .wishlist-card-img {
+        width: 180px;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .wishlist-card-body {
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex: 1;
+    }
+
+    .wishlist-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .wishlist-buttons {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+</style>
+
+<div class="container mt-4">
+    {% include 'includes/alerts.html' %}
+    <h2 class="text-center mb-4 fav-color">My Wishlist</h3>
+
+    {% if wishlist_items %}
+    <div class="row justify-content-center">
+        {% for item in wishlist_items %}
+        <div class="col-md-10 col-lg-8 mb-4">
+            <div class="wishlist-card">
+                <img src="{{ item.product.image.url }}" class="wishlist-card-img" alt="{{ item.product.product_name }}">
+
+                <div class="wishlist-card-body">
+                    <div>
+                        <div class="wishlist-title">{{ item.product.product_name }}</div>
+                        <p class="text-muted mb-2">{{ currency_symbol }}{% convert_price item.product.price %}</p>
+                    </div>
+                    <div class="wishlist-buttons">
+                        <a href="{% url 'remove_from_wishlist' item.product.id %}" class="btn btn-outline-danger">Remove</a>
+                        <a href="{{ item.product.get_url }}" class="btn btn-light btn-hover-custom">View Product</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+ 
+     <div class="text-center">
+        <h4 class="fav-color">You have no items in your wishlist.</h2>
+        <br>
+        <a href="{% url 'store' %} " class="btn button-color mb-5">Add to Wishlist</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% load static %}
+
+<!-- ========================= FOOTER ========================= -->
+<footer class="section-footer nav-top text-light pt-4">
+  <div class="container">
+    <div class="row">
+
+ 
+
+      <!-- Legal Links -->
+      <div class="col-md-2 mb-4">
+        <h6 class="mb-3">Legal</h6>
+        <ul class="list-unstyled">
+          <li><a href="{% url 'privacy_policy' %}" class="text-light">Privacy Policy</a></li>
+          <li><a href="{% url 'terms_and_conditions' %}" class="text-light">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-md-3 mb-4">
+        <h6 class="mb-3">Quick Links</h6>
+        <ul class="list-unstyled">
+          <li><a href="{% url 'home' %}" class="text-light">Home</a></li>
+          <li><a href="{% url 'about_us' %}" class="text-light">About Us</a></li>
+          <li><a href="{% url 'store' %}" class="text-light">Shop</a></li>
+          <li><a href="{% url 'contact_us' %}" class="text-light">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact & Social -->
+      <div class="col-md-4 mb-4">
+        <h6 class="mb-3">Contact Us</h6>
+        <p>Email: planetarysoundhealinghub@gmail.com</p>
+        <p>Phone: +9779851341639</p>
+        <p>Location: Kathmandu, Nepal</p>
+        <div class="mt-2">
+          <a href="#" class="text-light me-3"><i class="fab fa-facebook fa-lg"></i></a>
+          <a href="#" class="text-light me-3"><i class="fab fa-instagram fa-lg"></i></a>
+          <a href="#" class="text-light me-3"><i class="fab fa-twitter fa-lg"></i></a>
+          <a href="#" class="text-light"><i class="fab fa-youtube fa-lg"></i></a>
+        </div>
+      </div>
+
+           <!-- Company Info -->
+      <div class="col-md-3 mb-4">
+        <h5 class="mb-3">Planetery Sound Healing Hub</h5>
+        <p>Experience the healing power of sound. Transform your energy, focus your mind, and find balance.</p>
+      </div>
+
+    </div> <!-- row -->
+    <hr class="bg-light">
+    <div class="text-center py-2">
+      <small>&copy; 2025 Planetary Sound Healing Hub — All rights reserved.</small>
+    </div>
+  </div><!-- container -->
+</footer>
+<!-- ========================= FOOTER END ========================= -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+  $(document).ready(function(){
+    $('.thumb a').click(function(e){
+      e.preventDefault();
+      $('.mainImage img').attr('src', $(this).attr('href'));
+    });
+  });
+</script>
+
+</body>
+</html>

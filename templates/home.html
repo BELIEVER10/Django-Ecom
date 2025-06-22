@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load currency_filters %}
+
+{% block content %}
+
+
+<div class="home-bg">
+<!-- ========================= SECTION: New Arrivals ========================= -->
+<section class="section-name padding-y-sm">
+    <div class="container">
+        <header class="section-heading">
+            <h3 class="section-title text-center fav-color">New Arrivals</h3>
+        </header>
+
+        <div class="horizontal-scroll-wrapper d-flex overflow-auto py-2" style="gap: 1rem; white-space: nowrap;">
+            {% for product in products %}
+            <div class="card card-product-grid flex-shrink-0" style="min-width: 250px; display: inline-block;">
+                <a href="{{ product.get_url }}" class="img-wrap">
+                    <img src="{{ product.image.url }}" alt="{{ product.product_name }}">
+                </a>
+                <figcaption class="info-wrap">
+                    <a href="{{ product.get_url }}" class="title fav-color">{{ product.product_name }}</a>
+                    <div class="price mt-1 fav-color">{{ currency_symbol }}{% convert_price product.price %}</div>
+                </figcaption>
+            </div>
+            {% endfor %}
+        </div>
+
+        <br><br>
+        <!-- ========================= SECTION MAIN ========================= -->
+<section class="section-intro padding-y-sm">
+    <div class="container">
+        <header class="section-heading">
+            <h3 class="section-title text-center fav-color">Events</h3>
+        </header>
+
+        <div class="intro-banner-wrap">
+            <div class="row no-gutters align-items-center flex-column flex-md-row" style="background-color: #f8f9fa;">
+                
+                {% if left_banner_product %}
+                <!-- Left Offer -->
+                <div class="col-12 col-md-3 mb-2 mb-md-0 p-0">
+                    <a href="{{ left_banner_product.get_url }}">
+                        <img src="{{ left_banner.image.url }}" class="w-100 img-fluid" alt="Left Offer"
+                             style="object-fit: cover; max-height: 300px;">
+                    </a>
+                </div>
+                {% endif %}
+
+                <!-- Middle Carousel -->
+                <div class="col-12 col-md-6 mb-2 mb-md-0 p-0">
+                    <div id="middleImageCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+                        <div class="carousel-inner">
+                            {% for item in items %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                <a href="{% url 'event_detail' item.slug %}"><img src="{{ item.image.url }}" class="w-100 img-fluid rounded"
+                                     alt="{{ item.title }}" style="object-fit: cover; max-height: 300px;"></a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                {% if right_banner_product %}
+                <!-- Right Offer -->
+                <div class="col-12 col-md-3 p-0">
+                    <a href="{{ right_banner_product.get_url }}">
+                        <img src="{{ right_banner.image.url }}" class="w-100 img-fluid" alt="Right Offer"
+                             style="object-fit: cover; max-height: 300px;">
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+        <header class="section-heading">
+            <h3 class="section-title text-center fav-color">Most Viewed</h3>
+        </header>
+
+        <div class="horizontal-scroll-wrapper d-flex overflow-auto py-2" style="gap: 1rem; white-space: nowrap;">
+            {% for product in most_viewed %}
+            <div class="card card-product-grid flex-shrink-0" style="min-width: 250px; display: inline-block;">
+                <a href="{{ product.get_url }}" class="img-wrap">
+                    <img src="{{ product.image.url }}" alt="{{ product.product_name }}">
+                </a>
+                <figcaption class="info-wrap">
+                    <a href="{{ product.get_url }}" class="title fav-color">{{ product.product_name }}</a>
+                    <div class="price mt-1 fav-color">{{ currency_symbol }}{% convert_price product.price %}</div>
+                </figcaption>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- ========================= SECTION END// ========================= -->
+
+
+</div>
+<!-- ========================= SECTION MAIN END// ========================= -->
+
+
+{% endblock %}

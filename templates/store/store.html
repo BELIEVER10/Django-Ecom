@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load currency_filters %}
+
+{% block content %}
+<section class="section-pagetop">
+    <div class="container">
+        {% if 'search' in request.path %}
+        <h2 class="title-page text-center fav-color">Search Result</h2>
+        {% else %}
+        <h2 class="title text-center fav-color">Our Collection</h2>
+        {% endif %}
+    </div>
+</section>
+
+<section class="section-content padding-y">
+    <div class="container">
+        {% include 'includes/alerts.html' %}
+        <div class="row">
+            <!-- Sidebar Filters -->
+            <aside class="col-md-3">
+                <!-- Categories Filter -->
+                <div class="card mb-4">
+                    <article class="filter-group">
+                        <header class="card-header">
+                            <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true">
+                                <i class="icon-control fa fa-chevron-down fav-color"></i>
+                                <h6 class="title fav-color">Categories</h6>
+                            </a>
+                        </header>
+                        <div class="filter-content collapse show" id="collapse_1">
+                            <div class="card-body">
+                                <ul class="list-menu">
+                                    <a href="{% url 'store' %}"><li class="fav-color">All Products</li></a>
+                                     {% for main in main_categories %}
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle fav-color" href="#" id="singingDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            {{ main.name }}
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="singingDropdown">
+                                            {% for sub in main.subcategories.all %}
+                                            <a class="dropdown-item" href="{{sub.get_url}}">{{ sub.name }}</a>
+                                            {% endfor %}
+                                        
+                                        </div>
+                                    </li>
+                                 {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Price Filter -->
+                <div class="card mb-4">
+                    <article class="filter-group">
+                        <header class="card-header">
+                            <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true">
+                                <i class="icon-control fa fa-chevron-down fav-color"></i>
+                                <h6 class="title fav-color">Price range</h6>
+                            </a>
+                        </header>
+                        <div class="filter-content collapse show" id="collapse_3">
+                            <div class="card-body">
+                                {% if category_slug %}
+                                <form action="{% url 'search_by_category' category_slug %}" method="GET">
+                                {% else %}
+                                <form action="{% url 'price_search' %}" method="GET">
+                                {% endif %}
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label class="fav-color">Min</label>
+                                            <select class="form-control fav-color" name="min_price">
+                                                <option value="0" {% if min_price == "0" %}selected{% endif %}>{{currency_symbol}}0</option>
+                                                <option value="50" {% if min_price == "50" %}selected{% endif %}>{{currency_symbol}}50</option>
+                                                <option value="100" {% if min_price == "100" %}selected{% endif %}>{{currency_symbol}}100</option>
+                                                <option value="150" {% if min_price == "150" %}selected{% endif %}>{{currency_symbol}}150</option>
+                                                <option value="200" {% if min_price == "200" %}selected{% endif %}>{{currency_symbol}}200</option>
+                                                <option value="500" {% if min_price == "500" %}selected{% endif %}>{{currency_symbol}}500</option>
+                                                <option value="1000" {% if min_price == "1000" %}selected{% endif %}>{{currency_symbol}}1000</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="fav-color">Max</label>
+                                            <select class="form-control fav-color" name="max_price">
+                                                <option value="50" {% if max_price == "50" %}selected{% endif %}>{{currency_symbol}}50</option>
+                                                <option value="100" {% if max_price == "100" %}selected{% endif %}>{{currency_symbol}}100</option>
+                                                <option value="150" {% if max_price == "150" %}selected{% endif %}>{{currency_symbol}}150</option>
+                                                <option value="200" {% if max_price == "200" %}selected{% endif %}>{{currency_symbol}}200</option>
+                                                <option value="500" {% if max_price == "500" %}selected{% endif %}>{{currency_symbol}}500</option>
+                                                <option value="1000" {% if max_price == "1000" %}selected{% endif %}>{{currency_symbol}}1000</option>
+                                                <option value="2000" {% if max_price == "2000" %}selected{% endif %}>{{currency_symbol}}2000+</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-block button-color" type="submit">Apply</button>
+                                </form>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </aside>
+
+            <!-- Main Products Area -->
+            <main class="col-md-9">
+                <header class="border-bottom mb-4 pb-3">
+                    <div class="form-inline">
+                        <span class="mr-md-auto">{{product_count}} Items found</span>
+                    </div>
+                </header>
+
+                <div class="row d-flex flex-wrap">
+                    {% if products %}
+                        {% for product in products %}
+                        <div class="col-md-4 col-sm-6 mb-4">
+                            <div class="card product-card position-relative border h-100" style="overflow: hidden; min-height: 420px;">
+                                {% if user.is_authenticated %}
+                                    {% if product in wishlist_products %}
+                                        <a href="{% url 'remove_from_wishlist' product.id %}" class="btn btn-danger btn-sm position-absolute rounded-circle icon-btn heart-icon" title="Remove from wishlist" style="top: 10px; right: 10px; z-index: 3; width: 34px; height: 34px;">
+                                            <i class="fa fa-heart"></i>
+                                        </a>
+                                    {% else %}
+                                        <a href="{% url 'add_to_wishlist' product.id %}" class="btn btn-light btn-sm position-absolute rounded-circle icon-btn heart-icon" title="Add to wishlist" style="top: 10px; right: 10px; z-index: 3; width: 34px; height: 34px;">
+                                            <i class="fa fa-heart"></i>
+                                        </a>
+                                    {% endif %}
+                                {% else %}
+                                    <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-light btn-sm position-absolute rounded-circle icon-btn heart-icon" title="Login to save to wishlist" style="top: 10px; right: 10px; z-index: 3; width: 34px; height: 34px;">
+                                        <i class="fa fa-heart"></i>
+                                    </a>
+                                {% endif %}
+
+
+                                <div class="p-3 product-image-wrapper position-relative text-center d-flex justify-content-center align-items-center" style="height: 250px; background: #fff;">
+                                    <div class="thumbnail-list position-absolute d-flex flex-column" style="left: 10px; top: 10px; opacity: 0; transition: 0.3s;">
+                                        {% for i in product.productgallery_set.all|slice:":2" %}
+                                        <img src="{{ i.image.url }}" class="img-thumbnail thumb-img mb-2" style="width: 50px; height: 50px; object-fit: cover; cursor: pointer;">
+                                        {% endfor %}
+                                        <img src="{% static 'images/item/image4.jpeg' %}" class="img-thumbnail thumb-img mb-2" style="width: 50px; height: 50px; object-fit: cover; cursor: pointer;">
+                                    </div>
+
+                                    <a href="{{product.get_url}}"><img src="{{ product.image.url }}" class="main-product-img img-fluid" style="max-height: 200px; object-fit: contain;"></a>
+
+                                    <div class="floating-icons position-absolute d-flex flex-column align-items-center" style="top: 50px; right: 10px; opacity: 0; transition: 0.3s;">
+                                        <button class="btn btn-light btn-sm rounded-circle mb-2 icon-btn" style="width: 34px; height: 34px; padding: 6px;">
+                                            <i class="fa fa-random" style="font-size: 14px;"></i>
+                                        </button>
+
+                                        <a href="{{ product.get_url }}" class="btn btn-light btn-sm rounded-circle icon-btn" style="width: 34px; height: 34px; padding: 6px;">
+                                            <i class="fa fa-eye" style="font-size: 14px;"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="card-body text-center d-flex flex-column justify-content-between" style="min-height: 160px;">
+                                    <h6 class="product-title mb-1"><a href="{{ product.get_url }}" class="text-dark">{{ product.product_name }}</a></h6>
+                                    <p class="">{{ currency_symbol }}{% convert_price product.price %}</p>
+                                    <a href="{{ product.get_url }}" class="btn button-color btn-block">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="col-12">
+                            <h2 class="fav-color text-center">No Result Found, Try again</h2>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Pagination -->
+                <nav class="mt-4" aria-label="Page navigation sample">
+                    {% if products.has_other_pages %}
+                    <ul class="pagination">
+                        {% if products.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ products.previous_page_number }}">Previous</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                        {% endif %}
+
+                        {# Custom page range logic #}
+                        {% for i in products.paginator.page_range %}
+                            {% if i <= 3 or i > products.paginator.num_pages|add:'-3' or i == products.number or i == products.number|add:'-1' or i == products.number|add:'1' %}
+                                {% if i == products.number %}
+                                    <li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
+                                {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                            {% elif i == 4 and products.number > 6 %}
+                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                            {% elif i == products.paginator.num_pages|add:'-3' and products.number < products.paginator.num_pages|add:'-5' %}
+                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if products.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ products.next_page_number }}">Next</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                        {% endif %}
+                    </ul>
+                    {% endif %}
+                </nav>
+
+            </main>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const productCards = document.querySelectorAll('.product-card');
+    productCards.forEach(card => {
+        const mainImg = card.querySelector('.main-product-img');
+        const originalSrc = mainImg.src;
+        const thumbs = card.querySelectorAll('.thumb-img');
+        thumbs.forEach(thumb => {
+            thumb.addEventListener('mouseenter', () => {
+                mainImg.src = thumb.src;
+            });
+            thumb.addEventListener('mouseleave', () => {
+                mainImg.src = originalSrc;
+            });
+        });
+    });
+});
+</script>
+{% endblock %}

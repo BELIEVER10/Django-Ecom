@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="container bg-light p-4 p-md-5 my-5 rounded">
+    <div class="row align-items-center">
+        <div class="col-md-6 mb-4 mb-md-0 text-center text-md-start">
+            <div class="invoice-logo">
+                <img src="{% static 'images/logo1.jpeg' %}" 
+                     class="img-fluid rounded-circle mx-auto d-md-inline-block" 
+                     style="max-width: 150px;" 
+                     alt="Logo">
+            </div>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+            <ul class="list-unstyled">
+                <li><strong>Invoiced To</strong></li>
+                <li>{{ order.full_name }}</li>
+                <li>{{ order.full_address }}</li>
+                <li>{{ order.city }}, {{ order.state }}</li>
+                <li>{{ order.country }}</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="bg-white p-3 rounded shadow-sm">
+                <ul class="list-unstyled mb-0">
+                    <li><strong>Order Number:</strong> #{{ order.order_number }}</li>
+                    <li><strong>Transaction ID:</strong> {{ order.payment }}</li>
+                    <li><strong>Order Date:</strong> {{ order.created_at }}</li>
+                    <li><strong>Payment Status:</strong> {{ order.payment.status }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive mt-4">
+        <table class="table table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th class="text-center">Products</th>
+                    <th class="text-center">Qty</th>
+                    <th class="text-center">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cart_item in ordered_products %}
+                <tr>
+                    <td>
+                        <strong>{{ cart_item.product.product_name }}</strong>
+                        <p class="text-muted small">
+                            {% if cart_item.variation.all %}
+                                {% for item in cart_item.variation.all %}
+                                    <span>{{ item.variation_category|capfirst }}: {{ item.variation_value|capfirst }}</span><br>
+                                    <span>Model Number: {{ item.model_number }}</span><br>
+                                {% endfor %}
+                            {% endif %}
+                            {% if cart_item.product.model_number %}
+                                <span>Model Number: {{ cart_item.product.model_number }}</span>
+                            {% endif %}
+                        </p>
+                    </td>
+                    <td class="text-center">{{ cart_item.quantity }}</td>
+                    <td class="text-center">${{ cart_item.product_price }} each</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="2" class="text-end">Sub Total:</th>
+                    <th class="text-center">${{ subtotal }} USD</th>
+                </tr>
+                <tr>
+                    <th colspan="2" class="text-end">Tax:</th>
+                    <th class="text-center">${{ order.tax }} USD</th>
+                </tr>
+                <tr>
+                    <th colspan="2" class="text-end">Grand Total:</th>
+                    <th class="text-center">${{ order.order_total }} USD</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="text-center mt-4">
+        <p class="fw-bold">Thank you for shopping with us!</p>
+    </div>
+</div>
+
+<div class="text-center mb-4">
+<a href="{% url 'download_pdf' order_number=order.order_number %}">
+        <button class="btn btn-lg btn-success">Download PDF</button>
+    </a>
+</div>
+
+{% endblock %}
