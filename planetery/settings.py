@@ -26,7 +26,8 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = ['django-env.eba-n7zde2wd.ap-south-1.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['planetary-course-env.eba-ptyv9pbu.ap-south-1.elasticbeanstalk.com', 'localhost',
+    '127.0.0.1',]
 # CSRF_TRUSTED_ORIGINS = ['https://53eb-103-225-246-8.ngrok-free.app', 'https://127.0.0.1:8000', 'http://0.0.0.0:8000']
 
 

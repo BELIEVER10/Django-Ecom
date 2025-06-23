@@ -20,7 +20,6 @@ django-import-export==4.3.7
 django-ipware==7.0.1
 et_xmlfile==2.0.0
 fonttools==4.57.0
-gunicorn==23.0.0
 html5lib==1.1
 idna==3.10
 lxml==5.4.0
