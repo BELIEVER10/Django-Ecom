@@ -7,16 +7,24 @@ from category.forms import ContactForm
 from django.contrib import messages
 
 def home(request):
-    products = Product.objects.all().filter(is_available=True, is_new_arrival=True).order_by('created_date')
-    most_viewed = Product.objects.order_by('-views')[:10]  # Top 10 viewed
+    products = Product.objects.filter(is_available=True, is_new_arrival=True).order_by('created_date')
+    most_viewed = Product.objects.order_by('-views')[:10]
 
-    left_banner = get_object_or_404(LeftBanner)
-    right_banner = get_object_or_404(RightBanner)
+    left_banner = LeftBanner.objects.first()  # Safe fallback if no banners
+    right_banner = RightBanner.objects.first()
 
-    left_banner_product = Product.objects.get(is_available=True, is_left_banner_offer=True)
-    right_banner_product = Product.objects.get(is_available=True, is_right_banner_offer=True)
+    try:
+        left_banner_product = Product.objects.get(is_available=True, is_left_banner_offer=True)
+    except Product.DoesNotExist:
+        left_banner_product = None
+
+    try:
+        right_banner_product = Product.objects.get(is_available=True, is_right_banner_offer=True)
+    except Product.DoesNotExist:
+        right_banner_product = None
 
     items = CarouselItem.objects.all()
+
     context = {
         'products': products,
         'most_viewed': most_viewed,
@@ -25,7 +33,6 @@ def home(request):
         'right_banner': right_banner,
         'left_banner_product': left_banner_product,
         'right_banner_product': right_banner_product,
-
     }
     return render(request, 'home.html', context)
 
