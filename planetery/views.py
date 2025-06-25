@@ -7,7 +7,7 @@ from category.forms import ContactForm
 from django.contrib import messages
 
 def home(request):
-    products = Product.objects.filter(is_available=True, is_new_arrival=True).order_by('created_date')
+    products = Product.objects.filter(is_available=True, is_new_arrival=True).order_by('-created_date')
     most_viewed = Product.objects.order_by('-views')[:10]
 
     left_banner = LeftBanner.objects.first()  # Safe fallback if no banners
