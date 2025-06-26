@@ -11,7 +11,6 @@ class ProductGalleryInline(admin.TabularInline):
     extra = 1
 
 class ProductAdmin(ImportExportModelAdmin):
-    prepopulated_fields = {'slug': ('product_name', )}
     list_display = ('product_name', 'price', 'stock', 'modified_date', 'is_available', 'is_new_arrival', 'views')
     resource_class = ProductResource
     inlines = [ProductGalleryInline]

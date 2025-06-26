@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
+    path("ckeditor5/", include('django_ckeditor_5.urls')),
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('meroadmin/', admin.site.urls),
     path('', views.home, name="home"),

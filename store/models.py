@@ -1,14 +1,15 @@
 from django.db import models
 from category.models import Category, SubCategory
 from django.urls import reverse
+from django_ckeditor_5.fields import CKEditor5Field
 
 # Create your models here.
 class Product(models.Model):
     product_name = models.CharField(max_length=255, unique=True)
     model_number = models.CharField(max_length=100, null=True, blank=True)
     slug = models.SlugField(max_length=255, unique=True)
-    sub_description = models.TextField(blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
+    sub_description = CKEditor5Field(config_name='extends')
+    description = CKEditor5Field(config_name='extends')
     image = models.ImageField(upload_to='photos/products')
     price = models.IntegerField()
     stock = models.IntegerField()
@@ -51,7 +52,7 @@ class Variation(models.Model):
     variation_category = models.CharField(max_length=200, choices=variation_category_choice, blank=True, null=True)
     variation_value = models.CharField(max_length=200, blank=True, null=True)
     model_number = models.CharField(max_length=100, null=True, blank=True)
-    sub_description = models.TextField(blank=True)
+    sub_description = CKEditor5Field(config_name='extends')
     price = models.IntegerField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
     created_date = models.DateTimeField(auto_now=True)

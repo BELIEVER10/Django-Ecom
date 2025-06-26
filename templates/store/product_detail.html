@@ -81,10 +81,10 @@
                         
                         {% if sub_description %}
                         <hr>
-                        <p class="text-justify">{{ sub_description }}</p>
+                        <p class="text-justify">{{ sub_description|safe }}</p>
                         {% else %}
                         <hr>
-                        <p class="text-justify">{{ product.sub_description }}</p>
+                        <p class="text-justify">{{ product.sub_description|safe }}</p>
                         {% endif %}
                         
                         {% if size_variations %}
@@ -139,7 +139,7 @@
         <div class="card mt-4">
             <div class="card-body">
                 <h5>Description</h5>
-                <p class="text-justify">{{ product.description }}</p>
+                <p class="text-justify">{{ product.description|safe }}</p>
             </div>
         </div>
     </div>
