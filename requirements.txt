@@ -18,8 +18,10 @@ diff-match-patch==20241021
 Django==4.2
 django-admin-honeypot==1.1.0
 django-admin-thumbnails==0.2.9
+django-ckeditor-5==0.2.18
 django-import-export==4.3.7
 django-ipware==7.0.1
+django-js-asset==3.1.2
 django-storages==1.14.6
 et_xmlfile==2.0.0
 fonttools==4.57.0
@@ -64,5 +66,6 @@ tzlocal==5.3.1
 uritools==5.0.0
 urllib3==2.4.0
 webencodings==0.5.1
+whitenoise==6.9.0
 xhtml2pdf==0.2.17
 zopfli==0.2.3.post1
