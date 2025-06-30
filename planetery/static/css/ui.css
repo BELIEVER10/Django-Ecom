@@ -835,7 +835,7 @@ a[class*=card]:hover .title {
   display: block;
 }
 [class*=card-product] a.title:hover {
-  color: #3167eb;
+  color: purple;
 }
 [class*=card-product] .badge {
   top: 10px;

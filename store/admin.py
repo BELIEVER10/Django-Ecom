@@ -16,7 +16,7 @@ class ProductAdmin(ImportExportModelAdmin):
     inlines = [ProductGalleryInline]
 
 class VariationAdmin(ImportExportModelAdmin):
-    list_display = ('product', 'price', 'variation_category', 'variation_value', 'model_number', 'is_active')
+    list_display = ('product', 'price', 'stock', 'variation_category', 'variation_value', 'model_number', 'is_active')
     list_editable = ('is_active', )
     list_filter = ('product', 'variation_category', 'variation_value')
     resource_class = VariationResource
