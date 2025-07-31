@@ -24,7 +24,7 @@ def store_by_subcategory(request, subcategory_slug):
 
 
 def store(request):
-    products = Product.objects.all().filter(is_available=True).order_by('id')
+    products = Product.objects.all().filter(is_available=True).order_by('-created_date')
     paginator = Paginator(products, 6)
     page = request.GET.get('page')
     paged_products = paginator.get_page(page)

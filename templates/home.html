@@ -23,7 +23,16 @@
                 <div style="background-color: #f4f4f4;">
                 <figcaption class="info-wrap">
                     <a href="{{ product.get_url }}" class="title font-weight-bold text-dark">{{ product.product_name }}</a>
+
+                    {% if product.min_price and product.max_price %}
+                    <div class="price mt-1">
+                        {{ currency_symbol }}{% convert_price product.min_price %}
+                        -
+                        {{ currency_symbol }}{% convert_price product.max_price %}
+                    </div>
+                    {% else %}
                     <div class="price mt-1">{{ currency_symbol }}{% convert_price product.price %}</div>
+                    {% endif %}
                 </figcaption>
                 </div>
             </div>
@@ -93,7 +102,15 @@
                 <div style="background-color: #f4f4f4;">
                 <figcaption class="info-wrap">
                     <a href="{{ product.get_url }}" class="title font-weight-bold text-dark">{{ product.product_name }}</a>
+                    {% if product.min_price and product.max_price %}
+                    <div class="price mt-1">
+                        {{ currency_symbol }}{% convert_price product.min_price %}
+                        -
+                        {{ currency_symbol }}{% convert_price product.max_price %}
+                    </div>
+                    {% else %}
                     <div class="price mt-1">{{ currency_symbol }}{% convert_price product.price %}</div>
+                    {% endif %}
                 </figcaption>
                 </div>
             </div>

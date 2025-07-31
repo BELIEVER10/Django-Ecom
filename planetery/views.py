@@ -5,10 +5,18 @@ from category.models import LeftBanner, RightBanner
 from category.models import ContactMessage
 from category.forms import ContactForm
 from django.contrib import messages
+from django.db.models import Min, Max
+
 
 def home(request):
-    products = Product.objects.filter(is_available=True, is_new_arrival=True).order_by('-created_date')
-    most_viewed = Product.objects.order_by('-views')[:10]
+    products = Product.objects.filter(is_available=True, is_new_arrival=True).order_by('-created_date').annotate(
+        min_price=Min('variation__price'),
+        max_price=Max('variation__price')
+    )
+    most_viewed = Product.objects.order_by('-views')[:10].annotate(
+        min_price=Min('variation__price'),
+        max_price=Max('variation__price')
+    )
 
     left_banner = LeftBanner.objects.first()  # Safe fallback if no banners
     right_banner = RightBanner.objects.first()
