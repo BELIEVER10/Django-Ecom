@@ -9,6 +9,7 @@ from .utils.currency import get_currency_symbol, get_exchange_rates
 from django.core.exceptions import MultipleObjectsReturned
 from django.db.models import Count
 from carts.models import Wishlist
+from django.db.models import Max, Min
 
 # Create your views here.
 
@@ -24,7 +25,10 @@ def store_by_subcategory(request, subcategory_slug):
 
 
 def store(request):
-    products = Product.objects.all().filter(is_available=True).order_by('-created_date')
+    products = Product.objects.all().filter(is_available=True).order_by('-created_date').annotate(
+    min_price=Min('variation__price'),
+    max_price=Max('variation__price'))
+    
     paginator = Paginator(products, 6)
     page = request.GET.get('page')
     paged_products = paginator.get_page(page)
@@ -48,7 +52,11 @@ def store(request):
 
 
 def product_detail(request, subcategory_slug=None, product_slug=None):
-    product = Product.objects.get(sub_category__slug=subcategory_slug, slug=product_slug)
+    product = Product.objects.filter(
+    sub_category__slug=subcategory_slug,
+    slug=product_slug).annotate(
+    min_price=Min('variation__price'),
+    max_price=Max('variation__price')).get()
     id = product.id
     product_without_variation = Product.objects.annotate(variation_count=Count('variation')).filter(id=id, variation_count=0).first()
   

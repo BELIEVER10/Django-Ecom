@@ -154,7 +154,15 @@
 
                                 <div class="card-body text-center d-flex flex-column justify-content-between" style="min-height: 160px;">
                                     <h6 class="product-title mb-1"><a href="{{ product.get_url }}" class="text-dark">{{ product.product_name }}</a></h6>
-                                    <p class="">{{ currency_symbol }}{% convert_price product.price %}</p>
+                                    {% if product.min_price and product.max_price %}
+                                    <p class="price mt-1">
+                                        {{ currency_symbol }}{% convert_price product.min_price %}
+                                        -
+                                        {{ currency_symbol }}{% convert_price product.max_price %}
+                                    </p>
+                                    {% else %}
+                                    <p class="price mt-1">{{ currency_symbol }}{% convert_price product.price %}</p>
+                                    {% endif %}
                                     <a href="{{ product.get_url }}" class="btn button-color btn-block">View Details</a>
                                 </div>
                             </div>

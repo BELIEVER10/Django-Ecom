@@ -68,6 +68,12 @@
                         <div class="mb-3">
                             {% if price %}
                             <var class="price h4">{{ currency_symbol }}{% convert_price price %}</var>
+                            {% elif product.min_price and product.max_price %}
+                            <var class="price h4">
+                                {{ currency_symbol }}{% convert_price product.min_price %}
+                                -
+                                {{ currency_symbol }}{% convert_price product.max_price %}
+                            </var>
                             {% else %}
                             <var class="price h4">{{ currency_symbol }}{% convert_price product.price %}</var>
                             {% endif %}
