@@ -20,10 +20,12 @@
                 <a href="{{ product.get_url }}" class="img-wrap">
                     <img  src="{{ product.image.url }}" alt="{{ product.product_name }}">
                 </a>
+                <div style="background-color: #f4f4f4;">
                 <figcaption class="info-wrap">
-                    <a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a>
+                    <a href="{{ product.get_url }}" class="title font-weight-bold text-dark">{{ product.product_name }}</a>
                     <div class="price mt-1">{{ currency_symbol }}{% convert_price product.price %}</div>
                 </figcaption>
+                </div>
             </div>
             {% endfor %}
         </div>
@@ -88,10 +90,12 @@
                 <a href="{{ product.get_url }}" class="img-wrap">
                     <img src="{{ product.image.url }}" alt="{{ product.product_name }}">
                 </a>
+                <div style="background-color: #f4f4f4;">
                 <figcaption class="info-wrap">
-                    <a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a>
+                    <a href="{{ product.get_url }}" class="title font-weight-bold text-dark">{{ product.product_name }}</a>
                     <div class="price mt-1">{{ currency_symbol }}{% convert_price product.price %}</div>
                 </figcaption>
+                </div>
             </div>
             {% endfor %}
         </div>
