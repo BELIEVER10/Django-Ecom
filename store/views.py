@@ -19,7 +19,9 @@ from category.models import SubCategory
 
 def store_by_subcategory(request, subcategory_slug):
     subcategory = SubCategory.objects.get(slug=subcategory_slug)
-    products = Product.objects.filter(sub_category=subcategory)
+    products = Product.objects.filter(sub_category=subcategory).annotate(
+    min_price=Min('variation__price'),
+    max_price=Max('variation__price'))
     product_count = products.count()
     return render(request, 'store/store.html', {'products': products, 'product_count': product_count, 'category_slug': subcategory_slug})
 
