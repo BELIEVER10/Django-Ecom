@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'import_export',
     'orders',
     'newsletter',
-    'admin_honeypot',
     'django_ckeditor_5',
 
     

@@ -22,7 +22,6 @@ from django.conf import settings
 
 urlpatterns = [
     path("ckeditor5/", include('django_ckeditor_5.urls')),
-    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('meroadmin/', admin.site.urls),
     path('', views.home, name="home"),
     path('privacy_policy/', views.privacy_policy, name='privacy_policy'),
