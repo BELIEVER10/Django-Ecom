@@ -17,3 +17,4 @@ urllib3==1.26.20
 pytz==2025.2
 tzdata==2025.2
 typing_extensions==4.15.0
+django-admin-thumbnails==0.2.9
