@@ -28,6 +28,7 @@ fabric==3.2.2
 fastapi==0.110.1
 filelock==3.18.0
 flake8==7.3.0
+gunicorn==26.0.0
 h11==0.16.0
 idna==3.10
 iniconfig==2.3.0
