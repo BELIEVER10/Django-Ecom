@@ -96,16 +96,16 @@ Pygments==2.19.2
 PyJWT==2.10.1
 pymongo==4.5.0
 PyNaCl==1.5.0
-pypiwin32==223
 pytest==9.0.2
 python-dateutil==2.9.0.post0
 python-dotenv==1.2.1
 python-jose==3.5.0
 python-multipart==0.0.20
-pythonnet==3.0.5
+# pythonnet==3.0.5
+pywin32==310; platform_system == "Windows"
+pypiwin32==223; platform_system == "Windows"
 pytokens==0.3.0
 pytz==2025.2
-pywin32==310
 PyYAML==6.0.2
 pyzmq==27.1.0
 referencing==0.37.0
