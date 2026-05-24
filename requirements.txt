@@ -106,6 +106,7 @@ pythonnet==3.0.5
 pytokens==0.3.0
 pytz==2025.2
 # pywin32==310
+pywin32>=223
 PyYAML==6.0.2
 pyzmq==27.1.0
 referencing==0.37.0
