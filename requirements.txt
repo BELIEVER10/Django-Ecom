@@ -140,3 +140,4 @@ yarg==0.1.9
 python-decouple==3.8
 whitenoise==6.7.0
 django-import-export==4.3.0
+django-ckeditor-5==0.2.14
