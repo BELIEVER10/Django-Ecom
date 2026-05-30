@@ -30,6 +30,17 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 ALLOWED_HOSTS = ['*']
 # CSRF_TRUSTED_ORIGINS = ['https://53eb-103-225-246-8.ngrok-free.app', 'https://127.0.0.1:8000', 'http://0.0.0.0:8000']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://planetarysoundhealinghub.com',
+    'https://www.planetarysoundhealinghub.com',
+]
+
+# Render proxy settings (important for HTTPS)
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
 
 # Application definition
 
