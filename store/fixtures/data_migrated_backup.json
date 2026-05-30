@@ -433,7 +433,7 @@
       ],
       "address_line_1": "Mandandeupur",
       "address_line_2": "Ghumaune",
-      "profile_picture": "django_migrated/sgflapw6dn6servqw55w",
+      "profile_picture": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595370/django_migrated/sgflapw6dn6servqw55w.jpg",
       "city": "Kavre",
       "state": "mandandeupur",
       "country": "Nepal"
@@ -448,7 +448,7 @@
       ],
       "address_line_1": "Mandandeupur",
       "address_line_2": "Ghumaune",
-      "profile_picture": "django_migrated/ijgxgwte87jhrj4u9zfd",
+      "profile_picture": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595370/django_migrated/ijgxgwte87jhrj4u9zfd.jpg",
       "city": "Kavre",
       "state": "Gandaki Province",
       "country": "Nepal"
@@ -463,7 +463,7 @@
       ],
       "address_line_1": "Mandandeupur",
       "address_line_2": "Ghumaune",
-      "profile_picture": "django_migrated/bp7de1r1vgihbxmngrhk",
+      "profile_picture": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595373/django_migrated/bp7de1r1vgihbxmngrhk.jpg",
       "city": "Kavre",
       "state": "Gandaki Province",
       "country": "Nepal"
@@ -478,7 +478,7 @@
       ],
       "address_line_1": "Mandandeupur",
       "address_line_2": "Ghumaune",
-      "profile_picture": "django_migrated/vlakuihdt9rnyhnlx8fk",
+      "profile_picture": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595374/django_migrated/vlakuihdt9rnyhnlx8fk.jpg",
       "city": "Kavre",
       "state": "adf",
       "country": "Nepal"
@@ -493,7 +493,7 @@
       ],
       "address_line_1": "",
       "address_line_2": "",
-      "profile_picture": "django_migrated/uiwqzqnt9crkczvqdi1f",
+      "profile_picture": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595375/django_migrated/uiwqzqnt9crkczvqdi1f.png",
       "city": "",
       "state": "",
       "country": ""
@@ -523,7 +523,7 @@
       "slug": "healing-bowl",
       "sub_description": "",
       "description": "This is a Healing Bowl.It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose The sun dipped below the horizon, casting a golden hue across the landscape. Birds soared in the twilight sky, their wings cutting through the soft evening air. The breeze whispered through the trees, carrying the scent of fresh pine and earth. It was a time when the world felt peaceful, as if nature itself was taking a quiet moment to breathe. The grass underfoot was cool, its blades gently swaying in rhythm with the wind. As the day gave way to night, the stars began to appear one by one, like tiny pinpricks of light in the vast, dark canvas above.",
-      "image": "django_migrated/updth4t6j9yhe8xlolwn",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595375/django_migrated/updth4t6j9yhe8xlolwn.jpg",
       "price": 100,
       "stock": 101,
       "is_available": true,
@@ -546,7 +546,7 @@
       "slug": "antique-bowl",
       "sub_description": "",
       "description": "antique-bowl",
-      "image": "django_migrated/rptugbfgdyx84eee8nag",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595376/django_migrated/rptugbfgdyx84eee8nag.jpg",
       "price": 1000,
       "stock": 0,
       "is_available": true,
@@ -569,7 +569,7 @@
       "slug": "7-chakra-healing-tunned-singing-bowl",
       "sub_description": "",
       "description": "7 Chakra Healing Tunned Singing Bowl",
-      "image": "django_migrated/osirac6vdbrfgba3xqdl",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595377/django_migrated/osirac6vdbrfgba3xqdl.jpg",
       "price": 200,
       "stock": 30,
       "is_available": true,
@@ -592,7 +592,7 @@
       "slug": "singing-bowl",
       "sub_description": "",
       "description": "Singing Bowl",
-      "image": "django_migrated/mjonmonypa94yq43pxln",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595378/django_migrated/mjonmonypa94yq43pxln.jpg",
       "price": 300,
       "stock": 7,
       "is_available": true,
@@ -615,7 +615,7 @@
       "slug": "rudrakshya",
       "sub_description": "",
       "description": "Rudrakshya",
-      "image": "django_migrated/ouzdivl8qpgu7mrq1s15",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595378/django_migrated/ouzdivl8qpgu7mrq1s15.jpg",
       "price": 200,
       "stock": 87,
       "is_available": true,
@@ -638,7 +638,7 @@
       "slug": "black-bowl",
       "sub_description": "",
       "description": "Black Bowl",
-      "image": "django_migrated/ntndf2izl0hguejxcohn",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595379/django_migrated/ntndf2izl0hguejxcohn.jpg",
       "price": 200,
       "stock": 8,
       "is_available": true,
@@ -661,7 +661,7 @@
       "slug": "sound-note",
       "sub_description": "",
       "description": "Sound Note",
-      "image": "django_migrated/ymqpl2vnekgv6zlxve9j",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595380/django_migrated/ymqpl2vnekgv6zlxve9j.jpg",
       "price": 100,
       "stock": 20,
       "is_available": true,
@@ -684,7 +684,7 @@
       "slug": "antique-rudrakshya",
       "sub_description": "",
       "description": "Antique Rudrakshya",
-      "image": "django_migrated/spns2qhpjoapk5xycvig",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595381/django_migrated/spns2qhpjoapk5xycvig.jpg",
       "price": 200,
       "stock": 21,
       "is_available": true,
@@ -707,7 +707,7 @@
       "slug": "full-moon-singing-bowl",
       "sub_description": "",
       "description": "Full Moon Singing Bowl",
-      "image": "django_migrated/fcht95ctoroqkknn7c8o",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595381/django_migrated/fcht95ctoroqkknn7c8o.jpg",
       "price": 100,
       "stock": 12,
       "is_available": true,
@@ -730,7 +730,7 @@
       "slug": "yoga-bowl",
       "sub_description": "",
       "description": "Yoga Bowl",
-      "image": "django_migrated/u1vicfdvuwpeinpqgwzc",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595382/django_migrated/u1vicfdvuwpeinpqgwzc.jpg",
       "price": 123,
       "stock": 23,
       "is_available": true,
@@ -753,7 +753,7 @@
       "slug": "root-chakra",
       "sub_description": "",
       "description": "Root Chakra",
-      "image": "django_migrated/wtsy0xs5mxpdni08gopc",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595383/django_migrated/wtsy0xs5mxpdni08gopc.jpg",
       "price": 234,
       "stock": 23,
       "is_available": true,
@@ -776,7 +776,7 @@
       "slug": "therapy-bowl",
       "sub_description": "",
       "description": "Therapy Bowl",
-      "image": "django_migrated/lqu6oiubynmgsw8gevul",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595383/django_migrated/lqu6oiubynmgsw8gevul.jpg",
       "price": 123,
       "stock": 0,
       "is_available": true,
@@ -799,7 +799,7 @@
       "slug": "gauley-madal",
       "sub_description": "",
       "description": "This is a Healing Bowl.It is a long established fact that a reader will be distracted by the readable \r\n\r\n\r\ncontent of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-\r\n\r\nless normal distribution of letters, as opposed to using 'Content here, content here', making it look like",
-      "image": "django_migrated/afcjl7jkzfz23mmvtbae",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595384/django_migrated/afcjl7jkzfz23mmvtbae.jpg",
       "price": 20,
       "stock": 94,
       "is_available": true,
@@ -822,7 +822,7 @@
       "slug": "sandalwood-mala",
       "sub_description": "",
       "description": "sandalwood-mala",
-      "image": "django_migrated/yj1cdziwfmxcsd7ttbfa",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595385/django_migrated/yj1cdziwfmxcsd7ttbfa.jpg",
       "price": 10,
       "stock": 99,
       "is_available": true,
@@ -845,7 +845,7 @@
       "slug": "damaru",
       "sub_description": "ddddddddddmmmmmmmrrrrrrrruuuuuu",
       "description": "damaru",
-      "image": "django_migrated/skzbvmuedbojx8dsf6g8",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595386/django_migrated/skzbvmuedbojx8dsf6g8.jpg",
       "price": 12,
       "stock": 12,
       "is_available": true,
@@ -868,7 +868,7 @@
       "slug": "cjrvjnj",
       "sub_description": "",
       "description": "",
-      "image": "django_migrated/pxbpg23hzefldn3waejb",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595387/django_migrated/pxbpg23hzefldn3waejb.jpg",
       "price": 100,
       "stock": 10,
       "is_available": true,
@@ -891,7 +891,7 @@
       "slug": "cjrvjasfnj",
       "sub_description": "",
       "description": "",
-      "image": "django_migrated/cenz3zdygxopwih2cwxz",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595389/django_migrated/cenz3zdygxopwih2cwxz.jpg",
       "price": 100,
       "stock": 10,
       "is_available": true,
@@ -914,7 +914,7 @@
       "slug": "damaasdfru",
       "sub_description": "ddddddddddmmmmmmmrrrrrrrruuuuuu",
       "description": "asddfasf",
-      "image": "django_migrated/edhlcgziyspx7wfdajtj",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595389/django_migrated/edhlcgziyspx7wfdajtj.jpg",
       "price": 12,
       "stock": 12,
       "is_available": true,
@@ -937,7 +937,7 @@
       "slug": "sandalwood-malaasdf",
       "sub_description": "",
       "description": "sandalwood-malaasdfd",
-      "image": "django_migrated/doptbvieqrztiivixg9o",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595391/django_migrated/doptbvieqrztiivixg9o.jpg",
       "price": 10,
       "stock": 99,
       "is_available": true,
@@ -960,7 +960,7 @@
       "slug": "gauley-madaladf",
       "sub_description": "",
       "description": "asdf",
-      "image": "django_migrated/kqwqv31biqcyhlippgwf",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595391/django_migrated/kqwqv31biqcyhlippgwf.jpg",
       "price": 20,
       "stock": 0,
       "is_available": true,
@@ -983,7 +983,7 @@
       "slug": "therapy-bowlaf",
       "sub_description": "",
       "description": "Therapy Bowlasfd",
-      "image": "django_migrated/ckmcnpbx6g5izbkhmism",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595393/django_migrated/ckmcnpbx6g5izbkhmism.jpg",
       "price": 123,
       "stock": 0,
       "is_available": true,
@@ -1006,7 +1006,7 @@
       "slug": "root-chakraafdd",
       "sub_description": "",
       "description": "Root Chakraasfd",
-      "image": "django_migrated/hvnwlt2dciwmefxssilm",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595394/django_migrated/hvnwlt2dciwmefxssilm.jpg",
       "price": 234,
       "stock": 23,
       "is_available": true,
@@ -1029,7 +1029,7 @@
       "slug": "yoga-bowlasfd",
       "sub_description": "",
       "description": "Yoga Bowlasf",
-      "image": "django_migrated/hfgl1jntptuojxiwm7yn",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595394/django_migrated/hfgl1jntptuojxiwm7yn.jpg",
       "price": 123,
       "stock": 23,
       "is_available": true,
@@ -1052,7 +1052,7 @@
       "slug": "full-moon-singiasfdng-bowl",
       "sub_description": "",
       "description": "Full Moon Singing Bowl",
-      "image": "django_migrated/lcboxz2momr7jabro8rx",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595395/django_migrated/lcboxz2momr7jabro8rx.jpg",
       "price": 100,
       "stock": 12,
       "is_available": true,
@@ -1075,7 +1075,7 @@
       "slug": "antique-rudraksafhya",
       "sub_description": "",
       "description": "Antique Rudrakshya",
-      "image": "django_migrated/h61v0rrgbqljr0bulfsn",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595396/django_migrated/h61v0rrgbqljr0bulfsn.jpg",
       "price": 200,
       "stock": 21,
       "is_available": true,
@@ -1098,7 +1098,7 @@
       "slug": "sound-noteadf",
       "sub_description": "",
       "description": "Sound Noteasddfd",
-      "image": "django_migrated/r4u5drmpwvsha6cdkqfs",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595396/django_migrated/r4u5drmpwvsha6cdkqfs.jpg",
       "price": 100,
       "stock": 20,
       "is_available": true,
@@ -1121,7 +1121,7 @@
       "slug": "black-bowlaf",
       "sub_description": "",
       "description": "Black Bowlasfd",
-      "image": "django_migrated/oiojy87zuuf3cuwnohcc",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595397/django_migrated/oiojy87zuuf3cuwnohcc.jpg",
       "price": 200,
       "stock": 10,
       "is_available": true,
@@ -1144,7 +1144,7 @@
       "slug": "rudrakshyaasdfd",
       "sub_description": "",
       "description": "Rudrakshyaasdf",
-      "image": "django_migrated/bloolgjwri9coyc0diqd",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595398/django_migrated/bloolgjwri9coyc0diqd.jpg",
       "price": 200,
       "stock": 0,
       "is_available": true,
@@ -1167,7 +1167,7 @@
       "slug": "singing-bowlasf",
       "sub_description": "",
       "description": "Singing Bowlasfd",
-      "image": "django_migrated/dtwjtogewbqanoiz1ldy",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595398/django_migrated/dtwjtogewbqanoiz1ldy.jpg",
       "price": 300,
       "stock": 8,
       "is_available": true,
@@ -1190,7 +1190,7 @@
       "slug": "7-chakra-healinasdfg-tunned-singing-bowl",
       "sub_description": "",
       "description": "7 Chakra Healing Tunned Singing Bowlasdfasdddf",
-      "image": "django_migrated/s1ssyj0tz74vcbeibl1r",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595399/django_migrated/s1ssyj0tz74vcbeibl1r.jpg",
       "price": 200,
       "stock": 31,
       "is_available": true,
@@ -1213,7 +1213,7 @@
       "slug": "antique-bowlasdf",
       "sub_description": "",
       "description": "antique-bowlasdfdsddd",
-      "image": "django_migrated/sw4zm8ubocvptekwczjc",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595400/django_migrated/sw4zm8ubocvptekwczjc.jpg",
       "price": 1000,
       "stock": 0,
       "is_available": true,
@@ -1236,7 +1236,7 @@
       "slug": "asddfd",
       "sub_description": "",
       "description": "asf",
-      "image": "django_migrated/edin0t9opo8qwpsi7unp",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595401/django_migrated/edin0t9opo8qwpsi7unp.jpg",
       "price": 100,
       "stock": 118,
       "is_available": true,
@@ -1256,7 +1256,7 @@
     "fields": {
       "title": "first",
       "description": "asdfffffffffffffffffffffffffffasdfadsfasdfassfasdfasdfasdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
-      "image": "django_migrated/zoy3nnuhhyxfehlwx93l",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595402/django_migrated/zoy3nnuhhyxfehlwx93l.jpg",
       "slug": "first"
     }
   },
@@ -1266,7 +1266,7 @@
     "fields": {
       "title": "second",
       "description": "adsfasdfasdfasfasdfsadfasd",
-      "image": "django_migrated/jbtff1bhmxbr6srxzwrq",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595404/django_migrated/jbtff1bhmxbr6srxzwrq.jpg",
       "slug": "second"
     }
   },
@@ -1276,7 +1276,7 @@
     "fields": {
       "title": "third",
       "description": "adfadsfweqfqewfqwefewrfewrqw",
-      "image": "django_migrated/tzm7zlg3xaqinylc5hl6",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595406/django_migrated/tzm7zlg3xaqinylc5hl6.jpg",
       "slug": "third"
     }
   },
@@ -1286,7 +1286,7 @@
     "fields": {
       "title": "fourth",
       "description": "adfasdfasdfasdfasdfasdfasdfafasdfadsf",
-      "image": "django_migrated/naza9pppa3tg9q2vhrau",
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595407/django_migrated/naza9pppa3tg9q2vhrau.jpg",
       "slug": "fourth"
     }
   },
@@ -1370,7 +1370,7 @@
     "pk": 1,
     "fields": {
       "product": 1,
-      "image": "django_migrated/e10hknaejqoesit6ngra"
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595408/django_migrated/e10hknaejqoesit6ngra.jpg"
     }
   },
   {
@@ -1378,7 +1378,7 @@
     "pk": 2,
     "fields": {
       "product": 1,
-      "image": "django_migrated/ikhgqldxbjwtk74h4tmn"
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595409/django_migrated/ikhgqldxbjwtk74h4tmn.jpg"
     }
   },
   {
@@ -1386,7 +1386,7 @@
     "pk": 3,
     "fields": {
       "product": 1,
-      "image": "django_migrated/wenyxj4n5acmr4v7apwa"
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595409/django_migrated/wenyxj4n5acmr4v7apwa.jpg"
     }
   },
   {
@@ -1394,7 +1394,7 @@
     "pk": 4,
     "fields": {
       "product": 1,
-      "image": "django_migrated/ymxjy79x85lw1zc2emrr"
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595410/django_migrated/ymxjy79x85lw1zc2emrr.jpg"
     }
   },
   {
@@ -1402,7 +1402,7 @@
     "pk": 5,
     "fields": {
       "product": 1,
-      "image": "django_migrated/lnvvvyf08jqdjqg4a6kk"
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595411/django_migrated/lnvvvyf08jqdjqg4a6kk.jpg"
     }
   },
   {
@@ -1618,7 +1618,7 @@
     "pk": 1,
     "fields": {
       "name": "left_banner",
-      "image": "django_migrated/pqul9eky6w829wcj1pyh"
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595411/django_migrated/pqul9eky6w829wcj1pyh.png"
     }
   },
   {
@@ -1626,7 +1626,7 @@
     "pk": 1,
     "fields": {
       "name": "right_banner",
-      "image": "django_migrated/xayw4zefevuvefkrek7u"
+      "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595412/django_migrated/xayw4zefevuvefkrek7u.png"
     }
   },
   {
