@@ -257,15 +257,22 @@ CACHES = {
 # AWS_S3_VERITY = True
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-# Cloudinary configuration (place near the bottom of settings.py)
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
-}
-
-# Tell Django to use Cloudinary for media files
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-# Your existing MEDIA_URL and MEDIA_ROOT can be kept but are overridden for file storage.
-# Static files still use WhiteNoise, that's fine.
+# ========== CLOUDINARY CONFIGURATION (ONLY FOR PRODUCTION) ==========
+if not DEBUG:
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+        'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+        'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+        'SECURE': True,   # force HTTPS URLs
+    }
+    
+    # Modern Django storage configuration (overrides DEFAULT_FILE_STORAGE)
+    STORAGES = {
+        "default": {
+            "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        },
+    }
+# ========== END CLOUDINARY CONFIGURATION ==========
