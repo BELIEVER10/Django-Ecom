@@ -60,10 +60,8 @@ INSTALLED_APPS = [
     'orders',
     'newsletter',
     'django_ckeditor_5',
-    'cloudinary',
     'cloudinary_storage',
-
-    
+    'cloudinary',
 
 ]
 
