@@ -41,20 +41,20 @@
                 <aside class="col-md-6" style="cursor: pointer;">
                     <article class="gallery-wrap">
                         <div class="img-big-wrap mainImage zoom-container">
-                            <img src="{{ product.image.url }}" alt="Main Image" class="zoom-image">
+                            <img src="{{ product.image }}" alt="Main Image" class="zoom-image">
                         </div>
                     </article>
 
                     <ul class="thumb mt-3 d-flex flex-wrap">
                         <li class="mr-2">
                             <a href="{{ product.image.url }}" target="mainImage">
-                                <img src="{{ product.image.url }}" alt="product image" style="height: 60px;">
+                                <img src="{{ product.image }}" alt="product image" style="height: 60px;">
                             </a>
                         </li>
                         {% for image in product_gallery %}
                         <li class="mr-2">
                             <a href="{{ image.image.url }}" target="mainImage">
-                                <img src="{{ image.image.url }}" alt="product image" style="height: 60px;">
+                                <img src="{{ image.image }}" alt="product image" style="height: 60px;">
                             </a>
                         </li>
                         {% endfor %}
