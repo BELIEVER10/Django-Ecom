@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
     'accounts',
     'store',
     'carts',
@@ -60,8 +62,7 @@ INSTALLED_APPS = [
     'orders',
     'newsletter',
     'django_ckeditor_5',
-    'cloudinary_storage',
-    'cloudinary',
+    
 
 ]
 
@@ -223,7 +224,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 
-MEDIA_URL = '/media/'
+MEDIA_URL = f'https://res.cloudinary.com/{os.environ.get("CLOUDINARY_CLOUD_NAME")}/image/upload/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
