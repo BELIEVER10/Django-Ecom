@@ -141,6 +141,8 @@ env.bak/
 venv.bak/
 secrets.txt
 
+static/videos/hero.mp4
+
 # Spyder project settings
 .spyderproject
 .spyproject
