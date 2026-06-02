@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ['*']
 # CSRF_TRUSTED_ORIGINS = ['https://53eb-103-225-246-8.ngrok-free.app', 'https://127.0.0.1:8000', 'http://0.0.0.0:8000']
