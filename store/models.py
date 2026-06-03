@@ -52,6 +52,12 @@ class Variation(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     variation_category = models.CharField(max_length=200, choices=variation_category_choice, blank=True, null=True)
     variation_value = models.CharField(max_length=200, blank=True, null=True)
+    sound_file = models.FileField(
+        upload_to='variation_sounds/',
+        blank=True,
+        null=True,
+        verbose_name="Sound File"
+    )
     model_number = models.CharField(max_length=100, null=True, blank=True)
     stock = models.IntegerField(null=True, blank=True)
     sub_description = CKEditor5Field(config_name='extends')
