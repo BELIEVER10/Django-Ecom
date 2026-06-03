@@ -195,8 +195,9 @@ STATICFILES_DIRS = [
     BASE_DIR / 'planetery' / 'static',
 ]
 
-# Optional: for compression and caching
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Add this line to avoid collectstatic errors when source map files are missing
+WHITENOISE_MANIFEST_STRICT = False
 
 MEDIA_URL = '/media/'
 # MEDIA_ROOT = BASE_DIR / 'media'
