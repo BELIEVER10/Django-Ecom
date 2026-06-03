@@ -8,12 +8,14 @@
 <style>
     .hero-video-wrapper {
         width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
+        max-height: auto;          /* adjust as needed */
+        overflow: hidden;
+        margin-bottom: 2rem;
     }
     .hero-video {
         width: 100%;
         height: auto;
+        object-fit: cover;          /* crop to fill without distortion */
         display: block;
     }
     /* Ensure no parent container causes overflow */
@@ -84,80 +86,166 @@
     </div>
     <!-- ========== END VIDEO SECTION ========== -->
 
-    <!-- ========== NEW SECTION: VIDEO LEFT + TEXT RIGHT (WITH PLAY/PAUSE & SOUND CONTROL) ========== -->
-<div class="sound-healing-section" style="background: #f8f9fa; border-radius: 24px; margin: 2rem 0; padding: 3rem 5%;">
-    <div class="row align-items-center g-5">
-        <!-- Left side: Video with play/pause + mute/unmute buttons -->
-        <div class="col-12 col-md-6">
-            <div class="sound-healing-video" style="border-radius: 20px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.1); position: relative;">
-                <video id="healingVideo" autoplay muted loop playsinline class="w-100 h-auto">
-                    <source src="https://res.cloudinary.com/dktjv2rre/video/upload/v1780417503/homeVideo_blpyze.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <!-- Custom controls: Play/Pause and Mute/Unmute -->
-                <div style="text-align: center; margin-top: 10px; display: flex; gap: 12px; justify-content: center;">
-                    <button id="playPauseBtn" style="background-color: #7b2cbf; color: white; border: none; border-radius: 40px; padding: 8px 20px; font-size: 0.9rem; cursor: pointer; transition: 0.3s;">
-                        ⏸️ Pause
-                    </button>
-                    <button id="muteBtn" style="background-color: #7b2cbf; color: white; border: none; border-radius: 40px; padding: 8px 20px; font-size: 0.9rem; cursor: pointer; transition: 0.3s;">
-                        🔇 Unmute
-                    </button>
+     <!-- ========== SECTION 1: SOUND HEALING ========== -->
+    <div class="sound-healing-section" style="background: #f8f9fa; border-radius: 24px; margin: 2rem 0; padding: 3rem 5%;">
+        <div class="row align-items-center g-5">
+            <div class="col-12 col-md-6">
+                <div class="sound-healing-video" style="border-radius: 20px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.1); position: relative;">
+                    <video id="healingVideo1" autoplay muted loop playsinline class="w-100 h-auto">
+                        <source src="https://res.cloudinary.com/dktjv2rre/video/upload/v1780417503/homeVideo_blpyze.mp4" type="video/mp4">
+                    </video>
+                    <div style="text-align: center; margin-top: 10px; display: flex; gap: 12px; justify-content: center;">
+                        <button id="playPauseBtn1" style="background-color: #7b2cbf; color: white; border: none; border-radius: 40px; padding: 8px 20px; font-size: 0.9rem; cursor: pointer;">⏸️ Pause</button>
+                        <button id="muteBtn1" style="background-color: #7b2cbf; color: white; border: none; border-radius: 40px; padding: 8px 20px; font-size: 0.9rem; cursor: pointer;">🔇 Unmute</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <h2 style="color: #7b2cbf; font-size: 2.2rem; font-weight: 700; margin-bottom: 1.2rem;">WHAT IS SOUND HEALING?</h2>
+                <p style="font-size: 1.05rem; line-height: 1.6; color: #2c3e50; margin-bottom: 1.8rem;">
+                   Sound healing is a profound therapeutic practice that uses vibrational frequencies — from voice, instruments like singing bowls, gongs, or tuning forks — to restore harmony within the body and mind. Just as a skilled musician tunes an instrument, sound healing helps “detune” stress, anxiety, and energetic blockages, allowing your natural state of well‑being to emerge. It’s a bridge between ancient wisdom and modern science, proven to reduce cortisol levels, enhance meditation depth, and promote cellular regeneration. Whether you seek emotional release, physical relief, or spiritual connection, sound healing offers a gentle yet powerful path to wholeness.
+                </p>
+                <a href="#" class="waiting-list-btn">SIGN UP FOR THE WAITING LIST</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== SECTION 2: PLANETARY FREQUENCIES ========== -->
+    <div class="sound-healing-section" style="background: #f8f9fa; border-radius: 24px; margin: 2rem 0; padding: 3rem 5%;">
+        <div class="row align-items-center g-5">
+            <div class="col-12 col-md-6">
+                <h2 style="color: #7b2cbf; font-size: 2.2rem; font-weight: 700; margin-bottom: 1.2rem;">WHAT IS PLANETARY FREQUENCIES?</h2>
+                <p style="font-size: 1.05rem; line-height: 1.6; color: #2c3e50; margin-bottom: 1.8rem;">
+                    Sound healing is a profound therapeutic practice that uses vibrational frequencies — from voice, instruments like singing bowls, gongs, or tuning forks — to restore harmony within the body and mind. Just as a skilled musician tunes an instrument, sound healing helps “detune” stress, anxiety, and energetic blockages, allowing your natural state of well‑being to emerge. It’s a bridge between ancient wisdom and modern science, proven to reduce cortisol levels, enhance meditation depth, and promote cellular regeneration. Whether you seek emotional release, physical relief, or spiritual connection, sound healing offers a gentle yet powerful path to wholeness.
+                </p>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="sound-healing-video" style="border-radius: 20px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.1); position: relative;">
+                    <video id="healingVideo2" autoplay muted loop playsinline class="w-100 h-auto">
+                        <source src="https://res.cloudinary.com/dktjv2rre/video/upload/v1780492177/202606031826_imyom0.mp4" type="video/mp4">
+                    </video>
+                    <div style="text-align: center; margin-top: 10px; display: flex; gap: 12px; justify-content: center;">
+                        <button id="playPauseBtn2" style="background-color: #7b2cbf; color: white; border: none; border-radius: 40px; padding: 8px 20px; font-size: 0.9rem; cursor: pointer;">⏸️ Pause</button>
+                        <button id="muteBtn2" style="background-color: #7b2cbf; color: white; border: none; border-radius: 40px; padding: 8px 20px; font-size: 0.9rem; cursor: pointer;">🔇 Unmute</button>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Right side: Text (unchanged) -->
-        <div class="col-12 col-md-6">
-            <h2 style="color: #7b2cbf; font-size: 2.2rem; font-weight: 700; margin-bottom: 1.2rem;">WHAT IS SOUND HEALING?</h2>
-            <p style="font-size: 1.05rem; line-height: 1.6; color: #2c3e50; margin-bottom: 1.8rem;">
-                Sound healing is a profound therapeutic practice that uses vibrational frequencies — from voice, instruments like singing bowls, gongs, or tuning forks — to restore harmony within the body and mind. Just as a skilled musician tunes an instrument, sound healing helps “detune” stress, anxiety, and energetic blockages, allowing your natural state of well‑being to emerge. It’s a bridge between ancient wisdom and modern science, proven to reduce cortisol levels, enhance meditation depth, and promote cellular regeneration. Whether you seek emotional release, physical relief, or spiritual connection, sound healing offers a gentle yet powerful path to wholeness.
-            </p>
-            <a href="#" style="background-color: #7b2cbf; color: white; border: none; border-radius: 50px; padding: 12px 32px; font-weight: 500; transition: all 0.3s ease; display: inline-block; text-decoration: none;">SIGN UP FOR THE WAITING LIST</a>
+         <!-- ========== SECTION 3: SPIRITUAL SOUND Therapy ========== -->
+    <div class="sound-healing-section" style="background: #f8f9fa; border-radius: 24px; margin: 2rem 0; padding: 3rem 5%;">
+        <div class="row align-items-center g-5">
+            <div class="col-12 col-md-6">
+                <div class="sound-healing-video" style="border-radius: 20px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.1); position: relative;">
+                    <video id="healingVideo3" autoplay muted loop playsinline class="w-100 h-auto">
+                        <source src="https://res.cloudinary.com/dktjv2rre/video/upload/v1780494380/202606031924_exogki.mp4" type="video/mp4">
+                    </video>
+                    <div style="text-align: center; margin-top: 10px; display: flex; gap: 12px; justify-content: center;">
+                        <button id="playPauseBtn3" style="background-color: #7b2cbf; color: white; border: none; border-radius: 40px; padding: 8px 20px; font-size: 0.9rem; cursor: pointer;">⏸️ Pause</button>
+                        <button id="muteBtn3" style="background-color: #7b2cbf; color: white; border: none; border-radius: 40px; padding: 8px 20px; font-size: 0.9rem; cursor: pointer;">🔇 Unmute</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <h2 style="color: #7b2cbf; font-size: 2.2rem; font-weight: 700; margin-bottom: 1.2rem;">WHAT IS SPIRITUAL SOUND HEALING?</h2>
+                <p style="font-size: 1.05rem; line-height: 1.6; color: #2c3e50; margin-bottom: 1.8rem;">
+                   Sound healing is a profound therapeutic practice that uses vibrational frequencies — from voice, instruments like singing bowls, gongs, or tuning forks — to restore harmony within the body and mind. Just as a skilled musician tunes an instrument, sound healing helps “detune” stress, anxiety, and energetic blockages, allowing your natural state of well‑being to emerge. It’s a bridge between ancient wisdom and modern science, proven to reduce cortisol levels, enhance meditation depth, and promote cellular regeneration. Whether you seek emotional release, physical relief, or spiritual connection, sound healing offers a gentle yet powerful path to wholeness.
+                </p>
+               
+            </div>
         </div>
     </div>
-</div>
 
+<!-- JavaScript for first video (Sound Healing) -->
 <script>
     (function() {
-        const video = document.getElementById('healingVideo');
-        const playPauseBtn = document.getElementById('playPauseBtn');
-        const muteBtn = document.getElementById('muteBtn');
-
+        const video = document.getElementById('healingVideo1');
+        const playPauseBtn = document.getElementById('playPauseBtn1');
+        const muteBtn = document.getElementById('muteBtn1');
         if (video && playPauseBtn && muteBtn) {
-            // Play/Pause logic
-            function updatePlayPauseButton() {
-                if (video.paused) {
-                    playPauseBtn.innerHTML = '▶️ Play';
-                } else {
-                    playPauseBtn.innerHTML = '⏸️ Pause';
-                }
+            function updatePlayPause() {
+                playPauseBtn.innerHTML = video.paused ? '▶️ Play' : '⏸️ Pause';
             }
-            playPauseBtn.addEventListener('click', function() {
-                if (video.paused) {
-                    video.play();
-                } else {
-                    video.pause();
-                }
-                updatePlayPauseButton();
+            playPauseBtn.addEventListener('click', () => {
+                video.paused ? video.play() : video.pause();
+                updatePlayPause();
             });
-            video.addEventListener('play', updatePlayPauseButton);
-            video.addEventListener('pause', updatePlayPauseButton);
-            updatePlayPauseButton();
+            video.addEventListener('play', updatePlayPause);
+            video.addEventListener('pause', updatePlayPause);
+            updatePlayPause();
 
-            // Mute/Unmute logic
-            function updateMuteButton() {
-                if (video.muted) {
-                    muteBtn.innerHTML = '🔇 Unmute';
-                } else {
-                    muteBtn.innerHTML = '🔊 Mute';
-                }
+            function updateMute() {
+                muteBtn.innerHTML = video.muted ? '🔇 Unmute' : '🔊 Mute';
             }
-            muteBtn.addEventListener('click', function() {
+            muteBtn.addEventListener('click', () => {
                 video.muted = !video.muted;
-                updateMuteButton();
+                updateMute();
             });
-            video.addEventListener('volumechange', updateMuteButton);
-            updateMuteButton();
+            video.addEventListener('volumechange', updateMute);
+            updateMute();
+        }
+    })();
+</script>
+
+<!-- JavaScript for second video (Planetary Frequencies) -->
+<script>
+    (function() {
+        const video = document.getElementById('healingVideo2');
+        const playPauseBtn = document.getElementById('playPauseBtn2');
+        const muteBtn = document.getElementById('muteBtn2');
+        if (video && playPauseBtn && muteBtn) {
+            function updatePlayPause() {
+                playPauseBtn.innerHTML = video.paused ? '▶️ Play' : '⏸️ Pause';
+            }
+            playPauseBtn.addEventListener('click', () => {
+                video.paused ? video.play() : video.pause();
+                updatePlayPause();
+            });
+            video.addEventListener('play', updatePlayPause);
+            video.addEventListener('pause', updatePlayPause);
+            updatePlayPause();
+
+            function updateMute() {
+                muteBtn.innerHTML = video.muted ? '🔇 Unmute' : '🔊 Mute';
+            }
+            muteBtn.addEventListener('click', () => {
+                video.muted = !video.muted;
+                updateMute();
+            });
+            video.addEventListener('volumechange', updateMute);
+            updateMute();
+        }
+    })();
+</script>
+
+<!-- JavaScript for second video (Planetary Frequencies) -->
+<script>
+    (function() {
+        const video = document.getElementById('healingVideo3');
+        const playPauseBtn = document.getElementById('playPauseBtn3');
+        const muteBtn = document.getElementById('muteBtn3');
+        if (video && playPauseBtn && muteBtn) {
+            function updatePlayPause() {
+                playPauseBtn.innerHTML = video.paused ? '▶️ Play' : '⏸️ Pause';
+            }
+            playPauseBtn.addEventListener('click', () => {
+                video.paused ? video.play() : video.pause();
+                updatePlayPause();
+            });
+            video.addEventListener('play', updatePlayPause);
+            video.addEventListener('pause', updatePlayPause);
+            updatePlayPause();
+
+            function updateMute() {
+                muteBtn.innerHTML = video.muted ? '🔇 Unmute' : '🔊 Mute';
+            }
+            muteBtn.addEventListener('click', () => {
+                video.muted = !video.muted;
+                updateMute();
+            });
+            video.addEventListener('volumechange', updateMute);
+            updateMute();
         }
     })();
 </script>
