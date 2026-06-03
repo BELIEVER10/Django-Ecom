@@ -3,6 +3,7 @@ from category.models import Category, SubCategory
 from django.urls import reverse
 from django_ckeditor_5.fields import CKEditor5Field
 from cloudinary.models import CloudinaryField
+from storage_backends import VariationSoundStorage
 
 # Create your models here.
 class Product(models.Model):
@@ -56,7 +57,8 @@ class Variation(models.Model):
         upload_to='variation_sounds/',
         blank=True,
         null=True,
-        verbose_name="Sound File"
+        verbose_name="Sound File",
+        storage=VariationSoundStorage()
     )
     model_number = models.CharField(max_length=100, null=True, blank=True)
     stock = models.IntegerField(null=True, blank=True)
