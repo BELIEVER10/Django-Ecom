@@ -43,7 +43,7 @@
             {% for product in products %}
             <div class="card card-product-grid flex-shrink-0" style="min-width: 250px; display: inline-block;">
                 <a href="{{ product.get_url }}" class="img-wrap">
-                    <img src="{{ product.image}}" alt="{{ product.product_name }}">
+                    <img src="{{ product.image.url}}" alt="{{ product.product_name }}">
                 </a>
                 <div style="background-color: #f4f4f4;">
                 <figcaption class="info-wrap">
@@ -79,7 +79,7 @@
                 <!-- Left Offer -->
                 <div class="col-12 col-md-3 mb-2 mb-md-0 p-0">
                     <a href="{{ left_banner_product.get_url }}">
-                        <img src="{{ left_banner.image}}" class="w-100 img-fluid" alt="Left Offer"
+                        <img src="{{ left_banner.image.url}}" class="w-100 img-fluid" alt="Left Offer"
                              style="object-fit: cover; max-height: 300px;">
                     </a>
                 </div>
@@ -91,7 +91,7 @@
                         <div class="carousel-inner">
                             {% for item in items %}
                             <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                                <a href="{% url 'event_detail' item.slug %}"><img src="{{ item.image}}" class="w-100 img-fluid rounded"
+                                <a href="{% url 'event_detail' item.slug %}"><img src="{{ item.image.url}}" class="w-100 img-fluid rounded"
                                      alt="{{ item.title }}" style="object-fit: cover; max-height: 300px;"></a>
                             </div>
                             {% endfor %}
@@ -103,7 +103,7 @@
                 <!-- Right Offer -->
                 <div class="col-12 col-md-3 p-0">
                     <a href="{{ right_banner_product.get_url }}">
-                        <img src="{{ right_banner.image}}" class="w-100 img-fluid" alt="Right Offer"
+                        <img src="{{ right_banner.image.url}}" class="w-100 img-fluid" alt="Right Offer"
                              style="object-fit: cover; max-height: 300px;">
                     </a>
                 </div>
@@ -122,7 +122,7 @@
             {% for product in most_viewed %}
             <div class="card card-product-grid flex-shrink-0" style="min-width: 250px; display: inline-block;">
                 <a href="{{ product.get_url }}" class="img-wrap">
-                    <img src="{{ product.image}}" alt="{{ product.product_name }}">
+                    <img src="{{ product.image.url}}" alt="{{ product.product_name }}">
                 </a>
                 <div style="background-color: #f4f4f4;">
                 <figcaption class="info-wrap">
