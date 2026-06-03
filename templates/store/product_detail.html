@@ -28,6 +28,24 @@
     transform: scale(1.5); /* Zoom level */
     cursor: pointer;
 }
+
+/* Custom audio button style */
+.audio-button {
+    background-color: #7b2cbf;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    padding: 6px 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+.audio-button:hover {
+    background-color: #5a1e8f;
+}
 </style>
 
 
@@ -116,6 +134,21 @@
                         <hr>
                         {% endif %}
 
+                        <!-- ========== BOWL SOUND SECTION (shown only when a size with sound is selected) ========== -->
+                        {% if selected_variation and selected_variation.sound_file %}
+                        <div class="mb-3">
+                            <h6>Bowl Sound</h6>
+                            <audio id="bowlAudio" preload="auto" style="display: none;">
+                                <source src="{{ selected_variation.sound_file.url }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                            <button type="button" id="playSoundBtn" class="audio-button">
+                                <span id="playIcon">🔊</span> Play Bowl Sound
+                            </button>
+                        </div>
+                        <hr>
+                        {% endif %}
+
                         <form action="{% url 'add_cart' product.id %}" method="post">
                             {% csrf_token %}
                             {% if product.stock <= 0 %}
@@ -151,22 +184,41 @@
     </div>
 </section>
 
-<!-- Add zoom pan logic -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+    // Zoom logic
     const container = document.querySelector('.zoom-container');
     const image = container.querySelector('.zoom-image');
+    if (container && image) {
+        container.addEventListener('mousemove', function (e) {
+            const { left, top, width, height } = container.getBoundingClientRect();
+            const x = ((e.pageX - left - window.pageXOffset) / width) * 100;
+            const y = ((e.pageY - top - window.pageYOffset) / height) * 100;
+            image.style.transformOrigin = `${x}% ${y}%`;
+        });
+        container.addEventListener('mouseleave', function () {
+            image.style.transformOrigin = 'center center';
+        });
+    }
 
-    container.addEventListener('mousemove', function (e) {
-        const { left, top, width, height } = container.getBoundingClientRect();
-        const x = ((e.pageX - left - window.pageXOffset) / width) * 100;
-        const y = ((e.pageY - top - window.pageYOffset) / height) * 100;
-        image.style.transformOrigin = `${x}% ${y}%`;
-    });
-
-    container.addEventListener('mouseleave', function () {
-        image.style.transformOrigin = 'center center';
-    });
+    // Audio play/pause for bowl sound (only if the button exists)
+    const audio = document.getElementById('bowlAudio');
+    const playBtn = document.getElementById('playSoundBtn');
+    if (audio && playBtn) {
+        const iconSpan = document.getElementById('playIcon');
+        playBtn.addEventListener('click', function() {
+            if (audio.paused) {
+                audio.play();
+                playBtn.innerHTML = '<span id="playIcon">⏸️</span> Pause Bowl Sound';
+            } else {
+                audio.pause();
+                playBtn.innerHTML = '<span id="playIcon">🔊</span> Play Bowl Sound';
+            }
+        });
+        audio.addEventListener('ended', function() {
+            playBtn.innerHTML = '<span id="playIcon">🔊</span> Play Bowl Sound';
+        });
+    }
 });
 </script>
 

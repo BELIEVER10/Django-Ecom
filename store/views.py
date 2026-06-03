@@ -72,6 +72,7 @@ def product_detail(request, subcategory_slug=None, product_slug=None):
 
     size_variations= Variation.objects.filter(product__id=id, variation_value__isnull=False).exclude(variation_value='')
     selected_size = request.POST.get('size')
+    selected_variation = None     
     model_number = None
     sub_desc = None
     price = None
@@ -80,6 +81,7 @@ def product_detail(request, subcategory_slug=None, product_slug=None):
         if selected_size:
             variation = product.variation_set.filter(variation_value__iexact=selected_size).first()
             if variation:
+                selected_variation = variation
                 model_number = variation.model_number
                 sub_desc = variation.sub_description
                 price = variation.price
@@ -107,6 +109,7 @@ def product_detail(request, subcategory_slug=None, product_slug=None):
         'price':price,
         'sub_description': sub_desc,
         'selected_size': selected_size,
+        'selected_variation': selected_variation,
         'size_variations': size_variations,
         'product_gallery': product_gallery,
     }
