@@ -20,8 +20,59 @@
     .home-bg {
         overflow-x: hidden;
     }
+    /* New section styles */
+    .sound-healing-section {
+        background: #f8f9fa;
+        border-radius: 24px;
+        padding: 3rem 2rem;
+        margin: 2rem auto;
+    }
+    .sound-healing-video {
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    .sound-healing-text h2 {
+        color: #7b2cbf;
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 1.2rem;
+    }
+    .sound-healing-text p {
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: #2c3e50;
+        margin-bottom: 1.8rem;
+    }
+    .waiting-list-btn {
+        background-color: #7b2cbf;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 12px 32px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        display: inline-block;
+        text-decoration: none;
+    }
+    .waiting-list-btn:hover {
+        background-color: #5a1e8f;
+        transform: translateY(-3px);
+        color: white;
+        box-shadow: 0 8px 20px rgba(123,44,191,0.3);
+    }
+    @media (max-width: 768px) {
+        .sound-healing-section {
+            padding: 2rem 1rem;
+        }
+        .sound-healing-text h2 {
+            font-size: 1.6rem;
+        }
+        .sound-healing-text p {
+            font-size: 0.95rem;
+        }
+    }
 </style>
-
 
 <div class="home-bg">
     <!-- ========== NEW AUTO-PLAY VIDEO SECTION (ABOVE NEW ARRIVALS) ========== -->
@@ -32,118 +83,197 @@
         </video>
     </div>
     <!-- ========== END VIDEO SECTION ========== -->
-<!-- ========================= SECTION: New Arrivals ========================= -->
-<section class="section-name padding-y-sm">
-    <div class="container">
-        <header class="section-heading">
-            <h3 class="section-title text-center fav-color">New Arrivals</h3>
-        </header>
 
-        <div class="horizontal-scroll-wrapper d-flex overflow-auto py-2" style="gap: 1rem; white-space: nowrap;">
-            {% for product in products %}
-            <div class="card card-product-grid flex-shrink-0" style="min-width: 250px; display: inline-block;">
-                <a href="{{ product.get_url }}" class="img-wrap">
-                    <img src="{{ product.image.url}}" alt="{{ product.product_name }}">
-                </a>
-                <div style="background-color: #f4f4f4;">
-                <figcaption class="info-wrap">
-                    <a href="{{ product.get_url }}" class="title font-weight-bold text-dark">{{ product.product_name }}</a>
-
-                    {% if product.min_price and product.max_price %}
-                    <div class="price mt-1">
-                        {{ currency_symbol }}{% convert_price product.min_price %}
-                        -
-                        {{ currency_symbol }}{% convert_price product.max_price %}
-                    </div>
-                    {% else %}
-                    <div class="price mt-1">{{ currency_symbol }}{% convert_price product.price %}</div>
-                    {% endif %}
-                </figcaption>
+    <!-- ========== NEW SECTION: VIDEO LEFT + TEXT RIGHT (WITH PLAY/PAUSE & SOUND CONTROL) ========== -->
+<div class="sound-healing-section" style="background: #f8f9fa; border-radius: 24px; margin: 2rem 0; padding: 3rem 5%;">
+    <div class="row align-items-center g-5">
+        <!-- Left side: Video with play/pause + mute/unmute buttons -->
+        <div class="col-12 col-md-6">
+            <div class="sound-healing-video" style="border-radius: 20px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.1); position: relative;">
+                <video id="healingVideo" autoplay muted loop playsinline class="w-100 h-auto">
+                    <source src="https://res.cloudinary.com/dktjv2rre/video/upload/v1780417503/homeVideo_blpyze.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <!-- Custom controls: Play/Pause and Mute/Unmute -->
+                <div style="text-align: center; margin-top: 10px; display: flex; gap: 12px; justify-content: center;">
+                    <button id="playPauseBtn" style="background-color: #7b2cbf; color: white; border: none; border-radius: 40px; padding: 8px 20px; font-size: 0.9rem; cursor: pointer; transition: 0.3s;">
+                        ⏸️ Pause
+                    </button>
+                    <button id="muteBtn" style="background-color: #7b2cbf; color: white; border: none; border-radius: 40px; padding: 8px 20px; font-size: 0.9rem; cursor: pointer; transition: 0.3s;">
+                        🔇 Unmute
+                    </button>
                 </div>
             </div>
-            {% endfor %}
         </div>
 
-        <br><br>
-        <!-- ========================= SECTION MAIN ========================= -->
-<section class="section-intro padding-y-sm">
-    <div class="container">
-        <header class="section-heading">
-            <h3 class="section-title text-center fav-color">Events</h3>
-        </header>
+        <!-- Right side: Text (unchanged) -->
+        <div class="col-12 col-md-6">
+            <h2 style="color: #7b2cbf; font-size: 2.2rem; font-weight: 700; margin-bottom: 1.2rem;">WHAT IS SOUND HEALING?</h2>
+            <p style="font-size: 1.05rem; line-height: 1.6; color: #2c3e50; margin-bottom: 1.8rem;">
+                Sound healing is a profound therapeutic practice that uses vibrational frequencies — from voice, instruments like singing bowls, gongs, or tuning forks — to restore harmony within the body and mind. Just as a skilled musician tunes an instrument, sound healing helps “detune” stress, anxiety, and energetic blockages, allowing your natural state of well‑being to emerge. It’s a bridge between ancient wisdom and modern science, proven to reduce cortisol levels, enhance meditation depth, and promote cellular regeneration. Whether you seek emotional release, physical relief, or spiritual connection, sound healing offers a gentle yet powerful path to wholeness.
+            </p>
+            <a href="#" style="background-color: #7b2cbf; color: white; border: none; border-radius: 50px; padding: 12px 32px; font-weight: 500; transition: all 0.3s ease; display: inline-block; text-decoration: none;">SIGN UP FOR THE WAITING LIST</a>
+        </div>
+    </div>
+</div>
 
-        <div class="intro-banner-wrap">
-            <div class="row no-gutters align-items-center flex-column flex-md-row" style="background-color: #f8f9fa;">
-                
-                {% if left_banner_product %}
-                <!-- Left Offer -->
-                <div class="col-12 col-md-3 mb-2 mb-md-0 p-0">
-                    <a href="{{ left_banner_product.get_url }}">
-                        <img src="{{ left_banner.image.url}}" class="w-100 img-fluid" alt="Left Offer"
-                             style="object-fit: cover; max-height: 300px;">
+<script>
+    (function() {
+        const video = document.getElementById('healingVideo');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const muteBtn = document.getElementById('muteBtn');
+
+        if (video && playPauseBtn && muteBtn) {
+            // Play/Pause logic
+            function updatePlayPauseButton() {
+                if (video.paused) {
+                    playPauseBtn.innerHTML = '▶️ Play';
+                } else {
+                    playPauseBtn.innerHTML = '⏸️ Pause';
+                }
+            }
+            playPauseBtn.addEventListener('click', function() {
+                if (video.paused) {
+                    video.play();
+                } else {
+                    video.pause();
+                }
+                updatePlayPauseButton();
+            });
+            video.addEventListener('play', updatePlayPauseButton);
+            video.addEventListener('pause', updatePlayPauseButton);
+            updatePlayPauseButton();
+
+            // Mute/Unmute logic
+            function updateMuteButton() {
+                if (video.muted) {
+                    muteBtn.innerHTML = '🔇 Unmute';
+                } else {
+                    muteBtn.innerHTML = '🔊 Mute';
+                }
+            }
+            muteBtn.addEventListener('click', function() {
+                video.muted = !video.muted;
+                updateMuteButton();
+            });
+            video.addEventListener('volumechange', updateMuteButton);
+            updateMuteButton();
+        }
+    })();
+</script>
+<!-- ========== END NEW SECTION ========== -->
+    <!-- ========================= SECTION: New Arrivals ========================= -->
+    <section class="section-name padding-y-sm">
+        <div class="container">
+            <header class="section-heading">
+                <h3 class="section-title text-center fav-color">New Arrivals</h3>
+            </header>
+
+            <div class="horizontal-scroll-wrapper d-flex overflow-auto py-2" style="gap: 1rem; white-space: nowrap;">
+                {% for product in products %}
+                <div class="card card-product-grid flex-shrink-0" style="min-width: 250px; display: inline-block;">
+                    <a href="{{ product.get_url }}" class="img-wrap">
+                        <img src="{{ product.image.url}}" alt="{{ product.product_name }}">
                     </a>
-                </div>
-                {% endif %}
+                    <div style="background-color: #f4f4f4;">
+                    <figcaption class="info-wrap">
+                        <a href="{{ product.get_url }}" class="title font-weight-bold text-dark">{{ product.product_name }}</a>
 
-                <!-- Middle Carousel -->
-                <div class="col-12 col-md-6 mb-2 mb-md-0 p-0">
-                    <div id="middleImageCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
-                        <div class="carousel-inner">
-                            {% for item in items %}
-                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                                <a href="{% url 'event_detail' item.slug %}"><img src="{{ item.image.url}}" class="w-100 img-fluid rounded"
-                                     alt="{{ item.title }}" style="object-fit: cover; max-height: 300px;"></a>
+                        {% if product.min_price and product.max_price %}
+                        <div class="price mt-1">
+                            {{ currency_symbol }}{% convert_price product.min_price %}
+                            -
+                            {{ currency_symbol }}{% convert_price product.max_price %}
+                        </div>
+                        {% else %}
+                        <div class="price mt-1">{{ currency_symbol }}{% convert_price product.price %}</div>
+                        {% endif %}
+                    </figcaption>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <br><br>
+            <!-- ========================= SECTION MAIN ========================= -->
+            <!-- <section class="section-intro padding-y-sm">
+                <div class="container">
+                    <header class="section-heading">
+                        <h3 class="section-title text-center fav-color">Events</h3>
+                    </header>
+
+                    <div class="intro-banner-wrap">
+                        <div class="row no-gutters align-items-center flex-column flex-md-row" style="background-color: #f8f9fa;">
+                            
+                            {% if left_banner_product %} -->
+                            <!-- Left Offer -->
+                            <!-- <div class="col-12 col-md-3 mb-2 mb-md-0 p-0">
+                                <a href="{{ left_banner_product.get_url }}">
+                                    <img src="{{ left_banner.image.url}}" class="w-100 img-fluid" alt="Left Offer"
+                                         style="object-fit: cover; max-height: 300px;">
+                                </a>
                             </div>
-                            {% endfor %}
+                            {% endif %} -->
+
+                            <!-- Middle Carousel -->
+                            <!-- <div class="col-12 col-md-6 mb-2 mb-md-0 p-0">
+                                <div id="middleImageCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+                                    <div class="carousel-inner">
+                                        {% for item in items %}
+                                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                            <a href="{% url 'event_detail' item.slug %}"><img src="{{ item.image.url}}" class="w-100 img-fluid rounded"
+                                                 alt="{{ item.title }}" style="object-fit: cover; max-height: 300px;"></a>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <!-- {% if right_banner_product %} -->
+                            <!-- Right Offer -->
+                            <!-- <div class="col-12 col-md-3 p-0">
+                                <a href="{{ right_banner_product.get_url }}">
+                                    <img src="{{ right_banner.image.url}}" class="w-100 img-fluid" alt="Right Offer"
+                                         style="object-fit: cover; max-height: 300px;">
+                                </a>
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
+            </section>
+            <br><br>
 
-                {% if right_banner_product %}
-                <!-- Right Offer -->
-                <div class="col-12 col-md-3 p-0">
-                    <a href="{{ right_banner_product.get_url }}">
-                        <img src="{{ right_banner.image.url}}" class="w-100 img-fluid" alt="Right Offer"
-                             style="object-fit: cover; max-height: 300px;">
+            <header class="section-heading">
+                <h3 class="section-title text-center fav-color">Most Viewed</h3>
+            </header>
+
+            <div class="horizontal-scroll-wrapper d-flex overflow-auto py-2" style="gap: 1rem; white-space: nowrap;">
+                {% for product in most_viewed %}
+                <div class="card card-product-grid flex-shrink-0" style="min-width: 250px; display: inline-block;">
+                    <a href="{{ product.get_url }}" class="img-wrap">
+                        <img src="{{ product.image.url}}" alt="{{ product.product_name }}">
                     </a>
-                </div>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</section>
-<br><br>
-
-        <header class="section-heading">
-            <h3 class="section-title text-center fav-color">Most Viewed</h3>
-        </header>
-
-        <div class="horizontal-scroll-wrapper d-flex overflow-auto py-2" style="gap: 1rem; white-space: nowrap;">
-            {% for product in most_viewed %}
-            <div class="card card-product-grid flex-shrink-0" style="min-width: 250px; display: inline-block;">
-                <a href="{{ product.get_url }}" class="img-wrap">
-                    <img src="{{ product.image.url}}" alt="{{ product.product_name }}">
-                </a>
-                <div style="background-color: #f4f4f4;">
-                <figcaption class="info-wrap">
-                    <a href="{{ product.get_url }}" class="title font-weight-bold text-dark">{{ product.product_name }}</a>
-                    {% if product.min_price and product.max_price %}
-                    <div class="price mt-1">
-                        {{ currency_symbol }}{% convert_price product.min_price %}
-                        -
-                        {{ currency_symbol }}{% convert_price product.max_price %}
+                    <div style="background-color: #f4f4f4;">
+                    <figcaption class="info-wrap">
+                        <a href="{{ product.get_url }}" class="title font-weight-bold text-dark">{{ product.product_name }}</a>
+                        {% if product.min_price and product.max_price %}
+                        <div class="price mt-1">
+                            {{ currency_symbol }}{% convert_price product.min_price %}
+                            -
+                            {{ currency_symbol }}{% convert_price product.max_price %}
+                        </div>
+                        {% else %}
+                        <div class="price mt-1">{{ currency_symbol }}{% convert_price product.price %}</div>
+                        {% endif %}
+                    </figcaption>
                     </div>
-                    {% else %}
-                    <div class="price mt-1">{{ currency_symbol }}{% convert_price product.price %}</div>
-                    {% endif %}
-                </figcaption>
-                </div>
-            </div>
-            {% endfor %}
+                </div> -->
+                <!-- {% endfor %} -->
+            <!-- </div> -->
         </div>
-    </div>
-</section>
-<!-- ========================= SECTION END// ========================= -->
+    </section>
+    <!-- ========================= SECTION END// ========================= -->
 
 
 </div>
