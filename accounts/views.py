@@ -29,24 +29,28 @@ def register(request):
 
             user = Account.objects.create_user(first_name=first_name, last_name=last_name, email=email, user_name=user_name, password=password)
             user.phone_number = phone_number
+            user.is_active = True
             user.save()
 
+            messages.success(request, 'Registration successful. Please log in.')
+            return redirect('/accounts/login/')
+
             #user activation
-            current_site = get_current_site(request)
-            mail_subject = 'Please activate your account.'
-            message = render_to_string('accounts/account_verification_email.html', {
-                'user': user,
-                'domain': current_site,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': default_token_generator.make_token(user),
+            # current_site = get_current_site(request)
+            # mail_subject = 'Please activate your account.'
+            # message = render_to_string('accounts/account_verification_email.html', {
+            #     'user': user,
+            #     'domain': current_site,
+            #     'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+            #     'token': default_token_generator.make_token(user),
 
 
-            })
-            to_email = email
-            send_email = EmailMessage(mail_subject, message, to=[to_email])
-            send_email.send()
+            # })
+            # to_email = email
+            # send_email = EmailMessage(mail_subject, message, to=[to_email])
+            # send_email.send()
 
-            return redirect('/accounts/login/?command=verification&email='+email)
+            # return redirect('/accounts/login/?command=verification&email='+email)
 
     else:
         form = RegistrationForm()
