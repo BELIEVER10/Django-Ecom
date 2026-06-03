@@ -77,6 +77,27 @@
 </style>
 
 <div class="home-bg">
+    <!-- ========== UNDER CONSTRUCTION BANNER (TOP OF CONTENT) ========== -->
+    <div id="constructionBannerHome" style="background: #ffc107; color: #856404; padding: 12px 20px; margin: 0 0 1rem 0; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <div style="flex: 1;">
+            🚧 <strong>Under Construction:</strong> This website is currently in development. Some features may not work as expected.
+        </div>
+        <button onclick="closeHomeBanner()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #856404; line-height: 1;">&times;</button>
+    </div>
+    <script>
+        function closeHomeBanner() {
+            const banner = document.getElementById('constructionBannerHome');
+            if (banner) {
+                banner.style.display = 'none';
+                sessionStorage.setItem('constructionBannerHomeClosed', 'true');
+            }
+        }
+        if (sessionStorage.getItem('constructionBannerHomeClosed') === 'true') {
+            const banner = document.getElementById('constructionBannerHome');
+            if (banner) banner.style.display = 'none';
+        }
+    </script>
+
     <!-- ========== NEW AUTO-PLAY VIDEO SECTION (ABOVE NEW ARRIVALS) ========== -->
     <div class="hero-video-wrapper" style="margin-bottom: 2rem;">
         <video autoplay muted loop playsinline class="hero-video">
@@ -219,7 +240,7 @@
     })();
 </script>
 
-<!-- JavaScript for second video (Planetary Frequencies) -->
+<!-- JavaScript for third video (Spiritual Sound Healing) -->
 <script>
     (function() {
         const video = document.getElementById('healingVideo3');
@@ -269,9 +290,9 @@
 
                         {% if product.min_price and product.max_price %}
                         <div class="price mt-1">
-                            {{ currency_symbol }}{% convert_price product.min_price %}
+                            {{ currency_symbol }}{% convert_price product.min_price }}
                             -
-                            {{ currency_symbol }}{% convert_price product.max_price %}
+                            {{ currency_symbol }}{% convert_price product.max_price }}
                         </div>
                         {% else %}
                         <div class="price mt-1">{{ currency_symbol }}{% convert_price product.price %}</div>
@@ -347,9 +368,9 @@
                         <a href="{{ product.get_url }}" class="title font-weight-bold text-dark">{{ product.product_name }}</a>
                         {% if product.min_price and product.max_price %}
                         <div class="price mt-1">
-                            {{ currency_symbol }}{% convert_price product.min_price %}
+                            {{ currency_symbol }}{% convert_price product.min_price }}
                             -
-                            {{ currency_symbol }}{% convert_price product.max_price %}
+                            {{ currency_symbol }}{% convert_price product.max_price }}
                         </div>
                         {% else %}
                         <div class="price mt-1">{{ currency_symbol }}{% convert_price product.price %}</div>
