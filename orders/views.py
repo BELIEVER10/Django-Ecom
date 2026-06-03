@@ -3,6 +3,7 @@ from carts.models import CartItem
 from orders.models import Order
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from carts.models import CartItem
 from .forms import OrderForm
 from .models import Order, Payment, OrderProduct
@@ -348,6 +349,11 @@ def place_order(request, total=0, quantity=0):
                 'tax': tax,
             }
             return render(request, 'orders/payments.html', context)
+        else:
+            # Form is invalid – show errors and redirect back to checkout
+            messages.error(request, "Please correct the errors below.")
+            # You could also render the checkout page with the form errors
+            return redirect('checkout')
     else:
         return redirect('checkout')
 
