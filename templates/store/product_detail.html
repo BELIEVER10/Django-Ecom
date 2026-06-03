@@ -137,13 +137,13 @@
                         <!-- ========== BOWL SOUND SECTION (shown only when a size with sound is selected) ========== -->
                         {% if selected_variation and selected_variation.sound_file %}
                         <div class="mb-3">
-                            <h6>Bowl Sound</h6>
+                            <h6>Sound</h6>
                             <audio id="bowlAudio" preload="auto" style="display: none;">
                                 <source src="{{ selected_variation.sound_file.url }}" type="audio/mpeg">
                                 Your browser does not support the audio element.
                             </audio>
-                            <button type="button" id="playSoundBtn" class="audio-button">
-                                <span id="playIcon">🔊</span> Play Bowl Sound
+                            <button type="button" id="playSoundBtn" class="btn button-color">
+                                <span id="playIcon">🔊</span> Play Sound
                             </button>
                         </div>
                         <hr>
@@ -209,10 +209,10 @@ document.addEventListener('DOMContentLoaded', function () {
         playBtn.addEventListener('click', function() {
             if (audio.paused) {
                 audio.play();
-                playBtn.innerHTML = '<span id="playIcon">⏸️</span> Pause Bowl Sound';
+                playBtn.innerHTML = '<span id="playIcon">⏸️</span> Pause Sound';
             } else {
                 audio.pause();
-                playBtn.innerHTML = '<span id="playIcon">🔊</span> Play Bowl Sound';
+                playBtn.innerHTML = '<span id="playIcon">🔊</span> Play Sound';
             }
         });
         audio.addEventListener('ended', function() {
