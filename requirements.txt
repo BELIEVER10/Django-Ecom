@@ -144,3 +144,4 @@ django-ckeditor-5==0.2.14
 openpyxl==3.1.5
 xhtml2pdf==0.2.16
 sib-api-v3-sdk==7.6.0
+pillow==12.2.0
