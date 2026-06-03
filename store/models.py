@@ -2,6 +2,7 @@ from django.db import models
 from category.models import Category, SubCategory
 from django.urls import reverse
 from django_ckeditor_5.fields import CKEditor5Field
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Product(models.Model):
@@ -10,7 +11,7 @@ class Product(models.Model):
     slug = models.SlugField(max_length=255, unique=True)
     sub_description = CKEditor5Field(config_name='extends',  null=True, blank=True)
     description = CKEditor5Field(config_name='extends', null=True, blank=True)
-    image = models.ImageField(upload_to='photos/products')
+    image = CloudinaryField('image', folder='photos/products')
     price = models.IntegerField()
     stock = models.IntegerField()
     is_available = models.BooleanField(default=True)
