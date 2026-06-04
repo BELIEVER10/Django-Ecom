@@ -1,4 +1,40 @@
 {% load static %}
+
+<style>
+/* Force nested dropdowns to be hidden and positioned as flyouts */
+.dropdown-submenu {
+    position: relative !important;
+}
+
+.dropdown-submenu .dropdown-menu {
+    display: none !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 100% !important;
+    margin-top: -1px !important;
+    margin-left: 0.125rem !important;
+    z-index: 1000 !important;
+}
+
+/* Show nested menu on hover */
+.dropdown-submenu:hover > .dropdown-menu {
+    display: block !important;
+}
+
+/* Add arrow to indicate submenu */
+.dropdown-submenu > .dropdown-item {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+.dropdown-submenu > .dropdown-item::after {
+    content: "›" !important;
+    font-size: 1.2rem !important;
+    margin-left: auto !important;
+}
+</style>
+
 <header class="section-header" style="background-image: -moz-linear-gradient();">
     <!-- Main Navbar -->
     <nav class="navbar navbar-expand-lg border-bottom nav-top">

@@ -14,7 +14,7 @@ urlpatterns = [
 
     path('subcategory/<slug:subcategory_slug>/', views.store_by_subcategory, name='store_by_subcategory'),
     path('subcategory/<slug:subcategory_slug>/<slug:insidesubcategory_slug>/', 
-     views.store_by_insidesubcategory, 
+     views.products_by_inside_subcategory, 
      name='products_by_inside_subcategory'),
      
     path('subcategory/<slug:subcategory_slug>/<slug:product_slug>', views.product_detail, name='product_detail'),

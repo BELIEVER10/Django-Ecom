@@ -184,13 +184,5 @@ def price_search(request, category_slug=None):
     return render(request, 'store/store.html', context)
 
 
-def store_by_insidesubcategory(request, subcategory_slug, insidesubcategory_slug):
-    subcategory = get_object_or_404(SubCategory, slug=subcategory_slug)
-    inside_cat = get_object_or_404(InsideSubCategory, slug=insidesubcategory_slug, sub_category=subcategory)
-    products = Product.objects.filter(inside_subcategory=inside_cat, is_available=True)
-    # reuse your store template or a custom one
-    return render(request, 'store/insidesub.html', {
-        'products': products,
-        'subcategory': subcategory,
-        'inside_cat': inside_cat,
-    })
+def products_by_inside_subcategory(request, subcategory_slug, insidesubcategory_slug):
+    return HttpResponse("All good")
