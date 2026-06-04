@@ -1,15 +1,9 @@
 from django.contrib import admin
-from . models import Category, LeftBanner, RightBanner, ContactMessage, SubCategory, MainCategory, InsideSubCategory
-from .resources import CategoryResource
+from . models import LeftBanner, RightBanner, ContactMessage, SubCategory, MainCategory, InsideSubCategory
 from import_export.admin import ImportExportModelAdmin
 
 
 # Register your models here.
-class CategoryAdmin(ImportExportModelAdmin):
-    prepopulated_fields = {'slug': ('category_name',)}
-    list_display = ('category_name', 'slug')
-    resource_class = CategoryResource
-
 @admin.register(ContactMessage)
 class ContactMessageAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'subject', 'timestamp', 'is_read')
@@ -45,7 +39,5 @@ class InsideSubCategoryAdmin(admin.ModelAdmin):
     search_fields = ['name', 'sub_category__name']
     prepopulated_fields = {'slug': ('name',)}
 
-
-admin.site.register(Category, CategoryAdmin)
 admin.site.register(LeftBanner)
 admin.site.register(RightBanner)

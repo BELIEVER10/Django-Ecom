@@ -1,5 +1,5 @@
 from django.db import models
-from category.models import Category, SubCategory, InsideSubCategory
+from category.models import MainCategory, SubCategory, InsideSubCategory
 from django.urls import reverse
 from django_ckeditor_5.fields import CKEditor5Field
 from cloudinary.models import CloudinaryField
@@ -22,7 +22,7 @@ class Product(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
     views = models.PositiveIntegerField(default=0)  # NEW FIELD
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
+    main_category = models.ForeignKey(MainCategory, on_delete=models.CASCADE, null=True, blank=True)
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, blank=True, null=True)
     inside_sub_category = models.ForeignKey(InsideSubCategory, on_delete=models.CASCADE, blank=True, null=True)
 
