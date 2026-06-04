@@ -76,3 +76,22 @@ class SubCategory(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class InsideSubCategory(models.Model):
+    sub_category = models.ForeignKey(SubCategory, related_name='insidesubcategories', on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(max_length=100, unique=True)  # Add this field
+
+    class Meta:
+        verbose_name_plural = "Inside Sub Categories"
+
+    def __str__(self):
+        return self.name
+
+    def get_url(self):
+        # URL that shows products belonging to this inside subcategory
+        return reverse('products_by_inside_subcategory', args=[self.sub_category.slug, self.slug])
+
+    
+

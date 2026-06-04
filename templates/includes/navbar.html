@@ -99,41 +99,54 @@
             </button>
 
             <div class="collapse navbar-collapse" id="secondaryNavbar">
-                <ul class="navbar-nav mx-auto second-flex">
-
-                    {% for main in main_categories %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="singingDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ main.name }}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="singingDropdown">
-                            {% for sub in main.subcategories.all %}
-                            <a class="dropdown-item" href="{{sub.get_url}}">{{ sub.name }}</a>
-                            {% endfor %}
-                        
+    <ul class="navbar-nav mx-auto second-flex">
+        {% for main in main_categories %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown{{ forloop.counter }}" 
+               role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ main.name }}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdown{{ forloop.counter }}">
+                {% for sub in main.subcategories.all %}
+                    {% if sub.insidesubcategories.all %}
+                        <!-- Subcategory with nested inside subcategories -->
+                        <div class="dropdown-submenu">
+                            <a class="dropdown-item" href="{{ sub.get_url }}">
+                                {{ sub.name }} 
+                            </a>
+                            <div class="dropdown-menu">
+                                {% for inside in sub.insidesubcategories.all %}
+                                    <a class="dropdown-item" href="{{ inside.get_url }}">
+                                        {{ inside.name }}
+                                    </a>
+                                {% endfor %}
+                            </div>
                         </div>
-                    </li>
-                    {% endfor %}
-
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link position-relative d-inline-block" href="{% url 'wishlist' %}">
-                            <i class="fa fa-heart"></i> Wishlist
-                            {% if wishlist_count %}
-                                <span class="badge badge-danger position-absolute"
-                                    style="top: -5px; right: -10px; font-size: 0.75rem; border-radius: 50%; min-width: 20px; height: 20px; line-height: 20px; text-align: center; padding: 0;">
-                                    {{ wishlist_count }}
-                                </span>
-
-                            {% endif %}
-                        </a>
-                    </li>
-
-
-                {% endif %}
-
-                </ul>
+                    {% else %}
+                        <!-- Subcategory without inside subcategories -->
+                        <a class="dropdown-item" href="{{ sub.get_url }}">{{ sub.name }}</a>
+                    {% endif %}
+                {% endfor %}
             </div>
+        </li>
+        {% endfor %}
+
+        <!-- Wishlist link (unchanged) -->
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link position-relative d-inline-block" href="{% url 'wishlist' %}">
+                <i class="fa fa-heart"></i> Wishlist
+                {% if wishlist_count %}
+                    <span class="badge badge-danger position-absolute"
+                        style="top: -5px; right: -10px; font-size: 0.75rem; border-radius: 50%; min-width: 20px; height: 20px; line-height: 20px; text-align: center; padding: 0;">
+                        {{ wishlist_count }}
+                    </span>
+                {% endif %}
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+</div>
         </div>
     </nav>
     <!-- </div> -->

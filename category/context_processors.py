@@ -6,5 +6,7 @@ def menu_links(request):
 
 
 def categories_dropdown(request):
-    categories = MainCategory.objects.prefetch_related('subcategories')
-    return {'main_categories': categories}
+    main_categories = MainCategory.objects.prefetch_related(
+        'subcategories__insidesubcategories'
+    ).all()
+    return {'main_categories': main_categories}

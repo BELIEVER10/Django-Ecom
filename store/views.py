@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Product, Variation, ProductGallery
-from category.models import Category
+from category.models import Category, InsideSubCategory
 from django.http import HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -182,3 +182,15 @@ def price_search(request, category_slug=None):
         
     }
     return render(request, 'store/store.html', context)
+
+
+def store_by_insidesubcategory(request, subcategory_slug, insidesubcategory_slug):
+    subcategory = get_object_or_404(SubCategory, slug=subcategory_slug)
+    inside_cat = get_object_or_404(InsideSubCategory, slug=insidesubcategory_slug, sub_category=subcategory)
+    products = Product.objects.filter(inside_subcategory=inside_cat, is_available=True)
+    # reuse your store template or a custom one
+    return render(request, 'store/insidesub.html', {
+        'products': products,
+        'subcategory': subcategory,
+        'inside_cat': inside_cat,
+    })

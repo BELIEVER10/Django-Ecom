@@ -13,7 +13,12 @@ urlpatterns = [
     path('price_search/<slug:category_slug>/', views.price_search, name='search_by_category'),
 
     path('subcategory/<slug:subcategory_slug>/', views.store_by_subcategory, name='store_by_subcategory'),
+    path('subcategory/<slug:subcategory_slug>/<slug:insidesubcategory_slug>/', 
+     views.store_by_insidesubcategory, 
+     name='store_by_insidesubcategory'),
+     
     path('subcategory/<slug:subcategory_slug>/<slug:product_slug>', views.product_detail, name='product_detail'),
+    
 
     
 
