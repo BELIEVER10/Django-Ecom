@@ -185,4 +185,22 @@ def price_search(request, category_slug=None):
 
 
 def products_by_inside_subcategory(request, subcategory_slug, insidesubcategory_slug):
-    return HttpResponse("All good")
+    # Get the subcategory and inside subcategory
+    subcategory = get_object_or_404(SubCategory, slug=subcategory_slug)
+    inside_cat = get_object_or_404(InsideSubCategory, slug=insidesubcategory_slug, sub_category=subcategory)
+    
+    # Filter products by the inside subcategory and annotate price range
+    products = Product.objects.filter(inside_sub_category=inside_cat, is_available=True).annotate(
+        min_price=Min('variation__price'),
+        max_price=Max('variation__price')
+    )
+    product_count = products.count()
+    
+    context = {
+        'products': products,
+        'product_count': product_count,
+        'subcategory': subcategory,
+        'inside_cat': inside_cat,
+        'category_slug': subcategory_slug,   # optional, for consistency with your template
+    }
+    return render(request, 'store/store.html', context)
