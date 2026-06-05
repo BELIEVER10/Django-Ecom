@@ -74,6 +74,45 @@
             font-size: 0.95rem;
         }
     }
+
+    /* ========== NEW STYLES FOR HORIZONTAL TABS ========== */
+    .product-tabs-container {
+        margin: 2rem auto;
+    }
+    .tab-headers {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 0.5rem;
+        margin-bottom: 2rem;
+    }
+    .tab-header {
+        cursor: pointer;
+        /* font-size: 1.5rem; */
+        font-weight: 600;
+        color: #6c757d;
+        transition: 0.2s;
+        background: none;
+        border: none;
+        padding: 0.5rem 1rem;
+    }
+    .tab-header.active {
+        color: #7b2cbf;
+        border-bottom: 3px solid #7b2cbf;
+        margin-bottom: -0.5rem;
+    }
+    .tab-header:hover {
+        color: #7b2cbf;
+    }
+    .product-section {
+        display: none;
+    }
+    .product-section.active-section {
+        display: block;
+    }
+    </style>
 </style>
 
 <div class="home-bg">
@@ -271,39 +310,161 @@
     })();
 </script>
 <!-- ========== END NEW SECTION ========== -->
-    <!-- ========================= SECTION: New Arrivals ========================= -->
-    <section class="section-name padding-y-sm">
-        <div class="container">
-            <header class="section-heading">
-                <h3 class="section-title text-center fav-color">New Arrivals</h3>
-            </header>
 
-            <div class="horizontal-scroll-wrapper d-flex overflow-auto py-2" style="gap: 1rem; white-space: nowrap;">
-                {% for product in products %}
-                <div class="card card-product-grid flex-shrink-0" style="min-width: 250px; display: inline-block;">
-                    <a href="{{ product.get_url }}" class="img-wrap">
-                        <img src="{{ product.image.url}}" alt="{{ product.product_name }}">
-                    </a>
-                    <div style="background-color: #f4f4f4;">
-                    <figcaption class="info-wrap">
-                        <a href="{{ product.get_url }}" class="title font-weight-bold text-dark">{{ product.product_name }}</a>
+<!-- ========== PRODUCT TABS WRAPPER – only this part is new ========== -->
+<div class="product-tabs-container">
+    <!-- Tab headers (horizontal) -->
+    <div class="tab-headers">
+        <button class="tab-header active" data-tab="tab1">New Arrivals</button>
+        <button class="tab-header" data-tab="tab2">Most Viewed</button>
+        <button class="tab-header" data-tab="tab3">People's Favourite</button>
+    </div>
 
-                        {% if product.min_price and product.max_price %}
-                        <div class="price mt-1">
-                            {{ currency_symbol }}{% convert_price product.min_price %}
-                            -
-                            {{ currency_symbol }}{% convert_price product.max_price %}
+    <!-- Tab content: each original section is wrapped inside a div with class product-section -->
+    <div id="tab1" class="product-section active-section">
+        <!-- ========================= SECTION: New Arrivals ========================= -->
+        <section class="section-name padding-y-sm">
+            <div class="container">
+                <div class="horizontal-scroll-wrapper d-flex overflow-auto py-2" style="gap: 1rem; white-space: nowrap;">
+                    {% for product in products %}
+                    <div class="card card-product-grid flex-shrink-0" style="min-width: 250px; display: inline-block;">
+                        <a href="{{ product.get_url }}" class="img-wrap">
+                            <img src="{{ product.image.url}}" alt="{{ product.product_name }}">
+                        </a>
+                        <div style="background-color: #f4f4f4;">
+                        <figcaption class="info-wrap">
+                            <a href="{{ product.get_url }}" class="title font-weight-bold text-dark">{{ product.product_name }}</a>
+
+                            {% if product.min_price and product.max_price %}
+                            <div class="price mt-1">
+                                {{ currency_symbol }}{% convert_price product.min_price %}
+                                -
+                                {{ currency_symbol }}{% convert_price product.max_price %}
+                            </div>
+                            {% else %}
+                            <div class="price mt-1">{{ currency_symbol }}{% convert_price product.price %}</div>
+                            {% endif %}
+                        </figcaption>
                         </div>
-                        {% else %}
-                        <div class="price mt-1">{{ currency_symbol }}{% convert_price product.price %}</div>
-                        {% endif %}
-                    </figcaption>
                     </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
-            </div>
 
-            <br><br>
+                <br><br>
+            </div>
+        </section>
+        <!-- ========== END NEW SECTION ========== -->
+    </div>
+
+    <div id="tab2" class="product-section">
+        <!-- ========================= SECTION: Most Viewed ========================= -->
+        <section class="section-name padding-y-sm">
+            <div class="container">
+             
+
+                <div class="horizontal-scroll-wrapper d-flex overflow-auto py-2" style="gap: 1rem; white-space: nowrap;">
+                    {% for product in most_viewed %}
+                    <div class="card card-product-grid flex-shrink-0" style="min-width: 250px; display: inline-block;">
+                        <a href="{{ product.get_url }}" class="img-wrap">
+                            <img src="{{ product.image.url}}" alt="{{ product.product_name }}">
+                        </a>
+                        <div style="background-color: #f4f4f4;">
+                        <figcaption class="info-wrap">
+                            <a href="{{ product.get_url }}" class="title font-weight-bold text-dark">{{ product.product_name }}</a>
+
+                            {% if product.min_price and product.max_price %}
+                            <div class="price mt-1">
+                                {{ currency_symbol }}{% convert_price product.min_price %}
+                                -
+                                {{ currency_symbol }}{% convert_price product.max_price %}
+                            </div>
+                            {% else %}
+                            <div class="price mt-1">{{ currency_symbol }}{% convert_price product.price %}</div>
+                            {% endif %}
+                        </figcaption>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <br><br>
+            </div>
+        </section>
+        <!-- ========== END NEW SECTION ========== -->
+    </div>
+
+    <div id="tab3" class="product-section">
+        <!-- ========================= SECTION: People's Favourite ========================= -->
+        <section class="section-name padding-y-sm">
+            <div class="container">
+            
+
+                <div class="horizontal-scroll-wrapper d-flex overflow-auto py-2" style="gap: 1rem; white-space: nowrap;">
+                    {% for product in products %}
+                    <div class="card card-product-grid flex-shrink-0" style="min-width: 250px; display: inline-block;">
+                        <a href="{{ product.get_url }}" class="img-wrap">
+                            <img src="{{ product.image.url}}" alt="{{ product.product_name }}">
+                        </a>
+                        <div style="background-color: #f4f4f4;">
+                        <figcaption class="info-wrap">
+                            <a href="{{ product.get_url }}" class="title font-weight-bold text-dark">{{ product.product_name }}</a>
+
+                            {% if product.min_price and product.max_price %}
+                            <div class="price mt-1">
+                                {{ currency_symbol }}{% convert_price product.min_price %}
+                                -
+                                {{ currency_symbol }}{% convert_price product.max_price %}
+                            </div>
+                            {% else %}
+                            <div class="price mt-1">{{ currency_symbol }}{% convert_price product.price %}</div>
+                            {% endif %}
+                        </figcaption>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <br><br>
+            </div>
+        </section>
+        <!-- ========== END NEW SECTION ========== -->
+    </div>
+</div>
+
+<script>
+    // Tab switching logic – no changes to backend logic
+    (function() {
+        const tabs = document.querySelectorAll('.tab-header');
+        const sections = {
+            tab1: document.getElementById('tab1'),
+            tab2: document.getElementById('tab2'),
+            tab3: document.getElementById('tab3')
+        };
+        
+        function activateTab(tabId) {
+            // Remove active class from all tabs and sections
+            tabs.forEach(tab => tab.classList.remove('active'));
+            Object.values(sections).forEach(section => {
+                if (section) section.classList.remove('active-section');
+            });
+            // Add active class to clicked tab and its section
+            const activeTab = document.querySelector(`.tab-header[data-tab="${tabId}"]`);
+            if (activeTab) activeTab.classList.add('active');
+            if (sections[tabId]) sections[tabId].classList.add('active-section');
+        }
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                const tabId = this.getAttribute('data-tab');
+                if (tabId && sections[tabId]) {
+                    activateTab(tabId);
+                }
+            });
+        });
+    })();
+</script>
+
+<!-- The rest of the original template (commented out sections) remains exactly as you had it -->
             <!-- ========================= SECTION MAIN ========================= -->
             <!-- <section class="section-intro padding-y-sm">
                 <div class="container">
