@@ -14,6 +14,7 @@ class ProductAdmin(ImportExportModelAdmin):
     list_display = ('product_name', 'price', 'stock', 'modified_date', 'is_available', 'is_new_arrival', 'views')
     resource_class = ProductResource
     inlines = [ProductGalleryInline]
+    prepopulated_fields = {'slug': ('product_name',)}
 
 class VariationAdmin(ImportExportModelAdmin):
     list_display = ('product', 'price', 'stock', 'variation_category', 'variation_value', 'model_number', 'is_active')
@@ -23,6 +24,8 @@ class VariationAdmin(ImportExportModelAdmin):
 
 class CarouselAdmin(ImportExportModelAdmin):
     resource_class = CarouselItemResource
+
+
 
 
 admin.site.register(Product, ProductAdmin)
