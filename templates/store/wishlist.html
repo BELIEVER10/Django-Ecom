@@ -57,7 +57,15 @@
                 <div class="wishlist-card-body">
                     <div>
                         <div class="wishlist-title">{{ item.product.product_name }}</div>
+                        {% if item.min_price and item.max_price %}
+                        <p class="text-muted mb-2">
+                            {{ currency_symbol }}{% convert_price item.min_price %}
+                            -
+                            {{ currency_symbol }}{% convert_price item.max_price %}
+                        </p>
+                        {% else %}
                         <p class="text-muted mb-2">{{ currency_symbol }}{% convert_price item.product.price %}</p>
+                        {% endif %}
                     </div>
                     <div class="wishlist-buttons">
                         <a href="{% url 'remove_from_wishlist' item.product.id %}" class="btn btn-outline-danger">Remove</a>

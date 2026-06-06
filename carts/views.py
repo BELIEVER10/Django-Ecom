@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from store.models import Variation
 from django.contrib import messages
 from django.http import JsonResponse
+from django.db.models import Min, Max
 
 # Create your views here.
 def _cart_id(request):
@@ -268,5 +269,8 @@ def remove_from_wishlist(request, product_id):
 
 @login_required
 def wishlist_view(request):
-    wishlist_items = Wishlist.objects.filter(user=request.user).select_related('product')
+    wishlist_items = Wishlist.objects.filter(user=request.user).select_related('product').annotate(
+        min_price=Min('product__variation__price'),
+        max_price=Max('product__variation__price')
+    )
     return render(request, 'store/wishlist.html', {'wishlist_items': wishlist_items})
