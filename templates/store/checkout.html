@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load currency_filters %}
 {% load cart_extras %}
 
 {% block content %}
@@ -112,18 +113,18 @@
                                         </td>
                                         <td><var>{{ cart_item.quantity }}</var></td>
                                         <td>
-                                            <div class="price-wrap">
-                                                {% if cart_item.variation.all %}
-                                                {% for item in cart_item.variation.all %}
-                                                <var class="price">{{ cart_item.quantity|multiply:item.price }}</var>
-                                                <small class="text-muted d-block">${{ item.price }} each</small>
-                                                {% endfor %}
-                                            
-                                                {% else %}
-                                                <var class="price">{{ cart_item.sub_total }}</var>
-                                                <small class="text-muted d-block">${{ cart_item.product.price }} each</small>
-                                                {% endif %}
-                                            </div>
+                                             <div class="price-wrap">
+                                    {% if cart_item.variation.all %}
+                                     {% for item in cart_item.variation.all %}
+                                    <var class="price">{% convert_price cart_item.quantity|multiply:item.price %}</var>
+                                    <small class="text-muted d-block">{{ currency_symbol }}{% convert_price item.price %} each</small>
+                                    {% endfor %}
+                                 
+                                    {% else %}
+                                    <var class="price">{%convert_price cart_item.sub_total %}</var>
+                                    <small class="text-muted d-block">{{ currency_symbol }}{% convert_price cart_item.product.price %} each</small>
+                                    {% endif %}
+                                </div>
                                         </td>
                                     </tr>
                                     {% endfor %}

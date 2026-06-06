@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
+
 {% load static %}
+{% load currency_filters %}
+
 {% load cart_extras %}
 
 
@@ -79,13 +82,13 @@
                                 <div class="price-wrap">
                                     {% if cart_item.variation.all %}
                                      {% for item in cart_item.variation.all %}
-                                    <var class="price">{{ cart_item.quantity|multiply:item.price }}</var>
-                                    <small class="text-muted d-block">${{ item.price }} each</small>
+                                    <var class="price">{% convert_price cart_item.quantity|multiply:item.price %}</var>
+                                    <small class="text-muted d-block">{{ currency_symbol }}{% convert_price item.price %} each</small>
                                     {% endfor %}
                                  
                                     {% else %}
-                                    <var class="price">{{ cart_item.sub_total }}</var>
-                                    <small class="text-muted d-block">${{ cart_item.product.price }} each</small>
+                                    <var class="price">{%convert_price cart_item.sub_total %}</var>
+                                    <small class="text-muted d-block">{{ currency_symbol }}{% convert_price cart_item.product.price %} each</small>
                                     {% endif %}
                                 </div>
                             </td>
@@ -105,15 +108,15 @@
                 <div class="card-body">
                     <dl class="dlist-align">
                         <dt>Total price:</dt>
-                        <dd class="text-right">${{ total }}</dd>
+                        <dd class="text-right">{{ currency_symbol }}{% convert_price total %}</dd>
                     </dl>
                     <dl class="dlist-align">
                         <dt>Tax:</dt>
-                        <dd class="text-right">${{ tax }}</dd>
+                        <dd class="text-right">{{ currency_symbol }}{% convert_price tax %}</dd>
                     </dl>
                     <dl class="dlist-align">
                         <dt>Total:</dt>
-                        <dd class="text-right text-dark b"><strong>${{ grand_total }}</strong></dd>
+                        <dd class="text-right text-dark b"><strong>{{ currency_symbol }}{% convert_price grand_total %}</strong></dd>
                     </dl>
                     <hr>
                     <p class="text-center mb-3">
