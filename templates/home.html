@@ -8,21 +8,21 @@
 <style>
     .hero-video-wrapper {
         width: 100%;
-        max-height: auto;          /* adjust as needed */
+        max-height: auto;
         overflow: hidden;
         margin-bottom: 2rem;
+        position: relative;
     }
     .hero-video {
         width: 100%;
         height: auto;
-        object-fit: cover;          /* crop to fill without distortion */
+        object-fit: cover;
         display: block;
     }
-    /* Ensure no parent container causes overflow */
     .home-bg {
         overflow-x: hidden;
     }
-    /* New section styles */
+    /* Sound healing sections - unchanged */
     .sound-healing-section {
         background: #f8f9fa;
         border-radius: 24px;
@@ -76,7 +76,7 @@
         }
     }
 
-    /* ========== NEW STYLES FOR HORIZONTAL TABS ========== */
+    /* Horizontal tabs - unchanged */
     .product-tabs-container {
         margin: 2rem auto;
     }
@@ -91,7 +91,6 @@
     }
     .tab-header {
         cursor: pointer;
-        /* font-size: 1.5rem; */
         font-weight: 600;
         color: #6c757d;
         transition: 0.2s;
@@ -107,22 +106,154 @@
     .tab-header:hover {
         color: #7b2cbf;
     }
-
     .tab-header:focus {
-    outline: none;
-    box-shadow: none;
-}
+        outline: none;
+        box-shadow: none;
+    }
     .product-section {
         display: none;
     }
     .product-section.active-section {
         display: block;
     }
-    </style>
+
+    /* ========== REVIEW OVERLAY CARD (semi-transparent cream, shows video behind) ========== */
+    .review-overlay-card {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 300px;
+        background: rgba(255, 249, 239, 0.85);
+        backdrop-filter: blur(2px);
+        border-radius: 24px;
+        padding: 1.2rem 1rem 1rem;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+        border: 1px solid rgba(210, 180, 140, 0.4);
+        text-align: center;
+    }
+    .review-heading {
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        font-weight: 600;
+        color: #b87333;
+        text-transform: uppercase;
+        margin-bottom: 0.75rem;
+    }
+    .review-stars {
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+        color: #ffb347;
+    }
+    .review-text {
+        font-size: 0.9rem;
+        line-height: 1.45;
+        color: #2c2b28;
+        font-style: italic;
+        margin-bottom: 0.8rem;
+        font-weight: 500;
+    }
+    .review-author {
+        font-weight: 700;
+        color: #7b2cbf;
+        font-size: 0.85rem;
+        margin-bottom: 0.2rem;
+    }
+    .review-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(233, 236, 239, 0.9);
+        padding: 3px 10px;
+        border-radius: 50px;
+        font-size: 0.7rem;
+        color: #2c3e50;
+        font-weight: 500;
+        margin-top: 0.3rem;
+    }
+    .review-badge i {
+        font-size: 0.8rem;
+        color: #28a745;
+    }
+    /* Circular pagination dots */
+    .slider-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 1rem;
+    }
+    .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #d4c5b0;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    .dot.active {
+        background: #7b2cbf;
+        width: 10px;
+        height: 10px;
+        transform: scale(1.1);
+    }
+    /* Fade/slide animation for the card content */
+    .review-card-content {
+        transition: opacity 0.35s ease, transform 0.3s ease;
+    }
+    .review-card-content.slide-out {
+        opacity: 0;
+        transform: translateX(15px);
+    }
+    .review-card-content.slide-in {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+        .review-overlay-card {
+            position: relative;
+            top: auto;
+            right: auto;
+            width: 100%;
+            margin-top: 15px;
+            background: rgba(255, 249, 239, 0.95);
+        }
+        .hero-video-wrapper {
+            margin-bottom: 0;
+        }
+    }
+
+    /* Form input styling */
+    .review-section-container input[type="text"],
+    .review-section-container textarea,
+    .review-section-container input[type="file"] {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #e0d6c8;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        background: #fff;
+        transition: 0.2s;
+    }
+    .review-section-container input:focus,
+    .review-section-container textarea:focus {
+        outline: none;
+        border-color: #b87c4a;
+        box-shadow: 0 0 0 2px rgba(184,124,74,0.2);
+    }
+    .errorlist {
+        color: #d9534f;
+        list-style: none;
+        padding-left: 0;
+        margin-top: 0.25rem;
+        font-size: 0.85rem;
+    }
+    
 </style>
 
 <div class="home-bg">
-    <!-- ========== UNDER CONSTRUCTION BANNER (TOP OF CONTENT) ========== -->
+    <!-- Under construction banner -->
     <div id="constructionBannerHome" style="background: #ffc107; color: #856404; padding: 12px 20px; margin: 0 0 1rem 0; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
         <div style="flex: 1;">
             🚧 <strong>Under Construction:</strong> This website is currently in development. Some features may not work as expected.
@@ -143,20 +274,134 @@
         }
     </script>
 
-    <!-- ========== NEW AUTO-PLAY VIDEO SECTION (ABOVE NEW ARRIVALS) ========== -->
-    <div class="hero-video-wrapper" style="margin-bottom: 2rem;">
+    <!-- Hero video with dynamic review overlay (database reviews) -->
+    <div class="hero-video-wrapper">
         <video autoplay muted loop playsinline class="hero-video">
             <source src="https://res.cloudinary.com/dktjv2rre/video/upload/v1780417503/homeVideo_blpyze.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-    </div>
-    <!-- ========== END VIDEO SECTION ========== -->
 
-     <!-- ========== SECTION 1: SOUND HEALING ========== -->
+        <div class="review-overlay-card">
+            <div class="review-heading">CUSTOMER REFLECTIONS</div>
+            <div id="reviewCardContent" class="review-card-content">
+                <div class="review-stars" id="reviewStars">★★★★★</div>
+                <div class="review-text" id="reviewText">
+                    <!-- will be filled dynamically -->
+                </div>
+                <div class="review-author" id="reviewAuthor"></div>
+                <div class="review-badge" id="reviewBadge"></div>
+            </div>
+            <div class="slider-dots" id="sliderDots"></div>
+        </div>
+    </div>
+    <br>
+    
+
+
+        <!-- PRODUCT TABS -->
+    <div class="product-tabs-container">
+        <div class="tab-headers">
+            <button class="tab-header active" data-tab="tab1">New Arrivals</button>
+            <button class="tab-header" data-tab="tab2">People's Favourite</button>
+            <button class="tab-header" data-tab="tab3">Best Selling</button>
+        </div>
+        <div id="tab1" class="product-section active-section">
+            <section class="section-name padding-y-sm">
+                <div class="container">
+                    <div class="horizontal-scroll-wrapper d-flex overflow-auto py-2" style="gap: 1rem; white-space: nowrap;">
+                        {% for product in products %}
+                        <div class="card card-product-grid flex-shrink-0" style="min-width: 250px; display: inline-block;">
+                            <a href="{{ product.get_url }}" class="img-wrap">
+                                <img src="{{ product.image.url }}" alt="{{ product.product_name }}">
+                            </a>
+                            <div style="background-color: #f4f4f4;">
+                            <figcaption class="info-wrap">
+                                <a href="{{ product.get_url }}" class="title font-weight-bold text-dark">{{ product.product_name }}</a>
+                                {% if product.min_price and product.max_price %}
+                                <div class="price mt-1">
+                                    {{ currency_symbol }}{% convert_price product.min_price %}
+                                    -
+                                    {{ currency_symbol }}{% convert_price product.max_price }}
+                                </div>
+                                {% else %}
+                                <div class="price mt-1">{{ currency_symbol }}{% convert_price product.price %}</div>
+                                {% endif %}
+                            </figcaption>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <br><br>
+                </div>
+            </section>
+        </div>
+        <div id="tab2" class="product-section">
+            <section class="section-name padding-y-sm">
+                <div class="container">
+                    <div class="horizontal-scroll-wrapper d-flex overflow-auto py-2" style="gap: 1rem; white-space: nowrap;">
+                        {% for product in most_viewed %}
+                        <div class="card card-product-grid flex-shrink-0" style="min-width: 250px; display: inline-block;">
+                            <a href="{{ product.get_url }}" class="img-wrap">
+                                <img src="{{ product.image.url }}" alt="{{ product.product_name }}">
+                            </a>
+                            <div style="background-color: #f4f4f4;">
+                            <figcaption class="info-wrap">
+                                <a href="{{ product.get_url }}" class="title font-weight-bold text-dark">{{ product.product_name }}</a>
+                                {% if product.min_price and product.max_price %}
+                                <div class="price mt-1">
+                                    {{ currency_symbol }}{% convert_price product.min_price %}
+                                    -
+                                    {{ currency_symbol }}{% convert_price product.max_price }}
+                                </div>
+                                {% else %}
+                                <div class="price mt-1">{{ currency_symbol }}{% convert_price product.price %}</div>
+                                {% endif %}
+                            </figcaption>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <br><br>
+                </div>
+            </section>
+        </div>
+        <div id="tab3" class="product-section">
+            <section class="section-name padding-y-sm">
+                <div class="container">
+                    <div class="horizontal-scroll-wrapper d-flex overflow-auto py-2" style="gap: 1rem; white-space: nowrap;">
+                        {% for product in products %}
+                        <div class="card card-product-grid flex-shrink-0" style="min-width: 250px; display: inline-block;">
+                            <a href="{{ product.get_url }}" class="img-wrap">
+                                <img src="{{ product.image.url }}" alt="{{ product.product_name }}">
+                            </a>
+                            <div style="background-color: #f4f4f4;">
+                            <figcaption class="info-wrap">
+                                <a href="{{ product.get_url }}" class="title font-weight-bold text-dark">{{ product.product_name }}</a>
+                                {% if product.min_price and product.max_price %}
+                                <div class="price mt-1">
+                                    {{ currency_symbol }}{% convert_price product.min_price %}
+                                    -
+                                    {{ currency_symbol }}{% convert_price product.max_price }}
+                                </div>
+                                {% else %}
+                                <div class="price mt-1">{{ currency_symbol }}{% convert_price product.price %}</div>
+                                {% endif %}
+                            </figcaption>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <br><br>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- SECTION 1: SOUND HEALING -->
     <div class="sound-healing-section" style="background: #f8f9fa; border-radius: 24px; margin: 2rem 0; padding: 3rem 5%;">
         <div class="row align-items-center g-5">
             <div class="col-12 col-md-6">
-                <div class="sound-healing-video" style="border-radius: 20px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.1); position: relative;">
+                <div class="sound-healing-video">
                     <video id="healingVideo1" autoplay muted loop playsinline class="w-100 h-auto">
                         <source src="https://res.cloudinary.com/dktjv2rre/video/upload/v1780417503/homeVideo_blpyze.mp4" type="video/mp4">
                     </video>
@@ -171,12 +416,11 @@
                 <p style="font-size: 1.05rem; line-height: 1.6; color: #2c3e50; margin-bottom: 1.8rem; text-align: justify;">
                    Sound healing is a profound therapeutic practice that uses vibrational frequencies — from voice, instruments like singing bowls, gongs, or tuning forks — to restore harmony within the body and mind. Just as a skilled musician tunes an instrument, sound healing helps “detune” stress, anxiety, and energetic blockages, allowing your natural state of well‑being to emerge. It’s a bridge between ancient wisdom and modern science, proven to reduce cortisol levels, enhance meditation depth, and promote cellular regeneration. Whether you seek emotional release, physical relief, or spiritual connection, sound healing offers a gentle yet powerful path to wholeness.
                 </p>
-                
             </div>
         </div>
     </div>
 
-    <!-- ========== SECTION 2: PLANETARY FREQUENCIES ========== -->
+    <!-- SECTION 2: PLANETARY FREQUENCIES -->
     <div class="sound-healing-section" style="background: #f8f9fa; border-radius: 24px; margin: 2rem 0; padding: 3rem 5%;">
         <div class="row align-items-center g-5">
             <div class="col-12 col-md-6">
@@ -186,7 +430,7 @@
                 </p>
             </div>
             <div class="col-12 col-md-6">
-                <div class="sound-healing-video" style="border-radius: 20px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.1); position: relative;">
+                <div class="sound-healing-video">
                     <video id="healingVideo2" autoplay muted loop playsinline class="w-100 h-auto">
                         <source src="https://res.cloudinary.com/dktjv2rre/video/upload/v1780492177/202606031826_imyom0.mp4" type="video/mp4">
                     </video>
@@ -199,11 +443,11 @@
         </div>
     </div>
 
-         <!-- ========== SECTION 3: SPIRITUAL SOUND Therapy ========== -->
+    <!-- SECTION 3: SPIRITUAL SOUND THERAPY -->
     <div class="sound-healing-section" style="background: #f8f9fa; border-radius: 24px; margin: 2rem 0; padding: 3rem 5%;">
         <div class="row align-items-center g-5">
             <div class="col-12 col-md-6">
-                <div class="sound-healing-video" style="border-radius: 20px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.1); position: relative;">
+                <div class="sound-healing-video">
                     <video id="healingVideo3" autoplay muted loop playsinline class="w-100 h-auto">
                         <source src="https://res.cloudinary.com/dktjv2rre/video/upload/v1780494380/202606031924_exogki.mp4" type="video/mp4">
                     </video>
@@ -218,342 +462,504 @@
                 <p style="font-size: 1.05rem; line-height: 1.6; color: #2c3e50; margin-bottom: 1.8rem; text-align: justify;">
                    Sound healing is a profound therapeutic practice that uses vibrational frequencies — from voice, instruments like singing bowls, gongs, or tuning forks — to restore harmony within the body and mind. Just as a skilled musician tunes an instrument, sound healing helps “detune” stress, anxiety, and energetic blockages, allowing your natural state of well‑being to emerge. It’s a bridge between ancient wisdom and modern science, proven to reduce cortisol levels, enhance meditation depth, and promote cellular regeneration. Whether you seek emotional release, physical relief, or spiritual connection, sound healing offers a gentle yet powerful path to wholeness.
                 </p>
-               
             </div>
         </div>
     </div>
 
-<!-- JavaScript for first video (Sound Healing) -->
-<script>
-    (function() {
-        const video = document.getElementById('healingVideo1');
-        const playPauseBtn = document.getElementById('playPauseBtn1');
-        const muteBtn = document.getElementById('muteBtn1');
-        if (video && playPauseBtn && muteBtn) {
-            function updatePlayPause() {
-                playPauseBtn.innerHTML = video.paused ? '▶️ Play' : '⏸️ Pause';
-            }
-            playPauseBtn.addEventListener('click', () => {
-                video.paused ? video.play() : video.pause();
-                updatePlayPause();
-            });
-            video.addEventListener('play', updatePlayPause);
-            video.addEventListener('pause', updatePlayPause);
-            updatePlayPause();
-
-            function updateMute() {
-                muteBtn.innerHTML = video.muted ? '🔇 Unmute' : '🔊 Mute';
-            }
-            muteBtn.addEventListener('click', () => {
-                video.muted = !video.muted;
-                updateMute();
-            });
-            video.addEventListener('volumechange', updateMute);
-            updateMute();
-        }
-    })();
-</script>
-
-<!-- JavaScript for second video (Planetary Frequencies) -->
-<script>
-    (function() {
-        const video = document.getElementById('healingVideo2');
-        const playPauseBtn = document.getElementById('playPauseBtn2');
-        const muteBtn = document.getElementById('muteBtn2');
-        if (video && playPauseBtn && muteBtn) {
-            function updatePlayPause() {
-                playPauseBtn.innerHTML = video.paused ? '▶️ Play' : '⏸️ Pause';
-            }
-            playPauseBtn.addEventListener('click', () => {
-                video.paused ? video.play() : video.pause();
-                updatePlayPause();
-            });
-            video.addEventListener('play', updatePlayPause);
-            video.addEventListener('pause', updatePlayPause);
-            updatePlayPause();
-
-            function updateMute() {
-                muteBtn.innerHTML = video.muted ? '🔇 Unmute' : '🔊 Mute';
-            }
-            muteBtn.addEventListener('click', () => {
-                video.muted = !video.muted;
-                updateMute();
-            });
-            video.addEventListener('volumechange', updateMute);
-            updateMute();
-        }
-    })();
-</script>
-
-<!-- JavaScript for third video (Spiritual Sound Healing) -->
-<script>
-    (function() {
-        const video = document.getElementById('healingVideo3');
-        const playPauseBtn = document.getElementById('playPauseBtn3');
-        const muteBtn = document.getElementById('muteBtn3');
-        if (video && playPauseBtn && muteBtn) {
-            function updatePlayPause() {
-                playPauseBtn.innerHTML = video.paused ? '▶️ Play' : '⏸️ Pause';
-            }
-            playPauseBtn.addEventListener('click', () => {
-                video.paused ? video.play() : video.pause();
-                updatePlayPause();
-            });
-            video.addEventListener('play', updatePlayPause);
-            video.addEventListener('pause', updatePlayPause);
-            updatePlayPause();
-
-            function updateMute() {
-                muteBtn.innerHTML = video.muted ? '🔇 Unmute' : '🔊 Mute';
-            }
-            muteBtn.addEventListener('click', () => {
-                video.muted = !video.muted;
-                updateMute();
-            });
-            video.addEventListener('volumechange', updateMute);
-            updateMute();
-        }
-    })();
-</script>
-<!-- ========== END NEW SECTION ========== -->
-
-<!-- ========== PRODUCT TABS WRAPPER – only this part is new ========== -->
-<div class="product-tabs-container">
-    <!-- Tab headers (horizontal) -->
-    <div class="tab-headers">
-        <button class="tab-header active" data-tab="tab1">New Arrivals</button>
-        <button class="tab-header" data-tab="tab2">Most Viewed</button>
-        <button class="tab-header" data-tab="tab3">People's Favourite</button>
-    </div>
-
-    <!-- Tab content: each original section is wrapped inside a div with class product-section -->
-    <div id="tab1" class="product-section active-section">
-        <!-- ========================= SECTION: New Arrivals ========================= -->
-        <section class="section-name padding-y-sm">
-            <div class="container">
-                <div class="horizontal-scroll-wrapper d-flex overflow-auto py-2" style="gap: 1rem; white-space: nowrap;">
-                    {% for product in products %}
-                    <div class="card card-product-grid flex-shrink-0" style="min-width: 250px; display: inline-block;">
-                        <a href="{{ product.get_url }}" class="img-wrap">
-                            <img src="{{ product.image.url}}" alt="{{ product.product_name }}">
-                        </a>
-                        <div style="background-color: #f4f4f4;">
-                        <figcaption class="info-wrap">
-                            <a href="{{ product.get_url }}" class="title font-weight-bold text-dark">{{ product.product_name }}</a>
-
-                            {% if product.min_price and product.max_price %}
-                            <div class="price mt-1">
-                                {{ currency_symbol }}{% convert_price product.min_price %}
-                                -
-                                {{ currency_symbol }}{% convert_price product.max_price %}
-                            </div>
-                            {% else %}
-                            <div class="price mt-1">{{ currency_symbol }}{% convert_price product.price %}</div>
-                            {% endif %}
-                        </figcaption>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-
-                <br><br>
-            </div>
-        </section>
-        <!-- ========== END NEW SECTION ========== -->
-    </div>
-
-    <div id="tab2" class="product-section">
-        <!-- ========================= SECTION: Most Viewed ========================= -->
-        <section class="section-name padding-y-sm">
-            <div class="container">
-             
-
-                <div class="horizontal-scroll-wrapper d-flex overflow-auto py-2" style="gap: 1rem; white-space: nowrap;">
-                    {% for product in most_viewed %}
-                    <div class="card card-product-grid flex-shrink-0" style="min-width: 250px; display: inline-block;">
-                        <a href="{{ product.get_url }}" class="img-wrap">
-                            <img src="{{ product.image.url}}" alt="{{ product.product_name }}">
-                        </a>
-                        <div style="background-color: #f4f4f4;">
-                        <figcaption class="info-wrap">
-                            <a href="{{ product.get_url }}" class="title font-weight-bold text-dark">{{ product.product_name }}</a>
-
-                            {% if product.min_price and product.max_price %}
-                            <div class="price mt-1">
-                                {{ currency_symbol }}{% convert_price product.min_price %}
-                                -
-                                {{ currency_symbol }}{% convert_price product.max_price %}
-                            </div>
-                            {% else %}
-                            <div class="price mt-1">{{ currency_symbol }}{% convert_price product.price %}</div>
-                            {% endif %}
-                        </figcaption>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-
-                <br><br>
-            </div>
-        </section>
-        <!-- ========== END NEW SECTION ========== -->
-    </div>
-
-    <div id="tab3" class="product-section">
-        <!-- ========================= SECTION: People's Favourite ========================= -->
-        <section class="section-name padding-y-sm">
-            <div class="container">
-            
-
-                <div class="horizontal-scroll-wrapper d-flex overflow-auto py-2" style="gap: 1rem; white-space: nowrap;">
-                    {% for product in products %}
-                    <div class="card card-product-grid flex-shrink-0" style="min-width: 250px; display: inline-block;">
-                        <a href="{{ product.get_url }}" class="img-wrap">
-                            <img src="{{ product.image.url}}" alt="{{ product.product_name }}">
-                        </a>
-                        <div style="background-color: #f4f4f4;">
-                        <figcaption class="info-wrap">
-                            <a href="{{ product.get_url }}" class="title font-weight-bold text-dark">{{ product.product_name }}</a>
-
-                            {% if product.min_price and product.max_price %}
-                            <div class="price mt-1">
-                                {{ currency_symbol }}{% convert_price product.min_price %}
-                                -
-                                {{ currency_symbol }}{% convert_price product.max_price %}
-                            </div>
-                            {% else %}
-                            <div class="price mt-1">{{ currency_symbol }}{% convert_price product.price %}</div>
-                            {% endif %}
-                        </figcaption>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-
-                <br><br>
-            </div>
-        </section>
-        <!-- ========== END NEW SECTION ========== -->
-    </div>
-</div>
-
-<script>
-    // Tab switching logic – no changes to backend logic
-    (function() {
-        const tabs = document.querySelectorAll('.tab-header');
-        const sections = {
-            tab1: document.getElementById('tab1'),
-            tab2: document.getElementById('tab2'),
-            tab3: document.getElementById('tab3')
-        };
-        
-        function activateTab(tabId) {
-            // Remove active class from all tabs and sections
-            tabs.forEach(tab => tab.classList.remove('active'));
-            Object.values(sections).forEach(section => {
-                if (section) section.classList.remove('active-section');
-            });
-            // Add active class to clicked tab and its section
-            const activeTab = document.querySelector(`.tab-header[data-tab="${tabId}"]`);
-            if (activeTab) activeTab.classList.add('active');
-            if (sections[tabId]) sections[tabId].classList.add('active-section');
-        }
-        
-        tabs.forEach(tab => {
-            tab.addEventListener('click', function(e) {
-                const tabId = this.getAttribute('data-tab');
-                if (tabId && sections[tabId]) {
-                    activateTab(tabId);
+    <!-- Video controls scripts -->
+    <script>
+        (function() {
+            const video = document.getElementById('healingVideo1');
+            const playPauseBtn = document.getElementById('playPauseBtn1');
+            const muteBtn = document.getElementById('muteBtn1');
+            if (video && playPauseBtn && muteBtn) {
+                function updatePlayPause() {
+                    playPauseBtn.innerHTML = video.paused ? '▶️ Play' : '⏸️ Pause';
                 }
-            });
-        });
-    })();
-</script>
+                playPauseBtn.addEventListener('click', () => {
+                    video.paused ? video.play() : video.pause();
+                    updatePlayPause();
+                });
+                video.addEventListener('play', updatePlayPause);
+                video.addEventListener('pause', updatePlayPause);
+                updatePlayPause();
+                function updateMute() {
+                    muteBtn.innerHTML = video.muted ? '🔇 Unmute' : '🔊 Mute';
+                }
+                muteBtn.addEventListener('click', () => {
+                    video.muted = !video.muted;
+                    updateMute();
+                });
+                video.addEventListener('volumechange', updateMute);
+                updateMute();
+            }
+        })();
+        (function() {
+            const video = document.getElementById('healingVideo2');
+            const playPauseBtn = document.getElementById('playPauseBtn2');
+            const muteBtn = document.getElementById('muteBtn2');
+            if (video && playPauseBtn && muteBtn) {
+                function updatePlayPause() {
+                    playPauseBtn.innerHTML = video.paused ? '▶️ Play' : '⏸️ Pause';
+                }
+                playPauseBtn.addEventListener('click', () => {
+                    video.paused ? video.play() : video.pause();
+                    updatePlayPause();
+                });
+                video.addEventListener('play', updatePlayPause);
+                video.addEventListener('pause', updatePlayPause);
+                updatePlayPause();
+                function updateMute() {
+                    muteBtn.innerHTML = video.muted ? '🔇 Unmute' : '🔊 Mute';
+                }
+                muteBtn.addEventListener('click', () => {
+                    video.muted = !video.muted;
+                    updateMute();
+                });
+                video.addEventListener('volumechange', updateMute);
+                updateMute();
+            }
+        })();
+        (function() {
+            const video = document.getElementById('healingVideo3');
+            const playPauseBtn = document.getElementById('playPauseBtn3');
+            const muteBtn = document.getElementById('muteBtn3');
+            if (video && playPauseBtn && muteBtn) {
+                function updatePlayPause() {
+                    playPauseBtn.innerHTML = video.paused ? '▶️ Play' : '⏸️ Pause';
+                }
+                playPauseBtn.addEventListener('click', () => {
+                    video.paused ? video.play() : video.pause();
+                    updatePlayPause();
+                });
+                video.addEventListener('play', updatePlayPause);
+                video.addEventListener('pause', updatePlayPause);
+                updatePlayPause();
+                function updateMute() {
+                    muteBtn.innerHTML = video.muted ? '🔇 Unmute' : '🔊 Mute';
+                }
+                muteBtn.addEventListener('click', () => {
+                    video.muted = !video.muted;
+                    updateMute();
+                });
+                video.addEventListener('volumechange', updateMute);
+                updateMute();
+            }
+        })();
+    </script>
 
-<!-- The rest of the original template (commented out sections) remains exactly as you had it -->
-            <!-- ========================= SECTION MAIN ========================= -->
-            <!-- <section class="section-intro padding-y-sm">
-                <div class="container">
-                    <header class="section-heading">
-                        <h3 class="section-title text-center fav-color">Events</h3>
-                    </header>
+    <!-- REVIEW SLIDER WITH DOTS - DYNAMIC FROM DATABASE -->
+    <script>
+        (function() {
+            // Pass the Django reviews queryset into JavaScript as an array of objects
+            const dbReviews = [
+                {% for review in reviews %}
+                {
+                    stars: {{ review.rating }},
+                    text: "{{ review.description|escapejs }}",
+                    author: "{{ review.user.full_name|default:review.user.email|escapejs }}",
+                    role: "{{ review.professional_title|default:''|escapejs }}",
+                    verified: {% if review.professional_title or review.institution %}true{% else %}false{% endif %}
+                }{% if not forloop.last %},{% endif %}
+                {% empty %}
+                // No reviews fallback
+                {
+                    stars: 5,
+                    text: "Be the first to share your sound journey!",
+                    author: "Your Voice",
+                    role: "",
+                    verified: false
+                }
+                {% endfor %}
+            ];
 
-                    <div class="intro-banner-wrap">
-                        <div class="row no-gutters align-items-center flex-column flex-md-row" style="background-color: #f8f9fa;">
-                            
-                            {% if left_banner_product %} -->
-                            <!-- Left Offer -->
-                            <!-- <div class="col-12 col-md-3 mb-2 mb-md-0 p-0">
-                                <a href="{{ left_banner_product.get_url }}">
-                                    <img src="{{ left_banner.image.url}}" class="w-100 img-fluid" alt="Left Offer"
-                                         style="object-fit: cover; max-height: 300px;">
-                                </a>
+            let currentIndex = 0;
+            let autoInterval = null;
+            const slideTime = 2000;
+
+            const starsDiv = document.getElementById('reviewStars');
+            const textDiv = document.getElementById('reviewText');
+            const authorDiv = document.getElementById('reviewAuthor');
+            const badgeDiv = document.getElementById('reviewBadge');
+            const cardContent = document.getElementById('reviewCardContent');
+            const dotsContainer = document.getElementById('sliderDots');
+
+            function getStarString(rating) {
+                return '★'.repeat(rating) + '☆'.repeat(5 - rating);
+            }
+
+            let animationTimer = null;
+
+            function updateReviewContent() {
+                if (!dbReviews.length) return;
+                const rev = dbReviews[currentIndex];
+                if (!rev) return;
+                if (cardContent) {
+                    cardContent.classList.add('slide-out');
+                    if (animationTimer) clearTimeout(animationTimer);
+                    animationTimer = setTimeout(() => {
+                        starsDiv.innerHTML = getStarString(rev.stars);
+                        textDiv.innerHTML = `“${rev.text}”`;
+                        let authorText = `— ${rev.author}`;
+                        if (rev.role) authorText += ` (${rev.role})`;
+                        authorDiv.innerHTML = authorText;
+                        badgeDiv.innerHTML = rev.verified ? `<i>✔</i> VERIFIED PRACTITIONER` : `<i>✧</i> COMMUNITY MEMBER`;
+                        cardContent.classList.remove('slide-out');
+                        cardContent.classList.add('slide-in');
+                        setTimeout(() => {
+                            cardContent.classList.remove('slide-in');
+                        }, 200);
+                    }, 220);
+                } else {
+                    starsDiv.innerHTML = getStarString(rev.stars);
+                    textDiv.innerHTML = `“${rev.text}”`;
+                    let authorText = `— ${rev.author}`;
+                    if (rev.role) authorText += ` (${rev.role})`;
+                    authorDiv.innerHTML = authorText;
+                    badgeDiv.innerHTML = rev.verified ? `<i>✔</i> VERIFIED PRACTITIONER` : `<i>✧</i> COMMUNITY MEMBER`;
+                }
+                updateDots();
+            }
+
+            function updateDots() {
+                const dots = document.querySelectorAll('.dot');
+                dots.forEach((dot, idx) => {
+                    if (idx === currentIndex) dot.classList.add('active');
+                    else dot.classList.remove('active');
+                });
+            }
+
+            function goToReview(index) {
+                if (!dbReviews.length) return;
+                if (index < 0) index = dbReviews.length - 1;
+                if (index >= dbReviews.length) index = 0;
+                currentIndex = index;
+                updateReviewContent();
+                resetAutoSlide();
+            }
+
+            function nextReview() {
+                goToReview(currentIndex + 1);
+            }
+
+            function startAutoSlide() {
+                if (autoInterval) clearInterval(autoInterval);
+                autoInterval = setInterval(nextReview, slideTime);
+            }
+
+            function resetAutoSlide() {
+                if (autoInterval) clearInterval(autoInterval);
+                startAutoSlide();
+            }
+
+            function buildDots() {
+                if (!dotsContainer) return;
+                dotsContainer.innerHTML = '';
+                if (!dbReviews.length) return;
+                dbReviews.forEach((_, idx) => {
+                    const dot = document.createElement('span');
+                    dot.classList.add('dot');
+                    if (idx === currentIndex) dot.classList.add('active');
+                    dot.addEventListener('click', () => goToReview(idx));
+                    dotsContainer.appendChild(dot);
+                });
+            }
+
+            buildDots();
+            updateReviewContent();
+            startAutoSlide();
+
+            const card = document.querySelector('.review-overlay-card');
+            if (card) {
+                card.addEventListener('mouseenter', () => {
+                    if (autoInterval) clearInterval(autoInterval);
+                });
+                card.addEventListener('mouseleave', startAutoSlide);
+            }
+        })();
+    </script>
+
+<!-- ========== IMAGE GALLERY SECTION ========== -->
+<div class="container my-5">
+    <div class="text-center mb-4">
+        <h2 class="font-weight-bold" style="color: #7b2cbf;">Photo Gallery</h2>
+        <p class="text-muted">Explore moments from our sound healing community and events</p>
+    </div>
+    <div class="row g-4">
+        <!-- Gallery item 1 -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card border-0 shadow-sm rounded overflow-hidden">
+                <!-- Fixed aspect ratio wrapper for 3:4 portrait images -->
+                <div style="position: relative; width: 100%; padding-top: 133.33%; overflow: hidden;">
+                    <img src="{% static 'images/pshh1.jpg' %}" alt="Gallery image 1" 
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="card-body text-center">
+                    <p class="card-text small text-muted">Sound Bath Session</p>
+                </div>
+            </div>
+        </div>
+        <!-- Gallery item 2 -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card border-0 shadow-sm rounded overflow-hidden">
+                <div style="position: relative; width: 100%; padding-top: 133.33%; overflow: hidden;">
+                    <img src="{% static 'images/pg8.jpeg' %}" alt="Gallery image 2" 
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="card-body text-center">
+                    <p class="card-text small text-muted">Tibetan Bowls Workshop</p>
+                </div>
+            </div>
+        </div>
+        <!-- Gallery item 3 -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card border-0 shadow-sm rounded overflow-hidden">
+                <div style="position: relative; width: 100%; padding-top: 133.33%; overflow: hidden;">
+                    <img src="{% static 'images/pg3.jpeg' %}" alt="Gallery image 3" 
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="card-body text-center">
+                    <p class="card-text small text-muted">Healing Gong Meditation</p>
+                </div>
+            </div>
+        </div>
+        <!-- Gallery item 4 -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card border-0 shadow-sm rounded overflow-hidden">
+                <div style="position: relative; width: 100%; padding-top: 133.33%; overflow: hidden;">
+                    <img src="{% static 'images/pg5.jpeg' %}" alt="Gallery image 4" 
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="card-body text-center">
+                    <p class="card-text small text-muted">Instrument Showcase</p>
+                </div>
+            </div>
+        </div>
+        <!-- Gallery item 5 -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card border-0 shadow-sm rounded overflow-hidden">
+                <div style="position: relative; width: 100%; padding-top: 133.33%; overflow: hidden;">
+                    <img src="{% static 'images/pg4.jpeg' %}" alt="Gallery image 5" 
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="card-body text-center">
+                    <p class="card-text small text-muted">Outdoor Sound Journey</p>
+                </div>
+            </div>
+        </div>
+        <!-- Gallery item 6 -->
+        <div class="col-md-4 col-sm-6">
+            <div class="card border-0 shadow-sm rounded overflow-hidden">
+                <div style="position: relative; width: 100%; padding-top: 133.33%; overflow: hidden;">
+                    <img src="{% static 'images/pg7.jpeg' %}" alt="Gallery image 6" 
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="card-body text-center">
+                    <p class="card-text small text-muted">One-on-One Therapy</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- About Us Section with Blurred Background Image -->
+<section class="about-us-section py-5" style="position: relative; overflow: hidden; color: white;">
+    <!-- Blurred background container -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;">
+        <div style="background-image: url('{% static 'images/aboutUsCoverPage.jpg' %}'); background-size: cover; background-position: center; width: 100%; height: 100%; filter: blur(2px); transform: scale(1.05);"></div>
+        <!-- Semi‑transparent overlay for better text readability -->
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
+    </div>
+
+    <!-- Content (text) – sits above the blurred background -->
+    <div class="container" style="position: relative; z-index: 2;">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-8">
+                <h2 class="font-weight-bold">About Us</h2>
+                <p class="lead">Your trusted destination for healing sound, energy balance, and spiritual harmony.</p>
+            </div>
+        </div>
+
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-5 mb-4 text-center">
+                <img src="{% static 'images/logo1.jpeg' %}" alt="Healing Sound" class="img-fluid rounded shadow" style="max-height: 300px; background: rgba(255,255,255,0.1); padding: 5px;">
+            </div>
+            <div class="col-md-6">
+                <h4 class="mb-3">Our Mission</h4>
+                <p>
+                    At Planetery Sound Healing Hub, we aim to bring the transformative power of sound to your life.
+                    Whether you're shopping for Tibetan bowls, tuning forks, or wellness products, our goal is to support your journey to inner peace and well-being.
+                </p>
+                <h4 class="mt-4 mb-3">Why Choose Us?</h4>
+                <ul class="list-unstyled">
+                    <li>✔️ Trusted by thousands globally</li>
+                    <li>✔️ Authentic sound healing tools</li>
+                    <li>✔️ Fast and secure worldwide delivery</li>
+                    <li>✔️ 24/7 customer support</li>
+                </ul>
+            </div>
+            <div class="row mt-5 justify-content-center">
+            <div class="col-auto">
+                <a href="{% url 'store' %}" class="btn btn-light btn-lg btn-hover-custom">Start Shopping</a>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+
+
+
+    <!-- ========== REVIEW SECTION (Submit & Display) ========== -->
+    <div class="review-section-container" style="max-width: 800px; margin: 3rem auto; padding: 2rem; background: #fefaf5; border-radius: 28px; box-shadow: 0 8px 24px rgba(0,0,0,0.05); border: 1px solid #f0e6d8;">
+        <h2 style="text-align: center; color: #5c3b1f; font-size: 1.8rem; font-weight: 600; margin-bottom: 0.5rem;">SHARE YOUR SOUND JOURNEY</h2>
+        <p style="text-align: center; color: #7a5a3a; margin-bottom: 1.5rem;">
+            Help others find their resonance. 
+            {% if user.is_authenticated %}
+                (Logged in as: <strong>{{ user.get_full_name|default:user.email }}</strong>)
+            {% endif %}
+        </p>
+
+        <!-- Rating Summary -->
+        <div style="text-align: center; margin-bottom: 2rem;">
+            {% if total_reviews > 0 %}
+                <div style="font-size: 2rem; font-weight: bold; color: #ffb347;">{{ avg_rating|floatformat:1 }} ★</div>
+                <div style="color: #7a5a3a;">Based on {{ total_reviews }} review{{ total_reviews|pluralize }}</div>
+            {% else %}
+                <div style="color: #7a5a3a;">Be the first to review</div>
+            {% endif %}
+        </div>
+
+        <!-- Submission Form -->
+        <div style="background: white; border-radius: 24px; padding: 2rem; margin-bottom: 2.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.03);">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="submit_review" value="1">
+
+                <!-- Rating field -->
+                <div style="margin-bottom: 1.8rem;">
+                    <label style="display: block; font-weight: 600; color: #3a2a1f; margin-bottom: 0.5rem;">Tap to rate (1 to 5)</label>
+                   	<div class="rate">
+							<input type="radio" name="rating" id="rating10" value="5" required /><label for="rating10" title="5"></label>
+							<input type="radio" name="rating" id="rating9" value="4.5" required /><label for="rating9" title="4.5" class="half"></label>
+							<input type="radio" name="rating" id="rating8" value="4" required /><label for="rating8" title="4"></label>
+							<input type="radio" name="rating" id="rating7" value="3.5" required /><label for="rating7" title="3.5" class="half"></label>
+							<input type="radio" name="rating" id="rating6" value="3" required /><label for="rating6" title="3"></label>
+							<input type="radio" name="rating" id="rating5" value="2.5" required /><label for="rating5" title="2.5" class="half"></label>
+							<input type="radio" name="rating" id="rating4" value="2" required /><label for="rating4" title="2"></label>
+							<input type="radio" name="rating" id="rating3" value="1.5" required /><label for="rating3" title="1.5" class="half"></label>
+							<input type="radio" name="rating" id="rating2" value="1" required /><label for="rating2" title="1"></label>
+							<input type="radio" name="rating" id="rating1" value="0.5" required /><label for="rating1" title="0.5" class="half"></label>
+						</div>
+                    {% if review_form.rating.errors %}<div class="errorlist">{{ review_form.rating.errors }}</div>{% endif %}
+                </div>
+
+                <!-- Review Headline -->
+                <div style="margin-bottom: 1.8rem;">
+                    <label style="display: block; font-weight: 600; color: #3a2a1f; margin-bottom: 0.5rem;">Review Headline</label>
+                    {{ review_form.title }}
+                    {% if review_form.title.errors %}<div class="errorlist">{{ review_form.title.errors }}</div>{% endif %}
+                </div>
+
+                <!-- Detailed Review -->
+                <div style="margin-bottom: 1.8rem;">
+                    <label style="display: block; font-weight: 600; color: #3a2a1f; margin-bottom: 0.5rem;">Detailed Review</label>
+                    {{ review_form.description }}
+                    {% if review_form.description.errors %}<div class="errorlist">{{ review_form.description.errors }}</div>{% endif %}
+                </div>
+
+                <!-- ADD CREDENTIALS section (no checkbox) -->
+                <div style="margin: 2rem 0 1.5rem 0; border-top: 1px dashed #e0d6c8; padding-top: 1.5rem;">
+                    <h4 style="color: #b87c4a; font-size: 1rem; font-weight: 600; letter-spacing: 0.5px;">ADD CREDENTIALS (for Verified Practitioner Badge)</h4>
+                    
+                    <div style="margin-bottom: 1.2rem;">
+                        <label style="display: block; font-weight: 500; color: #3a2a1f; margin-bottom: 0.4rem;">Professional Title / Practice Area <span style="color: #999;">(e.g., Sound Therapist)</span></label>
+                        {{ review_form.professional_title }}
+                        {% if review_form.professional_title.errors %}<div class="errorlist">{{ review_form.professional_title.errors }}</div>{% endif %}
+                    </div>
+
+                    <div style="margin-bottom: 1.2rem;">
+                        <label style="display: block; font-weight: 500; color: #3a2a1f; margin-bottom: 0.4rem;">Institution / Community</label>
+                        {{ review_form.institution }}
+                        {% if review_form.institution.errors %}<div class="errorlist">{{ review_form.institution.errors }}</div>{% endif %}
+                    </div>
+                </div>
+
+                <!-- Profile Picture -->
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; font-weight: 500; color: #3a2a1f; margin-bottom: 0.4rem;">Add Profile Pic</label>
+                    {{ review_form.profile_pic }}
+                    {% if review_form.profile_pic.help_text %}<small style="color: #888;">{{ review_form.profile_pic.help_text }}</small>{% endif %}
+                    {% if review_form.profile_pic.errors %}<div class="errorlist">{{ review_form.profile_pic.errors }}</div>{% endif %}
+                </div>
+
+                <button type="submit" style="background-color: #7b2cbf; color: white; border: none; border-radius: 40px; padding: 12px 32px; font-weight: 600; font-size: 1rem; cursor: pointer; width: 100%; transition: 0.2s;">SUBMIT MY REFLECTION</button>
+                <p style="font-size: 0.75rem; color: #888; text-align: center; margin-top: 1rem;">Verification links your account to a verified purchase for authenticity.</p>
+            </form>
+        </div>
+
+        <!-- Existing Reviews List -->
+        <!-- <h3 style="color: #5c3b1f; margin-bottom: 1rem;">Community Reviews</h3>
+        {% if reviews %}
+            {% for review in reviews %}
+                <div style="border: 1px solid #e6dacf; border-radius: 20px; padding: 1.5rem; margin-bottom: 1.2rem; background: white;">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        {% if review.profile_pic %}
+                            <img src="{{ review.profile_pic.url }}" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover;">
+                        {% else %}
+                            <div style="width: 56px; height: 56px; border-radius: 50%; background: #f0e6d8; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #b87c4a;">
+                                {{ review.user.email|first|upper }}
                             </div>
-                            {% endif %} -->
-
-                            <!-- Middle Carousel -->
-                            <!-- <div class="col-12 col-md-6 mb-2 mb-md-0 p-0">
-                                <div id="middleImageCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
-                                    <div class="carousel-inner">
-                                        {% for item in items %}
-                                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                                            <a href="{% url 'event_detail' item.slug %}"><img src="{{ item.image.url}}" class="w-100 img-fluid rounded"
-                                                 alt="{{ item.title }}" style="object-fit: cover; max-height: 300px;"></a>
-                                        </div>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            </div> -->
-
-                            <!-- {% if right_banner_product %} -->
-                            <!-- Right Offer -->
-                            <!-- <div class="col-12 col-md-3 p-0">
-                                <a href="{{ right_banner_product.get_url }}">
-                                    <img src="{{ right_banner.image.url}}" class="w-100 img-fluid" alt="Right Offer"
-                                         style="object-fit: cover; max-height: 300px;">
-                                </a>
-                            </div>
+                        {% endif %}
+                        <div>
+                            <p style="font-weight: 600; margin: 0;">{{ review.user.full_name|default:review.user.email }}</p>
+                            <div style="color: #ffb347; letter-spacing: 2px;">{{ review.star_display|safe }}</div>
+                            {% if review.professional_title or review.institution %}
+                                <p style="color: #7a5a3a; font-size: 0.8rem; margin: 0.25rem 0 0;">{{ review.professional_title }}{% if review.professional_title and review.institution %} @ {% endif %}{{ review.institution }}</p>
                             {% endif %}
                         </div>
                     </div>
+                    <h4 style="margin: 0 0 0.5rem 0;">{{ review.title }}</h4>
+                    <p style="color: #4a3a2a; line-height: 1.5;">{{ review.description|linebreaksbr }}</p>
+                    <small style="color: #aaa;">Posted on {{ review.created_at|date:"F j, Y" }}</small>
                 </div>
-            </section>
-            <br><br>
-
-            <header class="section-heading">
-                <h3 class="section-title text-center fav-color">Most Viewed</h3>
-            </header>
-
-            <div class="horizontal-scroll-wrapper d-flex overflow-auto py-2" style="gap: 1rem; white-space: nowrap;">
-                {% for product in most_viewed %}
-                <div class="card card-product-grid flex-shrink-0" style="min-width: 250px; display: inline-block;">
-                    <a href="{{ product.get_url }}" class="img-wrap">
-                        <img src="{{ product.image.url}}" alt="{{ product.product_name }}">
-                    </a>
-                    <div style="background-color: #f4f4f4;">
-                    <figcaption class="info-wrap">
-                        <a href="{{ product.get_url }}" class="title font-weight-bold text-dark">{{ product.product_name }}</a>
-                        {% if product.min_price and product.max_price %}
-                        <div class="price mt-1">
-                            {{ currency_symbol }}{% convert_price product.min_price }}
-                            -
-                            {{ currency_symbol }}{% convert_price product.max_price }}
-                        </div>
-                        {% else %}
-                        <div class="price mt-1">{{ currency_symbol }}{% convert_price product.price %}</div>
-                        {% endif %}
-                    </figcaption>
-                    </div>
-                </div> -->
-                <!-- {% endfor %} -->
-            <!-- </div> -->
-        </div>
-    </section>
-    <!-- ========================= SECTION END// ========================= -->
+            {% endfor %}
+        {% else %}
+            <p style="text-align: center; color: #7a5a3a; padding: 2rem;">No reviews yet. Be the first to share your journey!</p>
+        {% endif %} -->
+    </div>
 
 
+
+    <script>
+        // Tab switching logic
+        (function() {
+            const tabs = document.querySelectorAll('.tab-header');
+            const sections = {
+                tab1: document.getElementById('tab1'),
+                tab2: document.getElementById('tab2'),
+                tab3: document.getElementById('tab3')
+            };
+            function activateTab(tabId) {
+                tabs.forEach(tab => tab.classList.remove('active'));
+                Object.values(sections).forEach(section => {
+                    if (section) section.classList.remove('active-section');
+                });
+                const activeTab = document.querySelector(`.tab-header[data-tab="${tabId}"]`);
+                if (activeTab) activeTab.classList.add('active');
+                if (sections[tabId]) sections[tabId].classList.add('active-section');
+            }
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    const tabId = this.getAttribute('data-tab');
+                    if (tabId && sections[tabId]) {
+                        activateTab(tabId);
+                    }
+                });
+            });
+        })();
+    </script>
 </div>
-<!-- ========================= SECTION MAIN END// ========================= -->
-
 
 {% endblock %}

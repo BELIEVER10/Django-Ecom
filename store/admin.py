@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, CarouselItem, Variation, ProductGallery
+from .models import Product, CarouselItem, Variation, ProductGallery, WebsiteReview
 from .resources import ProductResource, VariationResource, CarouselItemResource
 from import_export.admin import ImportExportModelAdmin
 import admin_thumbnails
@@ -24,6 +24,13 @@ class VariationAdmin(ImportExportModelAdmin):
 
 class CarouselAdmin(ImportExportModelAdmin):
     resource_class = CarouselItemResource
+
+@admin.register(WebsiteReview)
+class WebsiteReviewAdmin(admin.ModelAdmin):
+    list_display = ['title', 'user', 'rating', 'professional_title', 'institution', 'created_at']
+    list_filter = ['rating', 'created_at']
+    search_fields = ['title', 'description', 'user__username', 'professional_title']
+    readonly_fields = ['created_at', 'updated_at']
 
 
 

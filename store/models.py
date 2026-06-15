@@ -86,3 +86,40 @@ class ProductGallery(models.Model):
 
     def __str__(self):
         return self.product.product_name
+
+
+from django.db import models
+from accounts.models import Account
+from django.core.validators import MinValueValidator, MaxValueValidator
+
+class WebsiteReview(models.Model):
+    user = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='website_reviews')
+    title = models.CharField(max_length=200, verbose_name="Review Headline")
+    description = models.TextField(verbose_name="Detailed Review")
+    rating = models.FloatField()
+    profile_pic = models.ImageField(
+        upload_to='review_profiles/%Y/%m/',
+        blank=True,
+        null=True,
+        verbose_name="Profile Picture"
+    )
+    professional_title = models.CharField(
+        max_length=100,
+        blank=True,
+        verbose_name="Professional Title / Practice Area"
+    )
+    institution = models.CharField(
+        max_length=200,
+        blank=True,
+        verbose_name="Institution / Community"
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = "Website Review"
+        verbose_name_plural = "Website Reviews"
+
+    def __str__(self):
+        return f"{self.title} by {self.user.full_name() or self.user.username}"
