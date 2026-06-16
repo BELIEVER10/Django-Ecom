@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, CarouselItem, Variation, ProductGallery, WebsiteReview
+from .models import Product, CarouselItem, Variation, ProductGallery, WebsiteReview, Gallery, GalleryImage
 from .resources import ProductResource, VariationResource, CarouselItemResource
 from import_export.admin import ImportExportModelAdmin
 import admin_thumbnails
@@ -31,6 +31,18 @@ class WebsiteReviewAdmin(admin.ModelAdmin):
     list_filter = ['rating', 'created_at']
     search_fields = ['title', 'description', 'user__username', 'professional_title']
     readonly_fields = ['created_at', 'updated_at']
+
+
+class GalleryImageInline(admin.TabularInline):
+    model = GalleryImage
+    extra = 3
+    fields = ('image', 'title', 'description')   # show description in admin
+
+@admin.register(Gallery)
+class GalleryAdmin(admin.ModelAdmin):
+    list_display = ('title', 'created_at')
+    prepopulated_fields = {'slug': ('title',)}
+    inlines = [GalleryImageInline]
 
 
 

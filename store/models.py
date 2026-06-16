@@ -123,3 +123,40 @@ class WebsiteReview(models.Model):
 
     def __str__(self):
         return f"{self.title} by {self.user.full_name() or self.user.username}"
+
+
+from django.db import models
+from django.utils.text import slugify
+from django.urls import reverse
+
+class Gallery(models.Model):
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True, blank=True)
+    cover_image = models.ImageField(upload_to='gallery/covers/')
+    description = models.TextField(blank=True, help_text="Short description of the gallery")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'gallery'
+        verbose_name_plural = 'gallery'
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('gallery_detail', args=[self.slug])
+
+    def __str__(self):
+        return self.title
+
+class GalleryImage(models.Model):
+    gallery = models.ForeignKey(Gallery, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='gallery/images/')
+    title = models.CharField(max_length=200, blank=True, help_text="Optional title for this image")
+    description = models.TextField(blank=True, help_text="Detailed description of this image")
+    # Optional: order = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.gallery.title} - {self.title or self.pk}"

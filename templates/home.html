@@ -679,17 +679,45 @@
         })();
     </script>
 
-<!-- ========== IMAGE GALLERY SECTION ========== -->
+
+<!-- Gallery Section -->
 <div class="container my-5">
     <div class="text-center mb-4">
         <h2 class="font-weight-bold" style="color: #7b2cbf;">Photo Gallery</h2>
         <p class="text-muted">Explore moments from our sound healing community and events</p>
     </div>
     <div class="row g-4">
-        <!-- Gallery item 1 -->
+        {% for gallery in galleries %}
+        <div class="col-md-4 col-sm-6">
+            <a href="{{ gallery.get_absolute_url }}" class="text-decoration-none">
+                <div class="card border-0 shadow-sm rounded overflow-hidden">
+                    <div style="position: relative; width: 100%; padding-top: 133.33%; overflow: hidden;">
+                        <img src="{{ gallery.cover_image.url }}" alt="{{ gallery.title }}"
+                             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="card-body text-center">
+                        <p class="card-text small text-muted">{{ gallery.title }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% empty %}
+        <p class="text-center">No galleries available yet.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- ========== IMAGE GALLERY SECTION ========== -->
+<!-- <div class="container my-5">
+    <div class="text-center mb-4">
+        <h2 class="font-weight-bold" style="color: #7b2cbf;">Photo Gallery</h2>
+        <p class="text-muted">Explore moments from our sound healing community and events</p>
+    </div>
+    <div class="row g-4">
+        
         <div class="col-md-4 col-sm-6">
             <div class="card border-0 shadow-sm rounded overflow-hidden">
-                <!-- Fixed aspect ratio wrapper for 3:4 portrait images -->
+              
                 <div style="position: relative; width: 100%; padding-top: 133.33%; overflow: hidden;">
                     <img src="{% static 'images/pshh1.jpg' %}" alt="Gallery image 1" 
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
@@ -699,7 +727,7 @@
                 </div>
             </div>
         </div>
-        <!-- Gallery item 2 -->
+      
         <div class="col-md-4 col-sm-6">
             <div class="card border-0 shadow-sm rounded overflow-hidden">
                 <div style="position: relative; width: 100%; padding-top: 133.33%; overflow: hidden;">
@@ -711,7 +739,7 @@
                 </div>
             </div>
         </div>
-        <!-- Gallery item 3 -->
+       
         <div class="col-md-4 col-sm-6">
             <div class="card border-0 shadow-sm rounded overflow-hidden">
                 <div style="position: relative; width: 100%; padding-top: 133.33%; overflow: hidden;">
@@ -723,7 +751,7 @@
                 </div>
             </div>
         </div>
-        <!-- Gallery item 4 -->
+  
         <div class="col-md-4 col-sm-6">
             <div class="card border-0 shadow-sm rounded overflow-hidden">
                 <div style="position: relative; width: 100%; padding-top: 133.33%; overflow: hidden;">
@@ -735,7 +763,7 @@
                 </div>
             </div>
         </div>
-        <!-- Gallery item 5 -->
+    
         <div class="col-md-4 col-sm-6">
             <div class="card border-0 shadow-sm rounded overflow-hidden">
                 <div style="position: relative; width: 100%; padding-top: 133.33%; overflow: hidden;">
@@ -747,7 +775,7 @@
                 </div>
             </div>
         </div>
-        <!-- Gallery item 6 -->
+     
         <div class="col-md-4 col-sm-6">
             <div class="card border-0 shadow-sm rounded overflow-hidden">
                 <div style="position: relative; width: 100%; padding-top: 133.33%; overflow: hidden;">
@@ -760,7 +788,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 

@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Avg, Min, Max
-from store.models import Product, CarouselItem, WebsiteReview
+from store.models import Product, CarouselItem, WebsiteReview, Gallery
 from store.forms import WebsiteReviewForm
 from category.models import LeftBanner, RightBanner, ContactMessage
 from category.forms import ContactForm
@@ -31,6 +31,8 @@ def home(request):
     except Product.DoesNotExist:
         right_banner_product = None
     items = CarouselItem.objects.all()
+
+    galleries = Gallery.objects.all()
 
     # ---- review form handling (new) ----
     if request.method == 'POST' and 'submit_review' in request.POST:
@@ -67,10 +69,14 @@ def home(request):
         'reviews': reviews,           # <-- existing reviews
         'avg_rating': avg_rating,
         'total_reviews': reviews.count(),
+        'galleries': galleries,
     }
     return render(request, 'home.html', context)
 
 
+def gallery_detail(request, slug):
+    gallery = get_object_or_404(Gallery, slug=slug)
+    return render(request, 'gallery_detail.html', {'gallery': gallery})
 
 def event_detail(request, slug):
     event = get_object_or_404(CarouselItem, slug=slug)

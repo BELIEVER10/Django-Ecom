@@ -34,6 +34,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('orders/', include('orders.urls')),
     path('newsletter/', include('newsletter.urls')),
+    path('gallery/<slug:slug>/', views.gallery_detail, name='gallery_detail'),
     
     
     
