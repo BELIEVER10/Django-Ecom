@@ -6,7 +6,7 @@
     <p class="text-center text-muted">{{ gallery.description }}</p>
   <div class="row g-4 mt-4">
     {% for image in gallery.images.all %}
-    <div class="col-md-4 col-sm-6">
+    <div class="col-md-4 col-sm-6 mb-4">
         <div class="card border-0 shadow-sm rounded overflow-hidden h-100">
             <div style="position: relative; width: 100%; padding-top: 133.33%; overflow: hidden;">
                 <img src="{{ image.image.url }}" alt="{{ image.title|default:image.description|truncatechars:30 }}"
