@@ -58,17 +58,26 @@
             <div class="row no-gutters">
                 <aside class="col-md-6" style="cursor: pointer;">
                     <article class="gallery-wrap">
+                        {% if not selected_size %}
                         <div class="img-big-wrap mainImage zoom-container">
                             <img src="{{ product.image.url }}" alt="Main Image" class="zoom-image">
                         </div>
+                        {% else %}
+                        <div class="img-big-wrap mainImage zoom-container">
+                            <img src="{{ product_gallery.first.image.url }}" alt="Main Image" class="zoom-image">
+                        </div>
+                        {% endif %}
                     </article>
 
                     <ul class="thumb mt-3 d-flex flex-wrap">
+                       {% if not selected_size %}
                         <li class="mr-2">
                             <a href="{{ product.image.url }}" target="mainImage">
                                 <img src="{{ product.image.url }}" alt="product image" style="height: 60px;">
                             </a>
                         </li>
+                        {% endif %}
+                  
                         {% for image in product_gallery %}
                         <li class="mr-2">
                             <a href="{{ image.image.url }}" target="mainImage">

@@ -77,6 +77,14 @@ class Variation(models.Model):
 
 class ProductGallery(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, default=None)
+    variation = models.ForeignKey(
+        Variation,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name='gallery_images',
+        help_text="Leave blank for product‑level images"
+    )
     image = models.ImageField(upload_to='store/products', max_length=255)
 
     class Meta:
@@ -85,12 +93,14 @@ class ProductGallery(models.Model):
 
 
     def __str__(self):
-        return self.product.product_name
+        if self.variation:
+            return f"{self.product.product_name} - {self.variation.variation_value}"
+        return f"{self.product.product_name} - General"
 
 
 from django.db import models
 from accounts.models import Account
-from django.core.validators import MinValueValidator, MaxValueValidator
+
 
 class WebsiteReview(models.Model):
     user = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='website_reviews')
