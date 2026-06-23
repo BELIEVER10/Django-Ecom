@@ -1,344 +1,20 @@
 [
 {
   "model": "accounts.account",
-  "pk": 1,
+  "pk": 18,
   "fields": {
-    "password": "pbkdf2_sha256$600000$PjxWVU5MdfddkSG8W5MD4r$tpZRppkuzlaQLMmC1493w96V+fUTTZJaRoshX/E1Jtk=",
-    "first_name": "sujan",
-    "last_name": "dotel",
-    "user_name": "sujan",
-    "email": "testing@gmail.com",
-    "phone_number": "9828978984",
-    "date_joined": "2025-05-08T07:35:57.901Z",
-    "last_login": "2025-06-23T17:42:58.633Z",
-    "is_admin": true,
-    "is_staff": true,
-    "is_active": true,
-    "is_superadmin": true
-  }
-},
-{
-  "model": "accounts.account",
-  "pk": 2,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$bAmAi41mSVs16tVvJYNmyd$kLIj8Y1ijzoJ6/qofzDfJDE9/Oraascc4KUaeM4hQfU=",
-    "first_name": "Sujan",
-    "last_name": "Dotel",
-    "user_name": "pas078bct043",
-    "email": "pas078bct043@wrc.edu.np",
-    "phone_number": "9828978984",
-    "date_joined": "2025-05-08T07:38:25.370Z",
-    "last_login": "2025-06-22T14:51:54.755Z",
-    "is_admin": false,
-    "is_staff": false,
-    "is_active": true,
-    "is_superadmin": false
-  }
-},
-{
-  "model": "accounts.account",
-  "pk": 3,
-  "fields": {
-    "password": "pbkdf2_sha256$1000000$ZJdzE7PSc8q146UvYHJB2M$j9K2oB/BluGk0skDoIdFtkSbL4QP5s8OURYiQaw5ILw=",
+    "password": "pbkdf2_sha256$1000000$GCgw45BJZhjmOGlJMDpsVE$X8VmPEqB2Qn4FaQL791bncRtOOFVVePc0d97D6Pe+00=",
     "first_name": "sandip",
     "last_name": "dhakal",
     "user_name": "sandip",
-    "email": "sandip@gmail.com",
+    "email": "sandipdhakal101@gmail.com",
     "phone_number": "",
-    "date_joined": "2025-05-09T05:03:45.903Z",
-    "last_login": "2025-05-09T16:58:45.261Z",
+    "date_joined": "2026-06-23T06:08:53.317Z",
+    "last_login": "2026-06-23T06:12:13.794Z",
     "is_admin": true,
     "is_staff": true,
     "is_active": true,
     "is_superadmin": true
-  }
-},
-{
-  "model": "accounts.account",
-  "pk": 6,
-  "fields": {
-    "password": "pbkdf2_sha256$1000000$flzZFkXfBMdJ8b1HrYXjOf$NCoUDwgc5FKKhTpYrGDZKXyr+r/1ztr+g9R/sEx3byk=",
-    "first_name": "Sujan",
-    "last_name": "Dotel",
-    "user_name": "movingwithtrend96",
-    "email": "movingwithtrend96@gmail.com",
-    "phone_number": "9828978984",
-    "date_joined": "2025-05-09T11:01:49.858Z",
-    "last_login": "2025-05-09T11:01:49.859Z",
-    "is_admin": false,
-    "is_staff": false,
-    "is_active": false,
-    "is_superadmin": false
-  }
-},
-{
-  "model": "accounts.account",
-  "pk": 7,
-  "fields": {
-    "password": "pbkdf2_sha256$1000000$TC0cHbzMKdzalkyrmBsKj6$Ic17/GtcU22JeyRpOtM1FWBYNhEIh4MeXxB9Yx4Up8w=",
-    "first_name": "Sujan",
-    "last_name": "Dotel",
-    "user_name": "sujandotel200",
-    "email": "sujandotel200@gmail.com",
-    "phone_number": "9828978984",
-    "date_joined": "2025-05-09T11:02:40.291Z",
-    "last_login": "2025-05-09T11:03:53.310Z",
-    "is_admin": false,
-    "is_staff": false,
-    "is_active": true,
-    "is_superadmin": false
-  }
-},
-{
-  "model": "accounts.account",
-  "pk": 8,
-  "fields": {
-    "password": "pbkdf2_sha256$1000000$rN1iVXntzpRB543mlJjXeA$fDQW2GMfnW+JsRr2rK8JqpJVjRvg5nEni5bDbIf6dxc=",
-    "first_name": "Sandip",
-    "last_name": "Dhakal",
-    "user_name": "dhakalsandip3",
-    "email": "dhakalsandip3@gmail.com",
-    "phone_number": "9860122645",
-    "date_joined": "2025-05-09T16:57:34.283Z",
-    "last_login": "2025-05-09T16:57:34.283Z",
-    "is_admin": false,
-    "is_staff": false,
-    "is_active": false,
-    "is_superadmin": false
-  }
-},
-{
-  "model": "accounts.account",
-  "pk": 11,
-  "fields": {
-    "password": "pbkdf2_sha256$1000000$HBU5NfBfYYAbJ0Uwpm9HcE$naKrAEhicyPU6L2mhTqwWnAnUyDPKnfBHxPQttOm8uc=",
-    "first_name": "Sujan",
-    "last_name": "Dotel",
-    "user_name": "sujandotel181",
-    "email": "sujandotel181@gmail.com",
-    "phone_number": "9828978984",
-    "date_joined": "2025-05-10T14:08:18.532Z",
-    "last_login": "2025-05-13T04:18:14.602Z",
-    "is_admin": false,
-    "is_staff": false,
-    "is_active": true,
-    "is_superadmin": false
-  }
-},
-{
-  "model": "accounts.account",
-  "pk": 12,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$zTj8yKttcrp54DLazbHhSE$vduSVlpusJd5ISXuMzjICJ5addXv4LueKPKEJHL2ShI=",
-    "first_name": "asdf",
-    "last_name": "asdf",
-    "user_name": "asdfasdfdas",
-    "email": "asdfasdfdas@gmail.com",
-    "phone_number": "asdf",
-    "date_joined": "2026-03-24T03:35:36.733Z",
-    "last_login": "2026-03-24T03:35:36.733Z",
-    "is_admin": false,
-    "is_staff": false,
-    "is_active": false,
-    "is_superadmin": false
-  }
-},
-{
-  "model": "accounts.account",
-  "pk": 13,
-  "fields": {
-    "password": "pbkdf2_sha256$1000000$R058dTaxrnz1h5EK34WP6o$UTpxq+Wf41uW1NJlR/bbdmYwt5HQ9u/Sr69b4bYRgGs=",
-    "first_name": "admin",
-    "last_name": "admin",
-    "user_name": "admin",
-    "email": "admin@gmail.com",
-    "phone_number": "",
-    "date_joined": "2026-03-24T03:49:58.132Z",
-    "last_login": "2026-06-23T04:38:43.263Z",
-    "is_admin": true,
-    "is_staff": true,
-    "is_active": true,
-    "is_superadmin": true
-  }
-},
-{
-  "model": "accounts.account",
-  "pk": 14,
-  "fields": {
-    "password": "pbkdf2_sha256$1000000$OHPEPtw1MMqFCA365bHDv0$IDa2JlVvqVOeIOw5W1YQIgaEddEBFxIIEWHTiCM8dOc=",
-    "first_name": "sandip",
-    "last_name": "dhakal",
-    "user_name": "sandipdhakal10",
-    "email": "sandipdhakal10@gmail.com",
-    "phone_number": "",
-    "date_joined": "2026-05-30T09:19:14.993Z",
-    "last_login": "2026-05-30T09:19:14.993Z",
-    "is_admin": true,
-    "is_staff": true,
-    "is_active": true,
-    "is_superadmin": true
-  }
-},
-{
-  "model": "accounts.account",
-  "pk": 15,
-  "fields": {
-    "password": "pbkdf2_sha256$1000000$KNeLbuuRZEtROR6maxgMXW$hJyeXh8YGI9LhLqhqwDqa7DMEDQYWY77NdNC8Loh+lk=",
-    "first_name": "samjhana",
-    "last_name": "dotel",
-    "user_name": "samjhanadotel",
-    "email": "samjhanadotel@gmail.com",
-    "phone_number": "",
-    "date_joined": "2026-05-30T09:24:47.935Z",
-    "last_login": "2026-05-30T09:24:47.935Z",
-    "is_admin": true,
-    "is_staff": true,
-    "is_active": true,
-    "is_superadmin": true
-  }
-},
-{
-  "model": "accounts.account",
-  "pk": 16,
-  "fields": {
-    "password": "pbkdf2_sha256$1000000$DGGVFytt2aPCJWgXjXcsq0$+VDO6AsZwgSSYXut1mgXkcLL08GWv0EInLyxvZjzi9Y=",
-    "first_name": "a",
-    "last_name": "a",
-    "user_name": "sujandotel777",
-    "email": "sujandotel777@gmail.com",
-    "phone_number": "adfa",
-    "date_joined": "2026-06-03T14:16:36.299Z",
-    "last_login": "2026-06-03T14:16:36.299Z",
-    "is_admin": false,
-    "is_staff": false,
-    "is_active": false,
-    "is_superadmin": false
-  }
-},
-{
-  "model": "accounts.account",
-  "pk": 17,
-  "fields": {
-    "password": "pbkdf2_sha256$1000000$bn2feJEqdJu28ctLbUKoTG$Arg2IOLDeFOU2oEOfqE+g8DfiRt7n/J4s+HxLXDdYBw=",
-    "first_name": "a",
-    "last_name": "s",
-    "user_name": "sujandotel888",
-    "email": "sujandotel888@gmail.com",
-    "phone_number": "123",
-    "date_joined": "2026-06-03T14:21:22.395Z",
-    "last_login": "2026-06-03T14:21:22.395Z",
-    "is_admin": false,
-    "is_staff": false,
-    "is_active": true,
-    "is_superadmin": false
-  }
-},
-{
-  "model": "accounts.userprofile",
-  "pk": 1,
-  "fields": {
-    "user": 2,
-    "address_line_1": "Mandandeupur",
-    "address_line_2": "Ghumaune",
-    "profile_picture": "image/upload/https://res.cloudinary.com/dktjv2rre/image/upload/v1779595370/django_migrated/sgflapw6dn6servqw55w.jpg",
-    "city": "Kavre",
-    "state": "mandandeupur",
-    "country": "Nepal"
-  }
-},
-{
-  "model": "accounts.userprofile",
-  "pk": 2,
-  "fields": {
-    "user": 3,
-    "address_line_1": "Mandandeupur",
-    "address_line_2": "Ghumaune",
-    "profile_picture": "image/upload/https://res.cloudinary.com/dktjv2rre/image/upload/v1779595370/django_migrated/ijgxgwte87jhrj4u9zfd.jpg",
-    "city": "Kavre",
-    "state": "Gandaki Province",
-    "country": "Nepal"
-  }
-},
-{
-  "model": "accounts.userprofile",
-  "pk": 5,
-  "fields": {
-    "user": 7,
-    "address_line_1": "Mandandeupur",
-    "address_line_2": "Ghumaune",
-    "profile_picture": "image/upload/https://res.cloudinary.com/dktjv2rre/image/upload/v1779595373/django_migrated/bp7de1r1vgihbxmngrhk.jpg",
-    "city": "Kavre",
-    "state": "Gandaki Province",
-    "country": "Nepal"
-  }
-},
-{
-  "model": "accounts.userprofile",
-  "pk": 6,
-  "fields": {
-    "user": 1,
-    "address_line_1": "Mandandeupur",
-    "address_line_2": "Ghumaune",
-    "profile_picture": "image/upload/https://res.cloudinary.com/dktjv2rre/image/upload/v1779595374/django_migrated/vlakuihdt9rnyhnlx8fk.jpg",
-    "city": "Kavre",
-    "state": "adf",
-    "country": "Nepal"
-  }
-},
-{
-  "model": "accounts.userprofile",
-  "pk": 9,
-  "fields": {
-    "user": 11,
-    "address_line_1": "",
-    "address_line_2": "",
-    "profile_picture": "image/upload/https://res.cloudinary.com/dktjv2rre/image/upload/v1779595375/django_migrated/uiwqzqnt9crkczvqdi1f.png",
-    "city": "",
-    "state": "",
-    "country": ""
-  }
-},
-{
-  "model": "accounts.userprofile",
-  "pk": 10,
-  "fields": {
-    "user": 13,
-    "address_line_1": "",
-    "address_line_2": "",
-    "profile_picture": "",
-    "city": "",
-    "state": "",
-    "country": ""
-  }
-},
-{
-  "model": "store.websitereview",
-  "pk": 6,
-  "fields": {
-    "user": 13,
-    "title": "About Website User Experience",
-    "description": "This Ecom WEbsite is more user friendly. The user can easily overview the full details of the product and can add to cart easily. And also the checkout system is also simple not too much difficult to understand",
-    "rating": 4.0,
-    "profile_pic": "media/review_profiles/2026/06/bohemian-man-with-his-arms-crossed_1368-3542_tmd98d",
-    "professional_title": "Sound Therapist",
-    "institution": "Sound Healing Association",
-    "created_at": "2026-06-15T08:56:10.370Z",
-    "updated_at": "2026-06-15T08:56:10.370Z"
-  }
-},
-{
-  "model": "store.websitereview",
-  "pk": 7,
-  "fields": {
-    "user": 13,
-    "title": "asdfasd",
-    "description": "sadfsadf",
-    "rating": 1.5,
-    "profile_pic": "media/review_profiles/2026/06/download_b8bkcf",
-    "professional_title": "asdfsdaf",
-    "institution": "asdfsadf",
-    "created_at": "2026-06-15T08:56:46.392Z",
-    "updated_at": "2026-06-15T08:56:46.392Z"
   }
 },
 {
@@ -624,47 +300,434 @@
   }
 },
 {
-  "model": "orders.payment",
+  "model": "category.subcategory",
+  "pk": 49,
+  "fields": {
+    "main_category": 13,
+    "name": "Planetary Frequencies",
+    "slug": "planetary-frequencies"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 50,
+  "fields": {
+    "main_category": 13,
+    "name": "Cosmic & Esoteric Frequencies",
+    "slug": "cosmic-esoteric-frequencies"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 51,
+  "fields": {
+    "main_category": 13,
+    "name": "Earth Frequencies",
+    "slug": "earth-frequencies"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 52,
+  "fields": {
+    "main_category": 13,
+    "name": "Celestial & Brainwaves Frequencies",
+    "slug": "celestial-brainwaves-frequencies"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 53,
+  "fields": {
+    "main_category": 14,
+    "name": "Harmonic & Resonance Healing Bowls",
+    "slug": "harmonic-resonance-healing-bowls"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 54,
+  "fields": {
+    "main_category": 14,
+    "name": "Rare Antique Singing Bowls",
+    "slug": "rare-antique-singing-bowls"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 55,
+  "fields": {
+    "main_category": 14,
+    "name": "Full moon Singing Bowls",
+    "slug": "full-moon-singing-bowls"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 56,
+  "fields": {
+    "main_category": 14,
+    "name": "Carving Singing Bowls",
+    "slug": "carving-singing-bowls"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 57,
+  "fields": {
+    "main_category": 14,
+    "name": "Cast Moulded Bowls",
+    "slug": "cast-moulded-bowls"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 58,
+  "fields": {
+    "main_category": 15,
+    "name": "Tam-Tam Gong",
+    "slug": "tam-tam-gong"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 59,
+  "fields": {
+    "main_category": 15,
+    "name": "Wind/Flat Gong",
+    "slug": "windflat-gong"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 60,
+  "fields": {
+    "main_category": 15,
+    "name": "Nipple/Boss Gong",
+    "slug": "nippleboss-gong"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 61,
+  "fields": {
+    "main_category": 15,
+    "name": "Mirror Gong",
+    "slug": "mirror-gong"
+  }
+},
+{
+  "model": "category.subcategory",
   "pk": 62,
   "fields": {
-    "user": 13,
-    "payment_id": "1234",
-    "payment_method": "Esewa",
-    "amount_paid": "160.22",
-    "status": "Completed",
-    "created_at": "2026-06-20T08:56:23.306Z"
+    "main_category": 15,
+    "name": "Geometric Gong",
+    "slug": "geometric-gong"
   }
 },
 {
-  "model": "orders.payment",
+  "model": "category.subcategory",
   "pk": 63,
   "fields": {
-    "user": 13,
-    "payment_id": "1234",
-    "payment_method": "Esewa",
-    "amount_paid": "165.23",
-    "status": "Completed",
-    "created_at": "2026-06-20T08:58:27.604Z"
+    "main_category": 16,
+    "name": "Bells",
+    "slug": "bells"
   }
 },
 {
-  "model": "orders.payment",
+  "model": "category.subcategory",
   "pk": 64,
   "fields": {
-    "user": 13,
-    "payment_id": "1234",
-    "payment_method": "Esewa",
-    "amount_paid": "162.19",
-    "status": "Completed",
-    "created_at": "2026-06-20T09:08:32.466Z"
+    "main_category": 16,
+    "name": "Tingshaws",
+    "slug": "tingshaws"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 65,
+  "fields": {
+    "main_category": 16,
+    "name": "Conch Shell",
+    "slug": "conch-shell"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 66,
+  "fields": {
+    "main_category": 16,
+    "name": "Koshi/Energy Chimes",
+    "slug": "koshienergy-chimes"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 67,
+  "fields": {
+    "main_category": 16,
+    "name": "Shamanic Drums",
+    "slug": "shamanic-drums"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 68,
+  "fields": {
+    "main_category": 17,
+    "name": "Mallets/Drumstick",
+    "slug": "malletsdrumstick"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 69,
+  "fields": {
+    "main_category": 17,
+    "name": "Ringer/Leather Stick",
+    "slug": "ringerleather-stick"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 70,
+  "fields": {
+    "main_category": 17,
+    "name": "Cushions",
+    "slug": "cushions"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 71,
+  "fields": {
+    "main_category": 17,
+    "name": "SB/Gong Carry Bags",
+    "slug": "sbgong-carry-bags"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 72,
+  "fields": {
+    "main_category": 18,
+    "name": "Thankas",
+    "slug": "thankas"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 73,
+  "fields": {
+    "main_category": 18,
+    "name": "Statues",
+    "slug": "statues"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 74,
+  "fields": {
+    "main_category": 18,
+    "name": "Prayer Flags",
+    "slug": "prayer-flags"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 75,
+  "fields": {
+    "main_category": 18,
+    "name": "Prayer Beads",
+    "slug": "prayer-beads"
+  }
+},
+{
+  "model": "category.subcategory",
+  "pk": 76,
+  "fields": {
+    "main_category": 18,
+    "name": "Prayer Wheels",
+    "slug": "prayer-wheels"
+  }
+},
+{
+  "model": "category.insidesubcategory",
+  "pk": 5,
+  "fields": {
+    "sub_category": 49,
+    "name": "Sun",
+    "slug": "sun"
+  }
+},
+{
+  "model": "category.insidesubcategory",
+  "pk": 6,
+  "fields": {
+    "sub_category": 49,
+    "name": "Moon",
+    "slug": "moon"
+  }
+},
+{
+  "model": "category.insidesubcategory",
+  "pk": 7,
+  "fields": {
+    "sub_category": 49,
+    "name": "Mercury",
+    "slug": "mercury"
+  }
+},
+{
+  "model": "category.insidesubcategory",
+  "pk": 8,
+  "fields": {
+    "sub_category": 49,
+    "name": "Venus",
+    "slug": "venus"
+  }
+},
+{
+  "model": "category.insidesubcategory",
+  "pk": 9,
+  "fields": {
+    "sub_category": 49,
+    "name": "Mars",
+    "slug": "mars"
+  }
+},
+{
+  "model": "category.insidesubcategory",
+  "pk": 10,
+  "fields": {
+    "sub_category": 49,
+    "name": "Jupiter",
+    "slug": "jupiter"
+  }
+},
+{
+  "model": "category.insidesubcategory",
+  "pk": 11,
+  "fields": {
+    "sub_category": 49,
+    "name": "Saturn",
+    "slug": "saturn"
+  }
+},
+{
+  "model": "category.insidesubcategory",
+  "pk": 12,
+  "fields": {
+    "sub_category": 49,
+    "name": "Uranus",
+    "slug": "uranus"
+  }
+},
+{
+  "model": "category.insidesubcategory",
+  "pk": 13,
+  "fields": {
+    "sub_category": 49,
+    "name": "Neptune",
+    "slug": "neptune"
+  }
+},
+{
+  "model": "category.insidesubcategory",
+  "pk": 14,
+  "fields": {
+    "sub_category": 49,
+    "name": "Pluto",
+    "slug": "pluto"
+  }
+},
+{
+  "model": "category.insidesubcategory",
+  "pk": 15,
+  "fields": {
+    "sub_category": 50,
+    "name": "Chiron",
+    "slug": "chiron"
+  }
+},
+{
+  "model": "category.insidesubcategory",
+  "pk": 16,
+  "fields": {
+    "sub_category": 50,
+    "name": "Hopi",
+    "slug": "hopi"
+  }
+},
+{
+  "model": "category.insidesubcategory",
+  "pk": 17,
+  "fields": {
+    "sub_category": 50,
+    "name": "Eros",
+    "slug": "eros"
+  }
+},
+{
+  "model": "category.insidesubcategory",
+  "pk": 18,
+  "fields": {
+    "sub_category": 50,
+    "name": "Lilith",
+    "slug": "lilith"
+  }
+},
+{
+  "model": "category.insidesubcategory",
+  "pk": 19,
+  "fields": {
+    "sub_category": 50,
+    "name": "Platonic Year",
+    "slug": "platonic-year"
+  }
+},
+{
+  "model": "category.insidesubcategory",
+  "pk": 20,
+  "fields": {
+    "sub_category": 51,
+    "name": "Om (Earth Year)",
+    "slug": "om-earth-year"
+  }
+},
+{
+  "model": "category.insidesubcategory",
+  "pk": 21,
+  "fields": {
+    "sub_category": 51,
+    "name": "Earth Day (Sound of the Day)",
+    "slug": "earth-day-sound-of-the-day"
+  }
+},
+{
+  "model": "category.insidesubcategory",
+  "pk": 22,
+  "fields": {
+    "sub_category": 52,
+    "name": "Alpha",
+    "slug": "alpha"
+  }
+},
+{
+  "model": "category.insidesubcategory",
+  "pk": 23,
+  "fields": {
+    "sub_category": 52,
+    "name": "Theta",
+    "slug": "theta"
   }
 },
 {
   "model": "orders.order",
   "pk": 159,
   "fields": {
-    "user": 13,
-    "payment": 62,
+    "user": null,
+    "payment": null,
     "order_number": "20260620159",
     "first_name": "sujan",
     "last_name": "dotel",
@@ -694,8 +757,8 @@
   "model": "orders.order",
   "pk": 160,
   "fields": {
-    "user": 13,
-    "payment": 63,
+    "user": null,
+    "payment": null,
     "order_number": "20260620160",
     "first_name": "sandip",
     "last_name": "dhakal",
@@ -725,8 +788,8 @@
   "model": "orders.order",
   "pk": 161,
   "fields": {
-    "user": 13,
-    "payment": 64,
+    "user": null,
+    "payment": null,
     "order_number": "20260620161",
     "first_name": "sfdgsdfg",
     "last_name": "sfdgsdfg",
