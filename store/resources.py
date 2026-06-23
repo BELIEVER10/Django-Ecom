@@ -1,6 +1,6 @@
 from import_export import resources, fields
 from import_export.widgets import ForeignKeyWidget
-from .models import Product, Variation, CarouselItem
+from .models import Product, Variation
 
 class ProductResource(resources.ModelResource):
     class Meta:
@@ -15,6 +15,3 @@ class VariationResource(resources.ModelResource):
     class Meta:
         model = Variation
 
-class CarouselItemResource(resources.ModelResource):
-    class Meta:
-        model = CarouselItem

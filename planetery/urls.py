@@ -26,7 +26,6 @@ urlpatterns = [
     path('', views.home, name="home"),
     path('privacy_policy/', views.privacy_policy, name='privacy_policy'),
     path('terms_and_conditions/', views.terms_and_conditions, name='terms_and_conditions'),
-    path('events/<slug:slug>/', views.event_detail, name='event_detail'),
     path('about_us/', views.about_us, name='about_us'),
     path('contact_us/', views.contact_us, name='contact_us'),
     path('store/', include('store.urls')),

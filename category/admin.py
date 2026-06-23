@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import LeftBanner, RightBanner, ContactMessage, SubCategory, MainCategory, InsideSubCategory
+from . models import ContactMessage, SubCategory, MainCategory, InsideSubCategory
 from import_export.admin import ImportExportModelAdmin
 
 
@@ -41,5 +41,3 @@ class InsideSubCategoryAdmin(admin.ModelAdmin):
     search_fields = ['name', 'sub_category__name']
     prepopulated_fields = {'slug': ('name',)}
 
-admin.site.register(LeftBanner)
-admin.site.register(RightBanner)

@@ -4,9 +4,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Avg, Min, Max
-from store.models import Product, CarouselItem, WebsiteReview, Gallery
+from store.models import Product, WebsiteReview, Gallery
 from store.forms import WebsiteReviewForm
-from category.models import LeftBanner, RightBanner, ContactMessage
+from category.models import ContactMessage
 from category.forms import ContactForm
 from django.shortcuts import get_object_or_404
 
@@ -20,17 +20,7 @@ def home(request):
         min_price=Min('variation__price'),
         max_price=Max('variation__price')
     )
-    left_banner = LeftBanner.objects.first()
-    right_banner = RightBanner.objects.first()
-    try:
-        left_banner_product = Product.objects.get(is_available=True, is_left_banner_offer=True)
-    except Product.DoesNotExist:
-        left_banner_product = None
-    try:
-        right_banner_product = Product.objects.get(is_available=True, is_right_banner_offer=True)
-    except Product.DoesNotExist:
-        right_banner_product = None
-    items = CarouselItem.objects.all()
+
 
     galleries = Gallery.objects.all()
 
@@ -60,11 +50,6 @@ def home(request):
     context = {
         'products': products,
         'most_viewed': most_viewed,
-        'items': items,
-        'left_banner': left_banner,
-        'right_banner': right_banner,
-        'left_banner_product': left_banner_product,
-        'right_banner_product': right_banner_product,
         'review_form': form,          # <-- add form
         'reviews': reviews,           # <-- existing reviews
         'avg_rating': avg_rating,
@@ -78,9 +63,7 @@ def gallery_detail(request, slug):
     gallery = get_object_or_404(Gallery, slug=slug)
     return render(request, 'gallery_detail.html', {'gallery': gallery})
 
-def event_detail(request, slug):
-    event = get_object_or_404(CarouselItem, slug=slug)
-    return render(request, 'event_detail.html', {'event': event})
+
 
 
 def privacy_policy(request):

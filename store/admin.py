@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Product, CarouselItem, Variation, ProductGallery, WebsiteReview, Gallery, GalleryImage
-from .resources import ProductResource, VariationResource, CarouselItemResource
+from .models import Product, Variation, ProductGallery, WebsiteReview, Gallery, GalleryImage
+from .resources import ProductResource, VariationResource
 from import_export.admin import ImportExportModelAdmin
 import admin_thumbnails
 
@@ -22,8 +22,7 @@ class VariationAdmin(ImportExportModelAdmin):
     list_filter = ('product', 'variation_category', 'variation_value')
     resource_class = VariationResource
 
-class CarouselAdmin(ImportExportModelAdmin):
-    resource_class = CarouselItemResource
+
 
 @admin.register(WebsiteReview)
 class WebsiteReviewAdmin(admin.ModelAdmin):
@@ -48,6 +47,5 @@ class GalleryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Product, ProductAdmin)
-admin.site.register(CarouselItem, CarouselAdmin)
 admin.site.register(Variation, VariationAdmin)
 admin.site.register(ProductGallery)

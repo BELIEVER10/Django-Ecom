@@ -5,19 +5,6 @@ from django.utils.text import slugify
 # Create your models here.
 
 
-class LeftBanner(models.Model):
-    name = models.CharField(max_length=50, unique=True)
-    image = models.ImageField(upload_to='banner/left_banner')
-
-    def __str__(self):
-        return self.name
-    
-class RightBanner(models.Model):
-    name = models.CharField(max_length=50, unique=True)
-    image = models.ImageField(upload_to='banner/right_banner')
-
-    def __str__(self):
-        return self.name
     
 
 class ContactMessage(models.Model):

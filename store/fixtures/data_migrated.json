@@ -312,46 +312,6 @@
   }
 },
 {
-  "model": "store.carouselitem",
-  "pk": 1,
-  "fields": {
-    "title": "first",
-    "description": "asdfffffffffffffffffffffffffffasdfadsfasdfassfasdfasdfasdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
-    "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595402/django_migrated/zoy3nnuhhyxfehlwx93l.jpg",
-    "slug": "first"
-  }
-},
-{
-  "model": "store.carouselitem",
-  "pk": 2,
-  "fields": {
-    "title": "second",
-    "description": "adsfasdfasdfasfasdfsadfasd",
-    "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595404/django_migrated/jbtff1bhmxbr6srxzwrq.jpg",
-    "slug": "second"
-  }
-},
-{
-  "model": "store.carouselitem",
-  "pk": 3,
-  "fields": {
-    "title": "third",
-    "description": "adfadsfweqfqewfqwefewrfewrqw",
-    "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595406/django_migrated/tzm7zlg3xaqinylc5hl6.jpg",
-    "slug": "third"
-  }
-},
-{
-  "model": "store.carouselitem",
-  "pk": 4,
-  "fields": {
-    "title": "fourth",
-    "description": "adfasdfasdfasdfasdfasdfasdfafasdfadsf",
-    "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595407/django_migrated/naza9pppa3tg9q2vhrau.jpg",
-    "slug": "fourth"
-  }
-},
-{
   "model": "store.websitereview",
   "pk": 6,
   "fields": {
@@ -553,22 +513,6 @@
   "fields": {
     "cart_id": "36u57mad53npbsh98tednsfnea82ez8e",
     "date_added": "2026-05-23"
-  }
-},
-{
-  "model": "category.leftbanner",
-  "pk": 1,
-  "fields": {
-    "name": "left_banner",
-    "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595411/django_migrated/pqul9eky6w829wcj1pyh.png"
-  }
-},
-{
-  "model": "category.rightbanner",
-  "pk": 1,
-  "fields": {
-    "name": "right_banner",
-    "image": "https://res.cloudinary.com/dktjv2rre/image/upload/v1779595412/django_migrated/xayw4zefevuvefkrek7u.png"
   }
 },
 {
