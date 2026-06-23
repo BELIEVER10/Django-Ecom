@@ -35,6 +35,7 @@ urlpatterns = [
     path('orders/', include('orders.urls')),
     path('newsletter/', include('newsletter.urls')),
     path('gallery/<slug:slug>/', views.gallery_detail, name='gallery_detail'),
+     path('get-shipping-cost/', views.get_shipping_cost_ajax, name='get_shipping_cost_ajax'),
     
     
     

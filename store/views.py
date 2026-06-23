@@ -65,19 +65,17 @@ def product_detail(request, subcategory_slug=None, product_slug=None):
     product_without_variation = Product.objects.annotate(
         variation_count=Count('variation')
     ).filter(id=id, variation_count=0).first()
-  
-    # Increment views
+
     product.views += 1
     product.save()
 
     size_variations = Variation.objects.filter(
-        product__id=id,
-        variation_value__isnull=False
+        product__id=id, variation_value__isnull=False
     ).exclude(variation_value='')
-    
     selected_size = request.POST.get('size')
-    selected_variation = None     
+    selected_variation = None
     model_number = None
+    weight = None          # we'll set this
     sub_desc = None
     price = None
 
@@ -87,52 +85,40 @@ def product_detail(request, subcategory_slug=None, product_slug=None):
             if variation:
                 selected_variation = variation
                 model_number = variation.model_number
+                weight = variation.weight
                 sub_desc = variation.sub_description
                 price = variation.price
         elif product_without_variation:
+            # Use product's own weight
+            weight = product.weight
             model_number = ""
             sub_desc = ""
             price = ""
         else:
+            # fallback to first variation
             variation = Variation.objects.get(product__id=id)
             model_number = variation.model_number
+            weight = variation.weight
             sub_desc = variation.sub_description
             price = variation.price
     except MultipleObjectsReturned:
         model_number = ""
+        weight = product.weight   # fallback to product weight
         sub_desc = ""
         price = ""
 
-    # ----- GALLERY: only show images for the selected variation (or general if no size) -----
-    if selected_variation:
-        # Show only images that belong to this specific variation
-        product_gallery = ProductGallery.objects.filter(
-            product_id=product.id,
-            variation=selected_variation
-        )
-    else:
-        # Show only general images (no variation)
-        product_gallery = ProductGallery.objects.filter(
-            product_id=product.id,
-            variation__isnull=True
-        )
-
-    # ----- MAIN IMAGE: first gallery image or product image -----
-    if product_gallery.exists():
-        main_image_url = product_gallery.first().image.url
-    else:
-        main_image_url = product.image.url
+    product_gallery = ProductGallery.objects.filter(product_id=product.id)
 
     context = {
         'product': product,
         'model_number': model_number,
+        'weight': weight,
         'price': price,
         'sub_description': sub_desc,
         'selected_size': selected_size,
         'selected_variation': selected_variation,
         'size_variations': size_variations,
         'product_gallery': product_gallery,
-        'main_image_url': main_image_url,
     }
     return render(request, 'store/product_detail.html', context)
     

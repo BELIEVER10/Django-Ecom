@@ -2,12 +2,12 @@
 {% load static %}
 {% load currency_filters %}
 {% load cart_extras %}
+{% load weight_filters %}
 
 {% block content %}
 <section class="section-content padding-y bg">
     <div class="container">
 
-        <!-- ============================ COMPONENT 1 ================================= -->
         <h4 class="text-center mb-5 fav-color">Review Your Order and Make Payment</h4>
 
         <div class="row">
@@ -16,24 +16,17 @@
                 <div class="card">
                     <h5 class="card-header fav-color">Billing Address</h5>
                     <div class="card-body">                
-                        <p class="card-text mb-0">{{order.full_name}}</p> 
-                        <p class="card-text mb-0">{{order.full_address}}</p> 
-                        <p class="card-text mb-0">{{order.city}}, {{order.state}}</p> 
-                        <p class="card-text mb-0">{{order.country}}</p> 
-                        <p class="card-text mb-0">{{order.email}}</p> 
-                        <p class="card-text mb-0">{{order.phone}}</p> 
+                        <p class="card-text mb-0">{{ order.full_name }}</p> 
+                        <p class="card-text mb-0">{{ order.full_address }}</p> 
+                        <p class="card-text mb-0">{{ order.city }}, {{ order.state }}</p> 
+                        <p class="card-text mb-0">{{ order.country }}</p> 
+                        <p class="card-text mb-0">{{ order.email }}</p> 
+                        <p class="card-text mb-0">{{ order.phone }}</p> 
                         {% if order.order_note %}
-                        <b class="card-text mb-0">Order Note: {{order.order_note}}</b> 
+                        <b class="card-text mb-0">Order Note: {{ order.order_note }}</b> 
                         {% endif %}
                     </div>
                 </div>
-
-                <!-- <div class="card">
-                    <h5 class="card-header fav-color">Payment Method</h5>
-                    <div class="card-body">                
-                        <p class="card-text">Esewa</p> 
-                    </div>
-                </div> -->
 
                 <!-- Review Products Section -->
                 <div class="card">
@@ -54,42 +47,41 @@
                                         <td>
                                             <figure class="itemside align-items-center">
                                                 <div class="aside">
-                                                    <img src="{{cart_item.product.image.url}}" class="img-sm">
+                                                    <img src="{{ cart_item.product.image.url }}" class="img-sm">
                                                 </div>
                                                 <figcaption class="info">
-                                                    <a href="{{cart_item.product.get_url}}" class="title text-dark">{{cart_item.product.product_name}}</a>
+                                                    <a href="{{ cart_item.product.get_url }}" class="title text-dark">{{ cart_item.product.product_name }}</a>
                                                     <p class="text-muted small">
                                                         {% if cart_item.variation.all %}
                                                         {% for item in cart_item.variation.all %}
-                                                        <span class="font-dark">{{item.variation_category | capfirst}} : {{item.variation_value | capfirst}}</span>
+                                                        <span class="font-dark">{{ item.variation_category | capfirst }} : {{ item.variation_value | capfirst }}</span>
                                                         <br>
-                                                        <span class="font-dark">Model Number : {{item.model_number}}</span>
+                                                        <span class="font-dark">Model Number : {{ item.model_number }}</span>
                                                         <br>
                                                         {% endfor %}
                                                         {% endif %}
                                                         {% if cart_item.product.model_number %}
-                                                        <span class="font-dark">Model Number : {{cart_item.product.model_number}}</span>
+                                                        <span class="font-dark">Model Number : {{ cart_item.product.model_number }}</span>
                                                         {% endif %}
                                                     </p>
                                                 </figcaption>
                                             </figure>
                                         </td>
                                         <td>
-                                            <var>{{cart_item.quantity}}</var>
+                                            <var>{{ cart_item.quantity }}</var>
                                         </td>
                                         <td>
                                             <div class="price-wrap">
-                                    {% if cart_item.variation.all %}
-                                     {% for item in cart_item.variation.all %}
-                                    <var class="price">{% convert_price cart_item.quantity|multiply:item.price %}</var>
-                                    <small class="text-muted d-block">{{ currency_symbol }}{% convert_price item.price %} each</small>
-                                    {% endfor %}
-                                 
-                                    {% else %}
-                                    <var class="price">{%convert_price cart_item.sub_total %}</var>
-                                    <small class="text-muted d-block">{{ currency_symbol }}{% convert_price cart_item.product.price %} each</small>
-                                    {% endif %}
-                                </div>
+                                                {% if cart_item.variation.all %}
+                                                {% for item in cart_item.variation.all %}
+                                                <var class="price">{% convert_price cart_item.quantity|multiply:item.price %}</var>
+                                                <small class="text-muted d-block">{{ currency_symbol }}{% convert_price item.price %} each</small>
+                                                {% endfor %}
+                                                {% else %}
+                                                <var class="price">{% convert_price cart_item.sub_total %}</var>
+                                                <small class="text-muted d-block">{{ currency_symbol }}{% convert_price cart_item.product.price %} each</small>
+                                                {% endif %}
+                                            </div>
                                         </td>
                                     </tr>
                                     {% endfor %}
@@ -100,37 +92,57 @@
                 </div>
             </aside> <!-- col-lg-8 -->
 
-            <!-- Order Summary Section -->
+            <!-- ========== UPDATED ORDER SUMMARY ========== -->
             <aside class="col-lg-4 col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <dl class="dlist-align">
-                            <dt>Total price:</dt>
-                        <dd class="text-right">{{ currency_symbol }}{% convert_price total %}</dd>
-                        </dl>
-                        <dl class="dlist-align">
-                            <dt>Tax:</dt>
-                        <dd class="text-right">{{ currency_symbol }}{% convert_price tax %}</dd>
-                        </dl>
-                        <dl class="dlist-align">
-                            <dt>Total:</dt>
-                        <dd class="text-right text-dark b"><strong>{{ currency_symbol }}{% convert_price grand_total %}</strong></dd>
-                        </dl>
+                        <h5 class="card-title fav-color mb-3">Order Summary</h5>
+
+                        <table class="table table-sm table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td><strong>Subtotal (Products)</strong></td>
+                                    <td class="text-right">{{ currency_symbol }}{% convert_price subtotal %}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Shipping Cost</strong></td>
+                                    <td class="text-right">{{ currency_symbol }}{% convert_price shipping_cost %}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Product Weight</strong></td>
+                                    <td class="text-right">{{ product_weight|floatformat:2 }} kg ({{ product_weight|kg_to_g }} g) approx.</td>
+                                </tr>
+                                {% if packaging_weight %}
+                                <tr>
+                                    <td><strong>Packaging Weight</strong></td>
+                                    <td class="text-right">{{ packaging_weight|floatformat:2 }} kg ({{ packaging_weight|kg_to_g }} g) approx.</td>
+                                </tr>
+                                {% endif %}
+                                <tr>
+                                    <td><strong>Total Weight</strong></td>
+                                    <td class="text-right">{{ total_weight|floatformat:2 }} kg ({{ total_weight|kg_to_g }} g) approx.</td>
+                                </tr>
+                                <tr class="h5">
+                                    <td><strong>Grand Total</strong></td>
+                                    <td class="text-right">{{ currency_symbol }}{% convert_price grand_total %}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
                         <hr>
                         <p class="text-center mb-3">
                             <img src="{% static 'images/misc/payments.png' %}" height="26">
                         </p>
                         <form action="{% url 'workingonpayment' %}" method="post"> 
                             {% csrf_token %}
-                            <input type="hidden" name="order_number" value="{{order.order_number}}">
+                            <input type="hidden" name="order_number" value="{{ order.order_number }}">
                             <button type="submit" class="btn button-color btn-block">Make Payment</button>
                         </form>
                     </div>
-                </div> <!-- card-body -->
+                </div>
             </aside> <!-- col-lg-4 -->
         </div> <!-- row -->
 
     </div> <!-- container -->
 </section>
-
 {% endblock content %}

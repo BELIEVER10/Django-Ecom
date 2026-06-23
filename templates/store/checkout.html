@@ -2,6 +2,7 @@
 {% load static %}
 {% load currency_filters %}
 {% load cart_extras %}
+{% load weight_filters %}
 
 {% block content %}
 <section class="section-content padding-y bg">
@@ -14,7 +15,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title mb-4 fav-color">Billing Address</h4>
-                        <form action="{% url 'place_order' %}" method="POST">
+                        <form action="{% url 'place_order' %}" method="POST" id="checkoutForm">
                             {% csrf_token %}
                             <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -60,7 +61,12 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label>Country</label>
-                                    <input type="text" name="country" class="form-control" required>
+                                    <select name="country" id="countrySelect" class="form-control" required>
+                                        <option value="">Select Country</option>
+                                        {% for country in countries %}
+                                        <option value="{{ country.country_name }}">{{ country.country_name }}</option>
+                                        {% endfor %}
+                                    </select>
                                 </div>
                             </div>
 
@@ -68,14 +74,34 @@
                                 <label>Order Note</label>
                                 <textarea name="order_note" class="form-control" rows="3"></textarea>
                             </div>
-                    </div> <!-- card-body -->
-                </div> <!-- card -->
+                    </div>
+                </div>
             </aside>
 
             <!-- Order Summary -->
             <aside class="col-lg-6 col-md-12">
                 <div class="card">
                     <div class="card-body">
+                        <!-- ========== SHIPPING METHOD SECTION ========== -->
+                        <div class="mb-4">
+                            <h4 class="card-title mb-3 fav-color">Shipping Method</h4>
+                            <div class="form-group">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="shipping_store" name="shipping_method" value="store" class="custom-control-input" checked>
+                                    <label class="custom-control-label" for="shipping_store">Collect from Store (Free)</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="shipping_economy" name="shipping_method" value="economy" class="custom-control-input">
+                                    <label class="custom-control-label" for="shipping_economy">Economy Shipping: <span id="economy_cost">—</span></label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="shipping_priority" name="shipping_method" value="priority" class="custom-control-input">
+                                    <label class="custom-control-label" for="shipping_priority">Priority Shipping: <span id="priority_cost">—</span></label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ========================================== -->
+
                         <h4 class="card-title mb-4 fav-color">Order Summary</h4>
                         <div class="table-responsive">
                             <table class="table table-borderless table-shopping-cart">
@@ -103,9 +129,11 @@
                                                             {% for item in cart_item.variation.all %}
                                                                 <span>{{ item.variation_category | capfirst }}: {{ item.variation_value | capfirst }}</span><br>
                                                                 <span>Model Number: {{ item.model_number }}</span><br>
+                                                                <span>Weight: {{ item.weight|kg_to_g }} g</span><br>
                                                             {% endfor %}
                                                         {% elif cart_item.product.model_number %}
-                                                            <span>Model Number: {{ cart_item.product.model_number }}</span>
+                                                            <span>Model Number: {{ cart_item.product.model_number }}</span><br>
+                                                            <span>Weight: {{ cart_item.product.weight|kg_to_g }} g</span>
                                                         {% endif %}
                                                     </p>
                                                 </figcaption>
@@ -132,6 +160,39 @@
                             </table>
                         </div>
 
+                        <!-- ========== COST SUMMARY SECTION ========== -->
+                        <div class="mt-4 pt-3 border-top">
+                            <table class="table table-sm table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Subtotal (Products)</strong></td>
+                                        <td class="text-right">${% convert_price total %}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Shipping Cost</strong></td>
+                                        <td class="text-right" id="shippingCostDisplay">$0.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Product Weight</strong></td>
+                                        <td class="text-right">{{ product_weight|floatformat:2 }} kg ({{ product_weight|kg_to_g }} g) approx.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Packaging Weight</strong></td>
+                                        <td class="text-right">{{ packaging_weight|floatformat:2 }} kg ({{ packaging_weight|kg_to_g }} g) approx.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Total Weight</strong></td>
+                                        <td class="text-right">{{ total_weight|floatformat:2 }} kg ({{ total_weight|kg_to_g }} g) approx.</td>
+                                    </tr>
+                                    <tr class="h5">
+                                        <td><strong>Grand Total</strong></td>
+                                        <td class="text-right" id="grandTotalDisplay">{% convert_price total %}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- ========================================= -->
+
                         <hr>
                         <button type="submit" class="btn button-color btn-block mb-2">Place Order</button>
                         <a href="{% url 'store' %}" class="btn btn-light btn-block btn-hover-custom">Continue Shopping</a>
@@ -142,4 +203,107 @@
         </div> <!-- row -->
     </div> <!-- container -->
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const countrySelect = document.getElementById('countrySelect');
+    const economySpan = document.getElementById('economy_cost');
+    const prioritySpan = document.getElementById('priority_cost');
+    const shippingCostDisplay = document.getElementById('shippingCostDisplay');
+    const grandTotalDisplay = document.getElementById('grandTotalDisplay');
+    const totalWeight = {{ total_weight|floatformat:2 }};
+    const subtotal = {{ total|floatformat:2 }};
+
+    // Get selected shipping method
+    const getSelectedMethod = () => {
+        const radios = document.querySelectorAll('input[name="shipping_method"]');
+        for (let radio of radios) {
+            if (radio.checked) return radio.value;
+        }
+        return 'store';
+    };
+
+    // Update the summary section with shipping cost and grand total
+    function updateSummary(shippingCost) {
+        shippingCost = parseFloat(shippingCost) || 0;
+        shippingCostDisplay.textContent = '$' + shippingCost.toFixed(2);
+        let grandTotal = subtotal + shippingCost;
+        // If we have tax, add it? The view already computes tax in grand_total but we are not using tax now.
+        // For simplicity, we just use subtotal + shipping. If tax is needed, add it.
+        grandTotalDisplay.textContent = '$' + grandTotal.toFixed(2);
+    }
+
+    // Fetch shipping costs from server
+    function fetchShippingCosts(country) {
+        if (!country) {
+            economySpan.textContent = '—';
+            prioritySpan.textContent = '—';
+            updateSummary(0);
+            return;
+        }
+        fetch(`/get-shipping-cost/?country=${encodeURIComponent(country)}&weight=${totalWeight}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.economy !== undefined && data.economy !== null) {
+                    economySpan.textContent = '$' + parseFloat(data.economy).toFixed(2);
+                } else {
+                    economySpan.textContent = 'N/A';
+                }
+                if (data.priority !== undefined && data.priority !== null) {
+                    prioritySpan.textContent = '$' + parseFloat(data.priority).toFixed(2);
+                } else {
+                    prioritySpan.textContent = 'N/A';
+                }
+                // If a shipping method is selected, update the total
+                const method = getSelectedMethod();
+                let cost = 0;
+                if (method === 'economy' && data.economy) cost = parseFloat(data.economy);
+                else if (method === 'priority' && data.priority) cost = parseFloat(data.priority);
+                else cost = 0;
+                updateSummary(cost);
+            })
+            .catch(error => {
+                console.error('Error fetching shipping cost:', error);
+                economySpan.textContent = 'Error';
+                prioritySpan.textContent = 'Error';
+            });
+    }
+
+    // Handle shipping method change
+    document.querySelectorAll('input[name="shipping_method"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const method = this.value;
+            const country = countrySelect.value;
+            if (!country) {
+                // If no country selected, only store pickup is valid
+                if (method === 'store') {
+                    updateSummary(0);
+                } else {
+                    // But we don't have shipping costs, so show 0 and maybe alert?
+                    updateSummary(0);
+                }
+                return;
+            }
+            // Fetch costs for the selected method (already have data, but we can just use existing values)
+            // Simpler: just re-fetch to get the cost for the selected method
+            fetchShippingCosts(country);
+        });
+    });
+
+    // On country change
+    countrySelect.addEventListener('change', function() {
+        fetchShippingCosts(this.value);
+    });
+
+    // Initial load: if country is pre-selected, fetch costs
+    if (countrySelect.value) {
+        fetchShippingCosts(countrySelect.value);
+    } else {
+        // Default: no country, only store pickup is valid – set shipping to 0
+        document.getElementById('shipping_store').checked = true;
+        updateSummary(0);
+    }
+});
+</script>
+
 {% endblock %}

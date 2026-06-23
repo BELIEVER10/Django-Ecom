@@ -146,3 +146,28 @@ def website_reviews(request):
         'total_reviews': reviews.count(),
     }
     return render(request, 'reviews/review_list.html', context)
+
+
+
+
+from django.http import JsonResponse
+from shipping.utils import get_shipping_cost
+
+def get_shipping_cost_ajax(request):
+    country = request.GET.get('country')
+    weight = request.GET.get('weight')
+    if not country or not weight:
+        return JsonResponse({'error': 'Missing parameters'}, status=400)
+
+    try:
+        weight = float(weight)
+    except ValueError:
+        return JsonResponse({'error': 'Invalid weight'}, status=400)
+
+    economy = get_shipping_cost(country, weight, 'economy')
+    priority = get_shipping_cost(country, weight, 'priority')
+
+    return JsonResponse({
+        'economy': str(economy) if economy is not None else None,
+        'priority': str(priority) if priority is not None else None,
+    })

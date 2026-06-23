@@ -8,6 +8,8 @@ from store.models import Variation
 from django.contrib import messages
 from django.http import JsonResponse
 from django.db.models import Min, Max
+from decimal import Decimal
+from shipping.models import CountryZone
 
 # Create your views here.
 def _cart_id(request):
@@ -175,10 +177,7 @@ def remove_cart_item(request, product_id, cart_item_id):
 
 def cart(request, total=0, quantity=0, cart_items=None):
     try:
-        tax = 0;
-        grand_total = 0;
-        
-
+   
         if request.user.is_authenticated:
             cart_items = CartItem.objects.filter(user=request.user, is_active=True)
         else:
@@ -194,8 +193,6 @@ def cart(request, total=0, quantity=0, cart_items=None):
             else:
                 total += (cart_item.product.price * cart_item.quantity)
                 quantity += cart_item.quantity 
-        tax = (total * 2) / 100
-        grand_total = tax + total
 
     except ObjectDoesNotExist:
         pass #just ignore
@@ -204,18 +201,31 @@ def cart(request, total=0, quantity=0, cart_items=None):
         'total': total,
         'quantity': quantity,
         'cart_items': cart_items,
-        'tax': tax,
-        'grand_total': grand_total
     }
     return render(request, 'store/cart.html', context)
 
+from decimal import Decimal
+from shipping.models import CountryZone
+
+from decimal import Decimal
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
+from .models import CartItem, Cart
+from shipping.models import CountryZone
+
+
+
 @login_required(login_url='login')
-def checkout(request, total=0, quantity=0, cart_items=None):
+def checkout(request):
+    total_price = 0.0
+    product_weight = 0.0
+    quantity = 0
+    packaging_weight = 0.0
+    total_weight = 0.0
+
 
     try:
-        tax = 0;
-        grand_total = 0;
-
         if request.user.is_authenticated:
             cart_items = CartItem.objects.filter(user=request.user, is_active=True)
         else:
@@ -223,23 +233,53 @@ def checkout(request, total=0, quantity=0, cart_items=None):
             cart_items = CartItem.objects.filter(cart=cart, is_active=True)
 
         for cart_item in cart_items:
-            total += (cart_item.product.price * cart_item.quantity)
-            quantity += cart_item.quantity 
-        tax = (total * 2) / 100
-        grand_total = tax + total
+            variations = cart_item.variation.all()
+            if variations:
+                item_price = 0.0
+                item_weight = 0.0
+                item_packaging_weight = 0.0
+                for variation in variations:
+                    item_price += float(variation.price or 0)
+                    item_weight += float(variation.weight or 0)
+                    item_packaging_weight += float(variation.packaging_weight or 0)
+
+            else:
+                item_price = float(cart_item.product.price or 0)
+                item_weight = float(cart_item.product.weight or 0)
+                item_packaging_weight = float(cart_item.product.packaging_weight or 0)
+
+            total_price += item_price * cart_item.quantity
+            product_weight += item_weight * cart_item.quantity
+            packaging_weight += item_packaging_weight * cart_item.quantity
+            quantity += cart_item.quantity
+
+            total_weight = product_weight + packaging_weight
+
+        tax = (total_price * 2) / 100   # 2% tax
+        grand_total = tax + total_price
 
     except ObjectDoesNotExist:
-        pass #just ignore
+        cart_items = []
+        grand_total = 0.0
+        tax = 0.0
+
+    countries = CountryZone.objects.all().order_by('country_name')
 
     context = {
-        'total': total,
+        'total': total_price,
+        'grand_total': grand_total,
+        'tax': tax,
         'quantity': quantity,
         'cart_items': cart_items,
-        'tax': tax,
-        'grand_total': grand_total
+        'product_weight': product_weight,
+        'packaging_weight': packaging_weight,
+        'total_weight': total_weight,
+        'countries': countries,
     }
-
     return render(request, 'store/checkout.html', context)
+
+
+
 
 
 

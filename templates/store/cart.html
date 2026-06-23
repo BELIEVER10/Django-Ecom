@@ -4,6 +4,7 @@
 {% load currency_filters %}
 
 {% load cart_extras %}
+{% load weight_filters %}
 
 
 {% block content %}
@@ -48,10 +49,12 @@
                                                 {% for item in cart_item.variation.all %}
                                                     <span class="font-dark">{{ item.variation_category|capfirst }}: {{ item.variation_value|capfirst }}</span><br>
                                                     <span class="font-dark">Model Number: {{ item.model_number }}</span><br>
+                                                    <span class = "font-dark">Weight: {{ item.weight|kg_to_g }} g</span>
                                                 {% endfor %}
                                             {% endif %}
                                             {% if cart_item.product.model_number %}
-                                                <span class="font-dark">Model Number: {{ cart_item.product.model_number }}</span>
+                                                <span class="font-dark">Model Number: {{ cart_item.product.model_number }}</span><br>
+                                                <span class = "font-dark">Weight: {{ cart_item.product.weight|kg_to_g }} g</span>
                                             {% endif %}
                                         </p>
                                     </figcaption>
@@ -109,14 +112,6 @@
                     <dl class="dlist-align">
                         <dt>Total price:</dt>
                         <dd class="text-right">{{ currency_symbol }}{% convert_price total %}</dd>
-                    </dl>
-                    <dl class="dlist-align">
-                        <dt>Tax:</dt>
-                        <dd class="text-right">{{ currency_symbol }}{% convert_price tax %}</dd>
-                    </dl>
-                    <dl class="dlist-align">
-                        <dt>Total:</dt>
-                        <dd class="text-right text-dark b"><strong>{{ currency_symbol }}{% convert_price grand_total %}</strong></dd>
                     </dl>
                     <hr>
                     <p class="text-center mb-3">

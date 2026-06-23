@@ -25,6 +25,8 @@ class InsideSubCategoryInline(admin.TabularInline):
 class MainCategoryAdmin(admin.ModelAdmin):
     inlines = [SubCategoryInline]
     list_display = ['name']
+    prepopulated_fields = {'slug': ('name', )}
+
 
 @admin.register(SubCategory)
 class SubCategoryAdmin(admin.ModelAdmin):

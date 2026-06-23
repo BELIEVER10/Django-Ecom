@@ -9,6 +9,8 @@ from storage_backends import VariationSoundStorage
 class Product(models.Model):
     product_name = models.CharField(max_length=255, unique=True)
     model_number = models.CharField(max_length=100, null=True, blank=True)
+    weight = models.FloatField(default=0.0, help_text="Weight in kg")
+    packaging_weight = models.FloatField(default=0.0, help_text="Weight in kg")
     slug = models.SlugField(max_length=255, unique=True)
     sub_description = CKEditor5Field(config_name='extends',  null=True, blank=True)
     description = CKEditor5Field(config_name='extends', null=True, blank=True)
@@ -55,6 +57,8 @@ class Variation(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     variation_category = models.CharField(max_length=200, choices=variation_category_choice, blank=True, null=True)
     variation_value = models.CharField(max_length=200, blank=True, null=True)
+    weight = models.FloatField(default=0.0, help_text="Weight in kg")
+    packaging_weight = models.FloatField(default=0.0, help_text="Weight in kg")
     sound_file = models.FileField(
         upload_to='variation_sounds/',
         blank=True,
@@ -77,14 +81,6 @@ class Variation(models.Model):
 
 class ProductGallery(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, default=None)
-    variation = models.ForeignKey(
-        Variation,
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
-        related_name='gallery_images',
-        help_text="Leave blank for product‑level images"
-    )
     image = models.ImageField(upload_to='store/products', max_length=255)
 
     class Meta:
@@ -93,9 +89,7 @@ class ProductGallery(models.Model):
 
 
     def __str__(self):
-        if self.variation:
-            return f"{self.product.product_name} - {self.variation.variation_value}"
-        return f"{self.product.product_name} - General"
+        return self.product.product_name
 
 
 from django.db import models

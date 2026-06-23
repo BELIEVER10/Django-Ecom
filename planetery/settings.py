@@ -62,6 +62,8 @@ INSTALLED_APPS = [
     'orders',
     'newsletter',
     'django_ckeditor_5',
+    'shipping',
+    
 ]
 
 MIDDLEWARE = [

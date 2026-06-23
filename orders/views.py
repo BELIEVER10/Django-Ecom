@@ -16,6 +16,7 @@ import hmac
 import hashlib
 import uuid
 import base64
+from shipping.utils import get_shipping_cost
 
 #for pdf    
 from django.http import HttpResponse
@@ -284,79 +285,133 @@ def payments(request):
 #         return redirect('home')
 
 
-def place_order(request, total=0, quantity=0):
-    current_user = request.user
-    #If the cart count is less than or equal to zero, redirect back to shop store 
 
-    cart_items = CartItem.objects.filter(user=current_user)
-    cart_count = cart_items.count()
-    if cart_count <= 0:
+
+@login_required(login_url='login')
+def place_order(request):
+    current_user = request.user
+
+    # Get cart items
+    cart_items = CartItem.objects.filter(user=current_user, is_active=True)
+    if cart_items.count() <= 0:
         return redirect('store')
-    
-    grand_total = 0
-    tax = 0
+
+    # Initialize all totals as floats
+    subtotal = 0.0
+    product_weight = 0.0
+    packaging_weight = 0.0
+    quantity = 0
 
     for cart_item in cart_items:
-            variations = cart_item.variation.all()
-            if variations:
-                for variation in variations:
-                    total += (variation.price * cart_item.quantity)
-                    quantity += cart_item.quantity
-            else:
-                total += (cart_item.product.price * cart_item.quantity)
-                quantity += cart_item.quantity 
+        variations = cart_item.variation.all()
+        if variations:
+            for variation in variations:
+                # prices and weights are converted to float (if they are Decimal)
+                price = float(variation.price or 0)
+                weight = float(variation.weight or 0)
+                pkg_w = float(variation.packaging_weight or 0)   # if you have this field
+                subtotal += price * cart_item.quantity
+                product_weight += weight * cart_item.quantity
+                packaging_weight += pkg_w * cart_item.quantity
+        else:
+            price = float(cart_item.product.price or 0)
+            weight = float(cart_item.product.weight or 0)
+            pkg_w = float(cart_item.product.packaging_weight or 0)
+            subtotal += price * cart_item.quantity
+            product_weight += weight * cart_item.quantity
+            packaging_weight += pkg_w * cart_item.quantity
+        quantity += cart_item.quantity
 
-    tax = round((2 * total) / 100, 2)
-    grand_total = round(total + tax, 2)
-    
-    if request.method == "POST":
+    total_weight = product_weight + packaging_weight
+
+    if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
-            # Store all the billing information to order table
+            # Billing info
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+            address_line_1 = form.cleaned_data['address_line_1']
+            address_line_2 = form.cleaned_data['address_line_2']
+            country = form.cleaned_data['country']
+            state = form.cleaned_data['state']
+            city = form.cleaned_data['city']
+            order_note = form.cleaned_data['order_note']
+
+            # Shipping method from POST
+            shipping_method = request.POST.get('shipping_method', 'store')
+
+            # Shipping cost (float)
+            shipping_cost = 0.0
+            if shipping_method != 'store' and country:
+                cost = get_shipping_cost(country, total_weight, shipping_method)
+                if cost is not None:
+                    shipping_cost = float(cost)
+                # else shipping_cost stays 0.0
+
+            # Tax (2% of subtotal, not used in grand total)
+            tax = (2 * subtotal) / 100.0
+
+            # Grand total = subtotal + shipping (tax excluded)
+            grand_total = subtotal + shipping_cost
+
+            # Create Order object
             data = Order()
             data.user = current_user
-            data.first_name = form.cleaned_data['first_name']
-            data.last_name = form.cleaned_data['last_name']
-            data.email = form.cleaned_data['email']
-            data.phone = form.cleaned_data['phone']
-            data.address_line_1 = form.cleaned_data['address_line_1']
-            data.address_line_2 = form.cleaned_data['address_line_2']
-            data.country = form.cleaned_data['country']
-            data.state = form.cleaned_data['state']
-            data.city = form.cleaned_data['city']
-            data.order_note = form.cleaned_data['order_note']
-            data.order_total = grand_total
+            data.first_name = first_name
+            data.last_name = last_name
+            data.email = email
+            data.phone = phone
+            data.address_line_1 = address_line_1
+            data.address_line_2 = address_line_2
+            data.country = country
+            data.state = state
+            data.city = city
+            data.order_note = order_note
+            # Store float values (if using FloatField, no conversion needed)
+            data.subtotal = subtotal
+            data.shipping_cost = shipping_cost
+            data.product_weight = product_weight
+            data.packaging_weight = packaging_weight
+            data.total_weight = total_weight
             data.tax = tax
+            data.order_total = grand_total   # grand total
+            data.shipping_method = shipping_method
             data.ip = request.META.get('REMOTE_ADDR')
             data.save()
 
-            #Generate order number using order pk
+            # Generate order number
             yr = int(datetime.date.today().strftime('%Y'))
             dt = int(datetime.date.today().strftime('%d'))
             mt = int(datetime.date.today().strftime('%m'))
-            d = datetime.date(yr,mt,dt)
-            current_date = d.strftime("%Y%m%d") #20241127
+            d = datetime.date(yr, mt, dt)
+            current_date = d.strftime("%Y%m%d")
             order_number = current_date + str(data.id)
             data.order_number = order_number
             data.save()
 
             order = Order.objects.get(user=current_user, is_ordered=False, order_number=order_number)
+
             context = {
                 'order': order,
                 'cart_items': cart_items,
-                'total': total,
+                'subtotal': subtotal,
+                'shipping_cost': shipping_cost,
+                'shipping_method': shipping_method,
+                'product_weight': product_weight,
+                'packaging_weight': packaging_weight,
+                'total_weight': total_weight,
                 'grand_total': grand_total,
                 'tax': tax,
+                'currency_symbol': request.session.get('currency_symbol', '$'),
             }
             return render(request, 'orders/payments.html', context)
         else:
-            # Form is invalid – show errors and redirect back to checkout
             messages.error(request, "Please correct the errors below.")
-            # You could also render the checkout page with the form errors
             return redirect('checkout')
     else:
         return redirect('checkout')
-
         
     
 
@@ -487,4 +542,63 @@ def download_pdf(request, order_number):
 
 
 def workingonpayment(request):
+    order_number = request.POST.get('order_number')
+    order = Order.objects.get(
+        user=request.user,
+        is_ordered=False,
+        order_number=order_number
+    )
+
+    # (Optional) Use the actual order total instead of hardcoded 1500
+    payment = Payment(
+        user=request.user,
+        payment_id=1234,                     # Generate a real ID later
+        payment_method="Esewa",
+        amount_paid=order.order_total,       # Use real total from order
+        status="Completed"
+    )
+    payment.save()
+
+    order.payment = payment
+    order.is_ordered = True
+    order.save()
+
+    # Move cart items to OrderProduct
+    cart_items = CartItem.objects.filter(user=request.user)
+
+    for item in cart_items:
+        orderproduct = OrderProduct()
+        orderproduct.order_id = order.id
+        orderproduct.payment = payment
+        orderproduct.user_id = request.user.id
+        orderproduct.product_id = item.product_id
+        orderproduct.quantity = item.quantity
+        orderproduct.ordered = True
+
+        # --- Set product price and model number ---
+        if item.variation.all():
+            # Take the first variation (usually only one per cart item)
+            variation = item.variation.first()
+            orderproduct.product_price = variation.price
+            orderproduct.model_number = variation.model_number   # <-- ADDED
+            # If multiple variations, you could concatenate:
+            # orderproduct.model_number = ", ".join([v.model_number for v in item.variation.all()])
+        else:
+            orderproduct.product_price = item.product.price
+            orderproduct.model_number = item.product.model_number   # <-- ADDED
+
+        orderproduct.save()
+
+        # Associate the variations with the OrderProduct (ManyToMany)
+        if item.variation.all():
+            orderproduct.variation.set(item.variation.all())
+
+        # Reduce stock
+        product = Product.objects.get(id=item.product_id)
+        product.stock -= item.quantity
+        product.save()
+
+    # Clear cart
+    CartItem.objects.filter(user=request.user).delete()
+
     return render(request, 'orders/workingonpayment.html')
